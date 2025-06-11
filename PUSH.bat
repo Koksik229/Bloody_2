@@ -3,7 +3,7 @@ chcp 1251 > nul
 cd /d D:\Bloody
 
 :: Получаем дату и время в МСК (UTC+3) из локального UTC+5
-for /f %%i in ('powershell -command "(Get-Date).AddHours(-2).ToString('yyyy-MM-dd HH:mm:ss')"' ) do set dt=%%i
+for /f %%i in ('powershell -command "(Get-Date).AddHours(-2).ToString('yyyy-MM-dd_HH-mm-ss')"' ) do set dt=%%i
 
 echo Dobavlyaem izmeneniya...
 git add .
