@@ -2,14 +2,14 @@
 chcp 1251 > nul
 cd /d D:\Bloody
 
-echo Добавляем изменения...
+echo Dobavlyaem izmeneniya...
 git add .
 
-echo Коммитим...
-git commit -m "Автопуш: фиксы и зависимости"
+echo Commitim...
+git commit -m "Avtopush: fixy i zavisimosti"
 
-echo Отправляем на GitHub...
+echo Otpravlyaem na GitHub...
 git push origin master
 
-echo Готово!
+echo Gotovo!
 pause
