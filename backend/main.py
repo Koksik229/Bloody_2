@@ -15,11 +15,15 @@ origins = os.getenv("BACKEND_CORS_ORIGINS", "").split(",")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=[
+        "http://localhost:5173",  # для локальной разработки
+        "https://bloody-2-front.onrender.com"  # для боевого фронта
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 
 app.add_middleware(SessionMiddleware, secret_key=SECRET_KEY, max_age=900)
 
