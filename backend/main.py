@@ -14,7 +14,7 @@ app = FastAPI()
 # Поддержка и localhost, и Render-домена
 origins = [
     "http://localhost:5173",
-    "https://bloody-2-front.onrender.com"
+    "https://bloody-2.onrender.com"
 ]
 
 app.add_middleware(
