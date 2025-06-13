@@ -1,8 +1,9 @@
-import React from 'react'
-import Login from './pages/Login'
+import { useAuth } from './context/AuthContext';
+import Login from './components/Login';
+import GameScreen from './components/GameScreen';
 
-function App() {
-  return <Login />
+export default function App() {
+  const { user } = useAuth();
+
+  return user ? <GameScreen /> : <Login />;
 }
-
-export default App

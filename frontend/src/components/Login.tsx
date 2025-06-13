@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
 import '../styles/Login.css'
+import { useAuth } from '../context/AuthContext'
 
 const API = import.meta.env.VITE_API_URL
 
 const Login = () => {
+  const { setUser } = useAuth()
+
   const [isRegistering, setIsRegistering] = useState(false)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -25,7 +28,7 @@ const Login = () => {
 
     const data = await res.json()
     if (res.ok) {
-      setMessage('✅ Добро пожаловать, ' + data.nickname)
+      setUser(data) // 👈 это переключает на GameScreen
     } else {
       setMessage('❌ ' + (data.detail || 'Ошибка входа'))
     }
@@ -40,6 +43,7 @@ const Login = () => {
     const formData = new FormData()
     formData.append('username', username)
     formData.append('password', password)
+    formData.append('confirm_password', confirmPassword)
     formData.append('email', email)
     formData.append('nickname', nickname)
 
