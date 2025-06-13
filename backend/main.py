@@ -5,6 +5,7 @@ from routes.profile import router as profile_router
 from config import SECRET_KEY
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
+from routes.location import router as location_router
 import os
 
 load_dotenv()
@@ -29,3 +30,4 @@ app.add_middleware(SessionMiddleware, secret_key=SECRET_KEY, max_age=900)
 
 app.include_router(auth_router)
 app.include_router(profile_router)
+app.include_router(location_router)
