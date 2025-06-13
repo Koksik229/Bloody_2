@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from datetime import datetime
 from models.user import User
 from models.race import Race
 from models.location import Location
@@ -6,10 +7,28 @@ from models.location_link import LocationLink
 from models.level_progression import LevelProgression
 from models.race_stats import RaceLevelStat
 
+
+def get_user_stats(db: Session, user: User):
+    stats = db.query(RaceLevelStat).filter(
+        RaceLevelStat.race_id == user.race_id,
+        RaceLevelStat.level == user.level
+    ).first()
+    return stats or DummyStats()
+
+
+class DummyStats:
+    def __init__(self):
+        self.hp = 30
+        self.mp = 10
+
+
 def get_player_profile(db: Session, user_id: int):
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
         return {"error": "Пользователь не найден"}
+
+    user.last_seen = datetime.utcnow()
+    db.commit()
 
     # Получаем расу
     race = db.query(Race).filter(Race.id == user.race_id).first()

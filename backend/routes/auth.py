@@ -1,50 +1,58 @@
-from fastapi import APIRouter, Request, Depends, Form, HTTPException, status
+from fastapi import APIRouter, Form, Request, HTTPException, Depends
+from starlette.responses import JSONResponse
 from sqlalchemy.orm import Session
-from db import SessionLocal
-from services.auth_service import create_user, authenticate_user
-from models.user import User
+
+from db import get_db
+from services.auth_service import (
+    create_user, authenticate_user,
+    validate_email_format, validate_password_strength,
+    validate_username_format, validate_nickname_format
+)
+from services.profile_service import get_user_stats
 
 router = APIRouter()
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
-
 @router.post("/register")
-async def register(
+async def register_user(
     request: Request,
     username: str = Form(...),
     password: str = Form(...),
+    confirm_password: str = Form(...),
     email: str = Form(...),
     nickname: str = Form(...),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db)  # ✅ исправлено
 ):
-    if db.query(User).filter(User.username == username).first():
-        raise HTTPException(status_code=400, detail="Логин уже занят")
-    if db.query(User).filter(User.nickname == nickname).first():
-        raise HTTPException(status_code=400, detail="Никнейм уже занят")
+    if password != confirm_password:
+        raise HTTPException(status_code=400, detail="Пароли не совпадают")
+
+    validate_email_format(email)
+    validate_password_strength(password)
+    validate_username_format(username)
+    validate_nickname_format(nickname)
 
     user = create_user(db, username, password, email, nickname)
     request.session["user_id"] = user.id
-    return {"message": "Регистрация успешна", "nickname": user.nickname}
+    return JSONResponse({"message": "Регистрация успешна", "nickname": user.nickname})
 
 @router.post("/login")
-async def login(
+async def login_user(
     request: Request,
     username: str = Form(...),
     password: str = Form(...),
-    db: Session = Depends(get_db)
+    db: Session = Depends(get_db)  # ✅ исправлено
 ):
     user = authenticate_user(db, username, password)
-    if not user:
-        raise HTTPException(status_code=401, detail="Неверный логин или пароль")
     request.session["user_id"] = user.id
-    return {"message": "Вход выполнен", "nickname": user.nickname}
+    stats = get_user_stats(db, user)
+    return JSONResponse({
+        "nickname": user.nickname,
+        "level": user.level,
+        "location_id": user.location_id,
+        "hp": stats.hp,
+        "mp": stats.mp
+    })
 
 @router.post("/logout")
-async def logout(request: Request):
+async def logout_user(request: Request):
     request.session.clear()
-    return {"message": "Вы вышли из системы"}
+    return JSONResponse({"message": "Вы вышли"})
