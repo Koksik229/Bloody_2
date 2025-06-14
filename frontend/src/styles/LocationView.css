@@ -1,0 +1,43 @@
+.location-view {
+  margin-top: 28vh;
+  text-align: center;
+  color: #fff;
+  z-index: 2;
+  position: relative;
+}
+
+.location-view h2 {
+  font-size: 1.8rem;
+  margin-bottom: 0.3em;
+}
+
+.location-view p {
+  font-size: 1.1rem;
+  margin-bottom: 1em;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0.9;
+}
+
+.move-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.move-buttons button {
+  background-color: #884c24;
+  color: #fff;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.move-buttons button:hover {
+  background-color: #aa6633;
+}

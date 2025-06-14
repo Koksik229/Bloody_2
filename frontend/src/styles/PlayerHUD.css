@@ -1,0 +1,60 @@
+.player-hud {
+  position: absolute;
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+  z-index: 10;
+  color: white;
+  font-family: sans-serif;
+}
+
+.nickname-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.nickname {
+  font-size: 1.1rem;
+  margin-right: 6px;
+}
+
+.info-icon {
+  cursor: pointer;
+  color: #ccc;
+  font-size: 1rem;
+}
+
+.bar-container {
+  margin-bottom: 14px;
+}
+
+.bar-label {
+  font-size: 0.85rem;
+  margin-bottom: 4px;
+}
+
+.bar-outer {
+  width: 18px;
+  height: 100px;
+  background-color: #333;
+  border: 1px solid #555;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px;
+}
+
+.bar-inner {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  transition: height 0.3s ease;
+}
+
+.hp-bar .bar-inner {
+  background-color: #cc0000;
+}
+
+.mp-bar .bar-inner {
+  background-color: #0000cc;
+}
