@@ -2,13 +2,13 @@ import re
 from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from models.user import User
+from models.skills import Skill
 from passlib.hash import bcrypt
 from datetime import datetime
 
 EMAIL_REGEX = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 USERNAME_REGEX = re.compile(r"^[a-zA-Z0-9_]{3,20}$")
 NICKNAME_INVALID_CHARS = re.compile(r"[<>\"'`;\\s]")
-
 
 
 def validate_email_format(email: str):
@@ -46,14 +46,13 @@ def create_user(db: Session, username: str, password: str, email: str, nickname:
             raise HTTPException(status_code=400, detail="Никнейм уже занят")
 
     hashed_password = bcrypt.hash(password)
+
     user = User(
         username=username,
         hashed_password=hashed_password,
         email=email,
         nickname=nickname,
         created_at=datetime.utcnow(),
-        level=1,
-        experience=0,
         race_id=1,
         location_id=1,
         is_active=True
@@ -61,6 +60,24 @@ def create_user(db: Session, username: str, password: str, email: str, nickname:
     db.add(user)
     db.commit()
     db.refresh(user)
+
+    # ⚔️ Создание записи в skills
+    skill = Skill(
+        user_id=user.id,
+        hp=0,
+        mp=0,
+        strength=0,
+        agility=0,
+        power=0,
+        intuition=0,
+        parry=0,
+        weapon_skill=0,
+        shield_block=0,
+        available_attribute_points=5
+    )
+    db.add(skill)
+    db.commit()
+
     return user
 
 
