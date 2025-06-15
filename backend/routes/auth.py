@@ -20,7 +20,7 @@ async def register_user(
     confirm_password: str = Form(...),
     email: str = Form(...),
     nickname: str = Form(...),
-    db: Session = Depends(get_db)  # ✅ исправлено
+    db: Session = Depends(get_db)
 ):
     if password != confirm_password:
         raise HTTPException(status_code=400, detail="Пароли не совпадают")
@@ -39,17 +39,17 @@ async def login_user(
     request: Request,
     username: str = Form(...),
     password: str = Form(...),
-    db: Session = Depends(get_db)  # ✅ исправлено
+    db: Session = Depends(get_db)
 ):
     user = authenticate_user(db, username, password)
     request.session["user_id"] = user.id
-    stats = get_user_stats(db, user)
+    stats = get_user_stats(user.id, db)  # 🔧 тут был баг
     return JSONResponse({
         "nickname": user.nickname,
         "level": user.level,
         "location_id": user.location_id,
-        "hp": stats.hp,
-        "mp": stats.mp
+        "hp": stats["hp"],
+        "mp": stats["mp"]
     })
 
 @router.post("/logout")
