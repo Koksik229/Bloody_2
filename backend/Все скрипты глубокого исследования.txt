@@ -1,0 +1,85 @@
+SQL-скрипты для изменения схемы
+Ниже приводятся примерные SQL-команды для применения перечисленных изменений. Они рассчитаны на SQLite (при необходимости может потребоваться пересоздание таблиц, так как SQLite ограниченно поддерживает ALTER):
+Добавление внешних ключей в таблицу пользователей:
+sql
+Копировать
+Редактировать
+ALTER TABLE users 
+    ADD CONSTRAINT fk_users_race FOREIGN KEY (race_id) REFERENCES races(id),
+    ADD CONSTRAINT fk_users_loc FOREIGN KEY (location_id) REFERENCES locations(id);
+Это свяжет users.race_id с races.id и users.location_id с locations.id
+file-2uo8ymewxapgs4h9d299zh
+. Перед выполнением убедитесь, что у всех пользователей race_id и location_id не нулевые или ссылаются на существующие записи.
+Создание уникального ограничения для связи один-к-одному users→skills:
+sql
+Копировать
+Редактировать
+ALTER TABLE skills ADD CONSTRAINT uq_skills_user UNIQUE(user_id);
+Теперь одна учетная запись не сможет иметь более одной строки навыков.
+Обновление значений по умолчанию для столбцов характеристик в skills:
+sql
+Копировать
+Редактировать
+ALTER TABLE skills ALTER COLUMN hp SET DEFAULT 0;
+ALTER TABLE skills ALTER COLUMN mp SET DEFAULT 0;
+ALTER TABLE skills ALTER COLUMN strength SET DEFAULT 0;
+ALTER TABLE skills ALTER COLUMN agility SET DEFAULT 0;
+ALTER TABLE skills ALTER COLUMN power SET DEFAULT 0;
+(Если СУБД не поддерживает прямое изменение DEFAULT, можно удалить и заново создать столбцы или использовать миграционный инструмент.) Также следует сразу исправить существующие данные: например, установить текущее значение атрибутов в 0 для новых персонажей. Для уже созданных персонажей можно пересчитать распределенные очки как current_value - base_value по их расе и уровню и обновить записи.
+Удаление дублирующих полей уровня и опыта из users:
+sql
+Копировать
+Редактировать
+ALTER TABLE users DROP COLUMN level;
+ALTER TABLE users DROP COLUMN experience;
+(Эти поля хранятся теперь в skills. Если нужны в users для простоты запросов, можно оставить, но тогда не дублировать обновление – либо использовать триггер, либо вычисляемое поле.)
+Создание таблицы шаблонов предметов:
+sql
+Копировать
+Редактировать
+CREATE TABLE item_templates (
+    id INTEGER PRIMARY KEY,
+    name TEXT NOT NULL,
+    slot TEXT,  -- например, "weapon", "head", "armor"
+    hp_bonus INTEGER DEFAULT 0,
+    mp_bonus INTEGER DEFAULT 0,
+    strength_bonus INTEGER DEFAULT 0,
+    agility_bonus INTEGER DEFAULT 0,
+    power_bonus INTEGER DEFAULT 0
+);
+Эта таблица содержит базовую информацию о каждом типе предмета и его бонусах. Пример: меч может иметь strength_bonus = 2, шлем – hp_bonus = 5 и т.д. Поле slot определяет тип слота/категорию.
+Создание таблицы инвентаря:
+sql
+Копировать
+Редактировать
+CREATE TABLE inventory (
+    id INTEGER PRIMARY KEY,
+    user_id INTEGER,
+    item_template_id INTEGER,
+    quantity INTEGER DEFAULT 1,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (item_template_id) REFERENCES item_templates(id)
+);
+Эта таблица хранит предметы в рюкзаке. Например, user_id=42, item_template_id=5, quantity=3 означает 3 штуки предмета шаблона №5 у пользователя 42. Связи гарантируют существование пользователя и шаблона.
+Создание таблицы экипировки:
+sql
+Копировать
+Редактировать
+CREATE TABLE equipment (
+    id INTEGER PRIMARY KEY,
+    user_id INTEGER,
+    item_template_id INTEGER,
+    slot TEXT,
+    FOREIGN KEY (user_id) REFERENCES users(id),
+    FOREIGN KEY (item_template_id) REFERENCES item_templates(id)
+    -- , UNIQUE(user_id, slot)  -- опционально, если хотим запретить два предмета в один слот
+);
+Каждая запись представляет надетый предмет. Поле slot можно хранить явно для контроля (или вывести через JOIN с item_templates). Добавленное ограничение UNIQUE на (user_id, slot) гарантирует, что у одного персонажа не будет две вещи в одном слоте одновременно.
+Введение внешнего ключа и индекса для race_level_stats: (если использовать целостность и оптимизацию)
+sql
+Копировать
+Редактировать
+ALTER TABLE race_level_stats 
+    ADD CONSTRAINT fk_stats_race FOREIGN KEY(race_id) REFERENCES races(id);
+CREATE UNIQUE INDEX idx_stats_race_level ON race_level_stats(race_id, level);
+Это предотвратит несоответствия (например, запись статов для несуществующей расы) и ускорит поиск записи по комбинации раса+уровень.
