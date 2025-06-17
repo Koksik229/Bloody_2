@@ -4,7 +4,7 @@ import PlayerHUD from './PlayerHUD';
 import TopMenu from './TopMenu';
 import '../styles/GameScreen.css';
 import LocationView from './LocationView';
-
+import Chat from './Chat';
 
 export default function GameScreen() {
   const { user } = useAuth();
@@ -23,7 +23,6 @@ export default function GameScreen() {
 	  
 	  {/* Название, описание и кнопки перехода */}
 	  <LocationView />
-
 
       {/* Фон локации, если есть */}
       {user.location?.background && (
@@ -45,7 +44,8 @@ export default function GameScreen() {
         />
       )}
 
-      
+      {/* Чат */}
+      <Chat />
     </div>
   );
 }

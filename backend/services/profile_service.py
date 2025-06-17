@@ -1,77 +1,71 @@
 from fastapi import Request, HTTPException
 from sqlalchemy.orm import Session
 from models.user import User
-from models.race import RaceLevelStat  # Модель статистики для расы/уровня
-from models.location import Location
+from models.race import RaceLevelStat
+from models.location import Location, LocationLink
 from services.session_service import get_user_from_session
+from models.skills import Skill
+from models.race import Race
+from models.level_progression import LevelProgression
+from typing import Dict, Any, Optional
+from datetime import datetime
 
-def get_user_stats(user_id: int, db: Session):
+def get_user_profile(db: Session, user_id: int) -> Dict[str, Any]:
     user = db.query(User).filter(User.id == user_id).first()
     if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    skill = user.skills  # единственная связанная запись Skill или None
-    # Получаем базовые характеристики по расе и уровню
-    base_stats = db.query(RaceLevelStat).filter(
-        (RaceLevelStat.race_id == user.race_id) & (RaceLevelStat.level == user.level)
-    ).first()
-    if not base_stats:
-        # На случай отсутствия записи (не заполнена таблица race_level_stats для данного уровня)
-        raise HTTPException(status_code=500, detail="Base stats not found for race/level")
-    # Расчет итоговых характеристик: базовые + бонусы из Skill
-    bonus_str = skill.strength if skill else 0
-    bonus_agi = skill.agility if skill else 0
-    bonus_pow = skill.power if skill else 0
-    bonus_int = skill.intuition if skill else 0
+        return None
+
+    # Получаем связанные данные
+    race = db.query(Race).filter(Race.id == user.race_id).first()
+    location = db.query(Location).filter(Location.id == user.location_id).first()
+    skill = user.skills[0] if user.skills else None
+    if not skill:
+        return None
+
+    # Получаем доступные локации
+    available_locations = []
+    if location:
+        # Получаем все связи из текущей локации
+        links = db.query(LocationLink).filter(LocationLink.from_id == location.id).all()
+        for link in links:
+            target_location = db.query(Location).filter(Location.id == link.to_id).first()
+            if target_location:
+                available_locations.append({
+                    "id": target_location.id,
+                    "name": target_location.name,
+                    "is_locked": link.is_locked
+                })
 
     return {
-        "level": user.level,
-        "experience": user.experience,
-        "hp": base_stats.hp,             # HP по базе расы/уровня
-        "mp": base_stats.mp,             # MP по базе
-        "strength": base_stats.strength + bonus_str,
-        "agility": base_stats.agility + bonus_agi,
-        "power": base_stats.power + bonus_pow,
-        "intuition": bonus_int,  # базовый intuition отсутствует в race_level_stats, берем только бонус
-        "ap": skill.available_attribute_points if skill else 0
-    }
-
-def get_user_profile(user_id: int, db: Session):
-    user = db.query(User).filter(User.id == user_id).first()
-    if not user:
-        raise HTTPException(status_code=404, detail="User not found")
-    skill = user.skills
-    base_stats = db.query(RaceLevelStat).filter(
-        (RaceLevelStat.race_id == user.race_id) & (RaceLevelStat.level == user.level)
-    ).first()
-    if not base_stats:
-        raise HTTPException(status_code=500, detail="Base stats not found for race/level")
-
-    # Составляем профиль игрока
-    return {
+        "id": user.id,
+        "username": user.username,
         "nickname": user.nickname,
         "level": user.level,
         "experience": user.experience,
-        "race_id": user.race_id,
-        "race_name": user.race.name if user.race else "Unknown",
-        "location_id": user.location_id,
-        "location_name": user.location.name if user.location else "Unknown",
-        "location_desc": user.location.description if user.location else "",
-        "background": user.location.background if user.location else "",
-        "hp": base_stats.hp,
-        "mp": base_stats.mp,
-        "strength": base_stats.strength + (skill.strength if skill else 0),
-        "agility": base_stats.agility + (skill.agility if skill else 0),
-        "power": base_stats.power + (skill.power if skill else 0),
-        "intuition": skill.intuition if skill else 0,
-        "ap": skill.available_attribute_points if skill else 0,
-        "exp_to_next_level": None if not base_stats else (
-            # Если есть запись для следующего уровня, вычисляем сколько опыта осталось до него
-            (db.query(RaceLevelStat).filter((RaceLevelStat.race_id == user.race_id) & 
-                                            (RaceLevelStat.level == user.level + 1)).first().hp 
-             if db.query(RaceLevelStat).filter((RaceLevelStat.race_id == user.race_id) & 
-                                               (RaceLevelStat.level == user.level + 1)).first()
-             else None)
-        )
+        "race": {
+            "id": race.id if race else None,
+            "name": race.name if race else None
+        },
+        "location": {
+            "id": location.id if location else None,
+            "name": location.name if location else None
+        },
+        "attributes": {
+            "strength": skill.strength,
+            "agility": skill.agility,
+            "power": skill.power,
+            "intuition": skill.intuition
+        },
+        "combat_skills": {
+            "weapon_skill": skill.weapon_skill,
+            "parry": skill.parry,
+            "shield_block": skill.shield_block
+        },
+        "points": {
+            "attributes": skill.available_attribute_points,
+            "attributes_special": skill.available_attribute_points_special
+        },
+        "available_locations": available_locations
     }
 
 def get_user_by_token(request: Request, db: Session):
@@ -81,3 +75,61 @@ def get_user_by_token(request: Request, db: Session):
     return user
 
 get_player_profile = get_user_profile  # alias
+
+def get_user_stats(db: Session, user_id: int) -> Dict[str, Any]:
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        return None
+
+    skills = db.query(Skill).filter(Skill.user_id == user_id).first()
+    if skills:
+        return {
+            "attributes": {
+                "strength": skills.strength,
+                "agility": skills.agility,
+                "power": skills.power,
+                "parry": skills.parry,
+                "weapon_skill": skills.weapon_skill,
+                "shield_block": skills.shield_block,
+                "intuition": skills.intuition,
+                "available_attribute_points": skills.available_attribute_points,
+                "available_attribute_points_special": skills.available_attribute_points_special
+            }
+        }
+    return None
+
+def update_user_profile(db: Session, user_id: int, data: Dict[str, Any]) -> Dict[str, Any]:
+    user = db.query(User).filter(User.id == user_id).first()
+    if not user:
+        return None
+
+    # Обновляем базовые данные
+    if "nickname" in data:
+        user.nickname = data["nickname"]
+
+    # Обновляем навыки
+    skills = db.query(Skill).filter(Skill.user_id == user_id).first()
+    if skills:
+        if "attributes" in data:
+            attrs = data["attributes"]
+            if "strength" in attrs:
+                skills.strength = attrs["strength"]
+            if "agility" in attrs:
+                skills.agility = attrs["agility"]
+            if "power" in attrs:
+                skills.power = attrs["power"]
+            if "parry" in attrs:
+                skills.parry = attrs["parry"]
+            if "weapon_skill" in attrs:
+                skills.weapon_skill = attrs["weapon_skill"]
+            if "shield_block" in attrs:
+                skills.shield_block = attrs["shield_block"]
+            if "intuition" in attrs:
+                skills.intuition = attrs["intuition"]
+            if "available_attribute_points" in attrs:
+                skills.available_attribute_points = attrs["available_attribute_points"]
+            if "available_attribute_points_special" in attrs:
+                skills.available_attribute_points_special = attrs["available_attribute_points_special"]
+
+    db.commit()
+    return get_user_profile(db, user_id)

@@ -1,6 +1,8 @@
 from sqlalchemy import Column, Integer, String, DateTime, Boolean, ForeignKey
 from sqlalchemy.orm import relationship
 from db import Base
+from models.chat import ChatMessage
+from datetime import datetime
 
 class User(Base):
     __tablename__ = "users"
@@ -8,22 +10,21 @@ class User(Base):
     id = Column(Integer, primary_key=True, index=True)
     username = Column(String, unique=True, index=True)
     hashed_password = Column(String)
-    email = Column(String)
-    nickname = Column(String)
-
-    race_id = Column(Integer, ForeignKey("races.id"), nullable=False, default=1)
-    location_id = Column(Integer, ForeignKey("locations.id"), nullable=False, default=1)
-
-    level = Column(Integer, default=1)        # Добавлено: уровень персонажа
-    experience = Column(Integer, default=0)   # Добавлено: опыт персонажа
-
-    created_at = Column(DateTime)
+    email = Column(String, unique=True, index=True)
+    nickname = Column(String, unique=True, index=True)
+    race_id = Column(Integer, ForeignKey("races.id"))
+    location_id = Column(Integer, ForeignKey("locations.id"))
+    created_at = Column(DateTime, default=datetime.utcnow)
     last_login = Column(DateTime)
     last_seen = Column(DateTime)
     is_active = Column(Boolean, default=True)
-    failed_login_attempts = Column(Integer, default=0)
+    is_online = Column(Boolean, default=False)
+    level = Column(Integer, default=1)
+    experience = Column(Integer, default=0)
 
-    # Связи с зависимыми таблицами
-    skills = relationship("Skill", back_populates="user", uselist=False)
-    race = relationship("Race")         # Добавлено: связь с моделью Race для user.race
-    location = relationship("Location") # Добавлено: связь с моделью Location для user.location
+    # Relationships
+    race = relationship("Race", back_populates="users")
+    location = relationship("Location", back_populates="users")
+    sent_messages = relationship("ChatMessage", foreign_keys="[ChatMessage.sender_id]", back_populates="sender")
+    received_messages = relationship("ChatMessage", foreign_keys="[ChatMessage.receiver_id]", back_populates="receiver")
+    skills = relationship("Skill", back_populates="user")

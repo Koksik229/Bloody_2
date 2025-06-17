@@ -1,0 +1,5 @@
+1|lemure|$2b$12$2kIx8TrENShEn2gxlZLs6.L2z9W.QA.bDO3.ecl.LSaeQu6u6bdda|lemure@mail.ru|lemure|1|1|2025-06-15 15:31:44.146777|||1|1|0
+2|lemure1|$2b$12$dHOtq0GQYmUDfJ4THL9mn.b98PDTnB2Cr0KfVo6CrUemd7iHRkIfi|lemure@mail.ru|lemure1|1|1|2025-06-15 15:32:44.319041|2025-06-15 15:33:33.663201||1|1|0
+3|lemure2|$2b$12$9zo1gejqLJFehaPegLa/meG15CT.YqFrdvN3uZ4ueVjpO.OZdb17K|lemure2@mail.ru|lemure2|1|1|2025-06-15 15:44:34.018507|2025-06-15 15:44:36.086818||1|1|0
+4|lemure4|$2b$12$qWa4DBcMFc8KC/u11Iazc.2ACyBvQHypkJ/emIyEyK3XzPdPrJhaS|lemure4@mail.ru|lemure4|1|1|2025-06-15 16:07:55.876568|||1|1|0
+5|lemure5|$2b$12$hJCT02HB1vz73DEx5R4xh.1Ys3A.K364Zqd43gEJqiuz/iSIofI0W|lemure5@mail.ru|lemure5|1|1|2025-06-15 16:11:01.676695|2025-06-15 16:14:27.513384||1|1|0

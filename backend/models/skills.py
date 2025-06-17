@@ -4,16 +4,20 @@ from db import Base
 
 class Skill(Base):
     __tablename__ = "skills"
+    __table_args__ = {'extend_existing': True}
 
-    # Убираем отдельный ID: primary key — user_id для связи 1:1 с User
-    user_id = Column(Integer, ForeignKey("users.id"), primary_key=True)
-
-    # Атрибуты: хранят **дополнительные** очки, потраченные на прокачку (базовые берутся из race_level_stats)
+    id = Column(Integer, primary_key=True)
+    user_id = Column(Integer, ForeignKey("users.id"))
     strength = Column(Integer, default=0)
-    agility  = Column(Integer, default=0)
-    power    = Column(Integer, default=0)
+    agility = Column(Integer, default=0)
+    power = Column(Integer, default=0)
+    parry = Column(Integer, default=0)
+    weapon_skill = Column(Integer, default=0)
+    shield_block = Column(Integer, default=0)
     intuition = Column(Integer, default=0)
 
-    available_attribute_points = Column(Integer, default=5)  # свободные очки для распределения
+    # Очки для распределения
+    available_attribute_points = Column(Integer, default=5)
+    available_attribute_points_special = Column(Integer, default=2)
 
     user = relationship("User", back_populates="skills")

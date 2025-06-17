@@ -1,0 +1,16 @@
+CREATE TABLE users (
+	id INTEGER NOT NULL, 
+	username VARCHAR, 
+	hashed_password VARCHAR, 
+	email VARCHAR, 
+	nickname VARCHAR, 
+	race_id INTEGER, 
+	location_id INTEGER, 
+	created_at DATETIME, 
+	last_login DATETIME, 
+	last_seen DATETIME, 
+	is_active BOOLEAN, level INTEGER DEFAULT 1, experience INTEGER DEFAULT 0, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(race_id) REFERENCES races (id), 
+	FOREIGN KEY(location_id) REFERENCES locations (id)
+);

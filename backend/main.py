@@ -1,13 +1,27 @@
 from fastapi import FastAPI
-from starlette.middleware.sessions import SessionMiddleware
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
+import logging
+
+# Настройка логирования
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.StreamHandler(),
+        logging.FileHandler('app.log')
+    ]
+)
 
 from config import SECRET_KEY
-from routes.auth import router as auth_router
-from routes.profile import router as profile_router
-from routes.location import router as location_router
+from db import engine, Base
+from models.user import User
+from models.chat import ChatMessage
+from models.location import Location, LocationLink, LocationType
+from models.race import Race
+from models.skills import Skill
+from routes import auth, profile, chat, users
 
 load_dotenv()
 
@@ -27,15 +41,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.add_middleware(
-    SessionMiddleware,
-    secret_key=SECRET_KEY,
-    max_age=900,             # 15 минут
-    same_site="none",        # 👈 обязательно для Render
-    https_only=True          # 👈 обязательно для cookie по HTTPS
-)
+# Создаем таблицы
+Base.metadata.create_all(bind=engine)
 
 # ✅ Подключение роутеров
-app.include_router(auth_router)
-app.include_router(profile_router)
-app.include_router(location_router)
+app.include_router(auth.router, tags=["auth"])
+app.include_router(profile.router, tags=["profile"])
+app.include_router(chat.router, tags=["chat"])
+app.include_router(users.router, prefix="/users", tags=["users"])

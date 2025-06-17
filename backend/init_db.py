@@ -1,102 +1,140 @@
 from sqlalchemy import create_engine, Column, Integer, String, Boolean, DateTime, Text
 from sqlalchemy.orm import declarative_base, sessionmaker
 from datetime import datetime
+from db import SessionLocal, engine, Base
+from models.race import Race, RaceLevelStat
+from models.location import Location, LocationLink
+from models.level import LevelProgression
+from models.user import User
 
-Base = declarative_base()
-engine = create_engine("sqlite:///db.sqlite3")
-SessionLocal = sessionmaker(bind=engine)
+def init_db():
+    # Создаем таблицы
+    Base.metadata.create_all(bind=engine)
+    
+    db = SessionLocal()
+    try:
+        # Проверяем, есть ли уже расы в базе
+        if db.query(Race).first() is None:
+            # Создаем базовые расы
+            races = [
+                Race(
+                    id=1,
+                    name="Человек",
+                    description="Сбалансированная раса, подходящая для начинающих.",
+                    base_strength=10,
+                    base_agility=10,
+                    base_power=10,
+                    base_intuition=10,
+                    base_weapon_skill=10,
+                    base_parry=10,
+                    base_shield_block=10
+                )
+            ]
+            db.add_all(races)
+            
+            # Создаем базовые характеристики для рас
+            race_stats = [
+                RaceLevelStat(race_id=1, level=1, health=100, mana=50),
+                RaceLevelStat(race_id=1, level=2, health=120, mana=60),
+                RaceLevelStat(race_id=1, level=3, health=140, mana=70),
+                RaceLevelStat(race_id=1, level=4, health=160, mana=80),
+                RaceLevelStat(race_id=1, level=5, health=180, mana=90),
+                RaceLevelStat(race_id=1, level=6, health=200, mana=100),
+                RaceLevelStat(race_id=1, level=7, health=220, mana=110),
+                RaceLevelStat(race_id=1, level=8, health=240, mana=120),
+                RaceLevelStat(race_id=1, level=9, health=260, mana=130),
+                RaceLevelStat(race_id=1, level=10, health=280, mana=140)
+            ]
+            db.add_all(race_stats)
+            
+        # Проверяем, есть ли уже локации в базе
+        if db.query(Location).first() is None:
+            # Создаем базовые локации
+            locations = [
+                Location(
+                    id=1,
+                    name="Дом",
+                    description="Ваш уютный стартовый дом.",
+                    background="house.png",
+                    location_type="safe",
+                    label="Безопасная зона",
+                    is_safe=True,
+                    has_enemies=False
+                ),
+                Location(
+                    id=3,
+                    name="Арена",
+                    description="Место для сражений.",
+                    background="arena.png",
+                    location_type="combat",
+                    label="Боевая зона",
+                    is_safe=False,
+                    has_enemies=True
+                ),
+                Location(
+                    id=4,
+                    name="Лес",
+                    description="Опасный тёмный лес.",
+                    background="forest.png",
+                    location_type="dungeon",
+                    label="Подземелье",
+                    is_safe=False,
+                    has_enemies=True
+                ),
+                Location(
+                    id=5,
+                    name="Лавка Гендальфа",
+                    description="Магическая лавка старого волшебника.",
+                    background="gandalf_shop.png",
+                    location_type="shop",
+                    label="Магазин",
+                    is_safe=True,
+                    has_enemies=False
+                ),
+                Location(
+                    id=15,
+                    name="Тёмная улица",
+                    description="Узкий переулок, где таится опасность.",
+                    background="dark_alley.png",
+                    location_type="combat",
+                    label="Боевая зона",
+                    is_safe=False,
+                    has_enemies=True
+                ),
+                Location(
+                    id=16,
+                    name="Площадь шахтёров",
+                    description="Место сбора шахтёров перед походом в шахты.",
+                    background="miners_square.png",
+                    location_type="safe",
+                    label="Безопасная зона",
+                    is_safe=True,
+                    has_enemies=False
+                )
+            ]
+            db.add_all(locations)
+            
+            # Создаем связи между локациями
+            links = [
+                LocationLink(from_id=1, to_id=3),  # Дом -> Арена
+                LocationLink(from_id=3, to_id=1),  # Арена -> Дом
+                LocationLink(from_id=1, to_id=4),  # Дом -> Лес
+                LocationLink(from_id=4, to_id=1),  # Лес -> Дом
+                LocationLink(from_id=1, to_id=5),  # Дом -> Лавка Гендальфа
+                LocationLink(from_id=5, to_id=1),  # Лавка Гендальфа -> Дом
+                LocationLink(from_id=3, to_id=15), # Арена -> Тёмная улица
+                LocationLink(from_id=15, to_id=3), # Тёмная улица -> Арена
+                LocationLink(from_id=4, to_id=16), # Лес -> Площадь шахтёров
+                LocationLink(from_id=16, to_id=4)  # Площадь шахтёров -> Лес
+            ]
+            db.add_all(links)
+            
+        db.commit()
+    except Exception as e:
+        db.rollback()
+        raise e
+    finally:
+        db.close()
 
-class User(Base):
-    __tablename__ = "users"
-    id = Column(Integer, primary_key=True)
-    username = Column(String, unique=True, index=True)
-    hashed_password = Column(String)
-    email = Column(String)
-    nickname = Column(String, unique=True, index=True)
-    race_id = Column(Integer)
-    location_id = Column(Integer)
-    level = Column(Integer, default=1)
-    experience = Column(Integer, default=0)
-    created_at = Column(DateTime, default=datetime.utcnow)
-    last_login = Column(DateTime)
-    last_seen = Column(DateTime)
-    is_active = Column(Boolean, default=True)
-    failed_login_attempts = Column(Integer, default=0)
-
-class LoginLog(Base):
-    __tablename__ = "login_logs"
-    id = Column(Integer, primary_key=True)
-    username = Column(String)
-    success = Column(Boolean)
-    timestamp = Column(DateTime, default=datetime.utcnow)
-
-class Race(Base):
-    __tablename__ = "races"
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    description = Column(Text)
-
-class RaceLevelStat(Base):
-    __tablename__ = "race_level_stats"
-    id = Column(Integer, primary_key=True)
-    race_id = Column(Integer)
-    level = Column(Integer)
-    hp = Column(Integer)
-    mp = Column(Integer)
-    strength = Column(Integer)
-    agility = Column(Integer)
-    power = Column(Integer)
-
-class LocationType(Base):
-    __tablename__ = "location_types"
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    label = Column(String)
-    is_safe = Column(Boolean)
-    has_enemies = Column(Boolean)
-
-class Location(Base):
-    __tablename__ = "locations"
-    id = Column(Integer, primary_key=True)
-    name = Column(String)
-    description = Column(Text)
-    background = Column(String)
-    type_id = Column(Integer)
-
-class LocationLink(Base):
-    __tablename__ = "location_links"
-    id = Column(Integer, primary_key=True)
-    from_id = Column(Integer)
-    to_id = Column(Integer)
-    is_locked = Column(Boolean, default=False)
-
-Base.metadata.create_all(bind=engine)
-db = SessionLocal()
-
-db.add(Race(id=1, name="Человек", description="Обычная раса без бонусов."))
-db.add_all([
-    RaceLevelStat(race_id=1, level=1, hp=30, mp=10, strength=5, agility=5, power=5),
-    RaceLevelStat(race_id=1, level=2, hp=35, mp=12, strength=6, agility=6, power=6),
-])
-db.add_all([
-    LocationType(id=1, name="home", label="Дом", is_safe=True, has_enemies=False),
-    LocationType(id=2, name="shop", label="Магазин", is_safe=True, has_enemies=False),
-    LocationType(id=3, name="arena", label="Арена", is_safe=False, has_enemies=True),
-    LocationType(id=4, name="forest", label="Лес", is_safe=False, has_enemies=True),
-])
-db.add_all([
-    Location(id=1, name="Дом", description="Ваш уютный стартовый дом.", background="house.png", type_id=1),
-    Location(id=2, name="Магазин", description="Здесь можно купить вещи.", background="shop.png", type_id=2),
-    Location(id=3, name="Арена", description="Место для сражений.", background="arena.png", type_id=3),
-    Location(id=4, name="Лес", description="Опасный тёмный лес.", background="forest.png", type_id=4),
-])
-db.add_all([
-    LocationLink(from_id=1, to_id=2),
-    LocationLink(from_id=2, to_id=1),
-    LocationLink(from_id=1, to_id=4),
-    LocationLink(from_id=4, to_id=1),
-    LocationLink(from_id=2, to_id=3),
-    LocationLink(from_id=3, to_id=2),
-])
-db.commit()
-db.close()
+if __name__ == "__main__":
+    init_db()

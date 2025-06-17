@@ -3,8 +3,15 @@ from fastapi import HTTPException
 from sqlalchemy.orm import Session
 from models.user import User
 from models.skills import Skill
-from passlib.hash import bcrypt
-from datetime import datetime
+from models.race import Race
+from passlib.context import CryptContext
+from datetime import datetime, timedelta
+from typing import Optional
+from schemas.user import UserCreate
+from utils.password import get_password_hash, verify_password
+from utils.validation import validate_password_strength, validate_nickname
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 EMAIL_REGEX = re.compile(r"^[^@\s]+@[^@\s]+\.[^@\s]+$")
 USERNAME_REGEX = re.compile(r"^[a-zA-Z0-9_]{3,20}$")
@@ -32,6 +39,15 @@ def validate_nickname_format(nickname: str):
     if NICKNAME_INVALID_CHARS.search(nickname):
         raise HTTPException(status_code=400, detail="Никнейм содержит недопустимые символы")
 
+def get_user_by_username(db: Session, username: str) -> Optional[User]:
+    return db.query(User).filter(User.username == username).first()
+
+def get_user_by_email(db: Session, email: str) -> Optional[User]:
+    return db.query(User).filter(User.email == email).first()
+
+def get_user_by_nickname(db: Session, nickname: str) -> Optional[User]:
+    return db.query(User).filter(User.nickname == nickname).first()
+
 def create_user(db: Session, username: str, password: str, email: str, nickname: str) -> User:
     # Проверка уникальности username и nickname
     existing_user = db.query(User).filter((User.username == username) | (User.nickname == nickname)).first()
@@ -40,10 +56,10 @@ def create_user(db: Session, username: str, password: str, email: str, nickname:
             raise HTTPException(status_code=400, detail="Логин уже занят")
         if existing_user.nickname == nickname:
             raise HTTPException(status_code=400, detail="Никнейм уже занят")
-
-    validate_password_strength(password)  # Проверяем сложность пароля
-    hashed_password = bcrypt.hash(password)
-
+    
+    # Создаем хеш пароля
+    hashed_password = pwd_context.hash(password)
+    
     # Создаем нового пользователя
     user = User(
         username=username,
@@ -53,21 +69,31 @@ def create_user(db: Session, username: str, password: str, email: str, nickname:
         created_at=datetime.utcnow(),
         race_id=1,        # ID расы по умолчанию (Человек)
         location_id=1,    # ID стартовой локации (Дом)
+        level=1,
+        experience=0,
         is_active=True
     )
     db.add(user)
     db.commit()
     db.refresh(user)
 
-    # Создаем запись в таблице skills для связанного персонажа
+    # Получаем базовые значения навыков из расы
+    race = db.query(Race).filter(Race.id == user.race_id).first()
+    if not race:
+        raise HTTPException(status_code=500, detail="Race not found")
+
+    # Создаем запись в таблице skills для связанного персонажа с базовыми значениями из расы
     new_skill = Skill(
         user_id=user.id,
-        strength=0,
-        agility=0,
-        power=0,
-        intuition=0,
-        # hp и mp не сохраняем здесь – они вычисляются динамически по race_id и level
-        available_attribute_points=5
+        strength=race.base_strength,
+        agility=race.base_agility,
+        power=race.base_power,
+        intuition=race.base_intuition,
+        weapon_skill=race.base_weapon_skill,
+        parry=race.base_parry,
+        shield_block=race.base_shield_block,
+        available_attribute_points=5,  # 5 очков за первый уровень
+        available_attribute_points_special=2  # 2 очка за первый уровень
     )
     db.add(new_skill)
     db.commit()
@@ -76,8 +102,10 @@ def create_user(db: Session, username: str, password: str, email: str, nickname:
 
 def authenticate_user(db: Session, username: str, password: str) -> User:
     user = db.query(User).filter(User.username == username).first()
-    if not user or not bcrypt.verify(password, user.hashed_password):
-        raise HTTPException(status_code=401, detail="Неверный логин или пароль")
+    if not user:
+        raise HTTPException(status_code=401, detail="Неверное имя пользователя или пароль")
+    if not pwd_context.verify(password, user.hashed_password):
+        raise HTTPException(status_code=401, detail="Неверное имя пользователя или пароль")
     user.last_login = datetime.utcnow()
     db.commit()
     return user

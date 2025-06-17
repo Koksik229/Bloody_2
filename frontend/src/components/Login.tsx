@@ -5,7 +5,7 @@ import { useAuth } from '../context/AuthContext'
 const API = import.meta.env.VITE_API_URL
 
 const Login = () => {
-  const { setUser } = useAuth()
+  const { setUser, fetchUser } = useAuth()
 
   const [isRegistering, setIsRegistering] = useState(false)
   const [username, setUsername] = useState('')
@@ -14,23 +14,32 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [nickname, setNickname] = useState('')
   const [message, setMessage] = useState('')
+  const [error, setError] = useState('')
 
   const handleLogin = async () => {
     const formData = new FormData()
     formData.append('username', username)
     formData.append('password', password)
 
-    const res = await fetch(`${API}/login`, {
-      method: 'POST',
-      body: formData,
-      credentials: 'include'
-    })
+    try {
+      const res = await fetch(`${API}/login`, {
+        method: 'POST',
+        body: formData,
+        credentials: 'include'
+      })
 
-    const data = await res.json()
-    if (res.ok) {
-      setUser(data) // 👈 это переключает на GameScreen
-    } else {
-      setMessage('❌ ' + (data.detail || 'Ошибка входа'))
+      const data = await res.json()
+      if (res.ok) {
+        console.log('Login response:', data);
+        localStorage.setItem('access_token', data.access_token);
+        await fetchUser();
+      } else {
+        console.error('Login failed:', data);
+        setError(data.detail || 'Login failed');
+      }
+    } catch (err) {
+      console.error('Login error:', err);
+      setError('An error occurred during login');
     }
   }
 
@@ -116,6 +125,7 @@ const Login = () => {
         )}
 
         <div className="login-message">{message}</div>
+        {error && <div className="login-error">{error}</div>}
       </div>
     </div>
   )

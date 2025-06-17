@@ -1,0 +1,87 @@
+CREATE TABLE races (
+	id INTEGER NOT NULL, 
+	name VARCHAR, 
+	description TEXT, base_strength INTEGER DEFAULT 10, base_agility INTEGER DEFAULT 10, base_power INTEGER DEFAULT 10, base_intuition INTEGER DEFAULT 10, base_weapon_skill INTEGER DEFAULT 5, base_parry INTEGER DEFAULT 5, base_shield_block INTEGER DEFAULT 5, 
+	PRIMARY KEY (id)
+);
+CREATE TABLE locations (
+	id INTEGER NOT NULL, 
+	name VARCHAR, 
+	description TEXT, 
+	background VARCHAR, 
+	type_id INTEGER, 
+	PRIMARY KEY (id)
+);
+CREATE TABLE login_logs (
+	id INTEGER NOT NULL, 
+	username VARCHAR, 
+	success BOOLEAN, 
+	timestamp DATETIME, 
+	PRIMARY KEY (id)
+);
+CREATE TABLE level_progression (
+	id INTEGER NOT NULL, 
+	level INTEGER, 
+	ap INTEGER, 
+	experience_required INTEGER, 
+	PRIMARY KEY (id)
+);
+CREATE TABLE users (
+	id INTEGER NOT NULL, 
+	username VARCHAR, 
+	hashed_password VARCHAR, 
+	email VARCHAR, 
+	nickname VARCHAR, 
+	race_id INTEGER, 
+	location_id INTEGER, 
+	created_at DATETIME, 
+	last_login DATETIME, 
+	last_seen DATETIME, 
+	is_active BOOLEAN, level INTEGER DEFAULT 1, experience INTEGER DEFAULT 0, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(race_id) REFERENCES races (id), 
+	FOREIGN KEY(location_id) REFERENCES locations (id)
+);
+CREATE TABLE race_level_stats (
+	id INTEGER NOT NULL, 
+	race_id INTEGER, 
+	level INTEGER, 
+	hp_gain INTEGER, 
+	mp_gain INTEGER, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(race_id) REFERENCES races (id)
+);
+CREATE TABLE location_links (
+	id INTEGER NOT NULL, 
+	from_id INTEGER, 
+	to_id INTEGER, 
+	is_locked BOOLEAN, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(from_id) REFERENCES locations (id), 
+	FOREIGN KEY(to_id) REFERENCES locations (id)
+);
+CREATE TABLE chat_messages (
+	id INTEGER NOT NULL, 
+	sender_id INTEGER, 
+	receiver_id INTEGER, 
+	message_type VARCHAR(7), 
+	content VARCHAR, 
+	created_at DATETIME, 
+	PRIMARY KEY (id), 
+	FOREIGN KEY(sender_id) REFERENCES users (id), 
+	FOREIGN KEY(receiver_id) REFERENCES users (id)
+);
+CREATE TABLE skills (
+	user_id INTEGER NOT NULL, 
+	strength INTEGER NOT NULL, 
+	agility INTEGER NOT NULL, 
+	power INTEGER NOT NULL, 
+	parry INTEGER NOT NULL, 
+	weapon_skill INTEGER NOT NULL, 
+	shield_block INTEGER NOT NULL, 
+	intuition INTEGER NOT NULL, 
+	available_attribute_points INTEGER, 
+	available_attribute_points_special INTEGER, 
+	PRIMARY KEY (user_id), 
+	FOREIGN KEY(user_id) REFERENCES users (id)
+);

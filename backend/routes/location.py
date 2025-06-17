@@ -1,8 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException, Request
 from sqlalchemy.orm import Session
 from db import get_db
-from models.location import Location
-from models.location_link import LocationLink
+from models.location import Location, LocationLink
 from services.profile_service import get_user_by_token
 
 router = APIRouter(prefix="/location", tags=["location"])
