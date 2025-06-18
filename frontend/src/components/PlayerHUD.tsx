@@ -2,7 +2,11 @@ import React, { useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
 import '../styles/PlayerHUD.css';
 
-export default function PlayerHUD() {
+interface PlayerHUDProps {
+  style?: React.CSSProperties;
+}
+
+export default function PlayerHUD({ style }: PlayerHUDProps) {
   const { user } = useAuth();
 
   useEffect(() => {
@@ -11,7 +15,7 @@ export default function PlayerHUD() {
   }, [user]);
 
   if (!user) {
-    return <div className="player-hud">Загрузка данных игрока...</div>;
+    return <div className="player-hud" style={style}>Загрузка данных игрока...</div>;
   }
 
   // Вычисляем проценты для баров
@@ -26,7 +30,7 @@ export default function PlayerHUD() {
   };
 
   return (
-    <div className="player-hud">
+    <div className="player-hud" style={style}>
       <div className="nickname-row">
         <span className="nickname">{user.nickname}</span>
         <span className="info-icon" title="Информация персонажа">[i]</span>

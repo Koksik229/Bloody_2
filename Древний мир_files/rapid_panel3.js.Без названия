@@ -1,0 +1,528 @@
+var AddMutantVip='';
+var RP_ajaxResponse=[];
+//--------For alert --------//
+function RP_buildAlert(type, layout_url, msg) {
+    console.log('RP_buildAlert');
+	msg = typeof (msg) != 'undefined' ? msg : "";
+		if (layout_url=='')
+	{
+		layout_url='/layout/ork/';
+	}
+	var RP_main_header = '<form action="index.php?file=rapid_panel&ajax=1" method=POST id="RP_frmUsemagic" name="RP_frmUsemagic" onsubmit="return false;">'+
+		'<table border="0" cellspacing="0" cellpadding="0" align="center"><tr>'+
+		'<td width="7" height="7"><img src="'+layout_url+'/img/rassa/mframe/item_desc/bg-itdes-tl.gif" alt="" width="7" height="7" border="0"></td>'+
+		'<td colspan="2" background="'+layout_url+'/img/rassa/mframe/item_desc/bg-itdes-tc.gif"><img src="'+layout_url+'/img/common/el-blank1px.gif" alt=""  border="0"></td>'+
+		'<td width="7" height="7"><img src="'+layout_url+'/img/rassa/mframe/item_desc/bg-itdes-tr.gif" alt="" width="7" height="7" border="0"></td></tr>'+
+		'<tr><td background="'+layout_url+'/img/rassa/mframe/item_desc/bg-itdes-tlm.gif" width="7"><img src="'+layout_url+'/img/common/el-blank1px.gif" alt=""  border="0"></td>'+
+		'<td class="TD-id-header-x" width="98%" style="text-align: center;">Ввод данных</td>'+
+		'<td class="TD-id-header-x" onclick="RP_useSlotClose();" style="cursor: pointer; font-family: Arial; color: #FFFFFF; font-size: 11px; padding:1px;margin-top:0; text-align:right;" width="10px">x</td>'+
+		'<td background="'+layout_url+'/img/rassa/mframe/item_desc/bg-itdes-trm.gif" width="7"><img src="'+layout_url+'/img/common/el-blank1px.gif" alt="" border="0"></td></tr>'+
+		'<tr><td colspan="4"><table width="100%" border="0" cellspacing="0" cellpadding="0">'+
+		'<tr><td width="12" height="21"><img src="'+layout_url+'/img/rassa/mframe/item_desc/bg-itdes-ml.gif" alt="" border="0"></td>'+
+		'<td align="center" background="'+layout_url+'/img/rassa/mframe/item_desc/bg-itdes-mc.gif"><img src="'+layout_url+'/img/rassa/mframe/item_desc/obj-itdes-mc.gif" alt="" border="0"></td>'+
+		'<td width="12" height="21"><img src="'+layout_url+'/img/rassa/mframe/item_desc/bg-itdes-mr.gif" alt="" border="0"></td></tr>'+
+		'</table></td></tr>'+
+		'<tr><td background="'+layout_url+'/img/rassa/mframe/item_desc/bg-itdes-mm.gif"></td>'+
+		'<td colspan="2" class="TD-id-middle-x">';
+
+	var RP_main_foother = '</td><td background="'+layout_url+'/img/rassa/mframe/item_desc/bg-itdes-mm.gif"></td></tr>'+
+			'<tr><td width="7" height="7" background="'+layout_url+'/img/rassa/mframe/item_desc/bg-itdes-bk.gif"><img src="'+layout_url+'/img/common/el-blank1px.gif" alt="" border="0"></td>'+
+			'<td colspan="2" background="'+layout_url+'/img/rassa/mframe/item_desc/bg-itdes-bc.gif"></td>'+
+			'<td width="7" height="7" background="'+layout_url+'/img/rassa/mframe/item_desc/bg-itdes-bk.gif"><img src="'+layout_url+'/img/common/el-blank1px.gif" alt="" border="0"></td></tr></table></form>';
+	var body = '';
+	switch (type) {
+		case 'magic_weapon':
+		body = '<div id="magic_weapon" align="center">Введите название предмета:'+
+		'<input type="text" name="wname" value="" maxlength=80/><br/>'+
+		'<nobr><input type="submit" value="    Ок    "   class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+		'<input type="button" value="Отменить" class="submit" onclick="RP_useSlotClose();"></nobr></div>';
+		break;
+
+		case 'magic_login':
+		body = '<div id="magic_login" align="center">Введите ник персонажа:<br/>'+
+		'<input type="text" name="login" value="" maxlength=30><br/>'+
+		'<nobr><input type="submit" value="    Ок    "   class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+		'<input type="button" value="Отменить" class="submit" onclick="RP_useSlotClose();"></nobr></div>';
+		break;
+
+		case 'magic_login_price':
+		body = '<div id="magic_login_price" align="center">Введите ник персонажа:'+
+		'<input type="text" name="login2" value="" maxlength="30"><br>Введите cумму за услуги :'+
+		'<input type="text" name="price" value="" maxlength="30"><nobr>'+
+		'<input type="submit" value="    Ок    " class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+		'<input type="button" value="Отменить" class="submit" onclick="RP_useSlotClose();"></nobr></div>';
+		break;
+
+		case 'magic_battle':
+		body = '<div id="magic_battle">Данное заклятие работает только во время боя<br>'+
+		'<input type="button" value="    Ок    " class="submit" onclick="RP_useSubmit()"></div>';
+		break;
+
+		case 'magic_zch_5':
+		body = '<div id="magic_zch_5" align="center">Выберите название предмета:'+
+		'<br><select name="wname2"><option value=""></option>'+
+			'<option value="Кольцо странника(Зч)">Кольцо странника(Зч)</option>'+
+			'<option value="Медное кольцо(Зч)">Медное кольцо(Зч)</option>'+
+			'<option value="Каменное кольцо(Зч)">Каменное кольцо(Зч)</option></select><br>'+
+			'<nobr><input TYPE="submit" value="ОК" class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+			'<input type="button" value="Отменить" class="submit" onclick="RP_useSlotClose();">&nbsp;&nbsp;</nobr></div>';
+		break;
+
+		case 'magic_zch_7':
+		body = '<div id="magic_zch_7" align="center">Выберите название предмета:<br><select name="wname3">'+
+			'<option value=""></option>'+
+			'<option value="Серебряное кольцо(Зч)">Серебряное кольцо(Зч)</option>'+
+			'<option value="Платиновое кольцо(Зч)">Платиновое кольцо(Зч)</option>'+
+			'<option value="Малахитовое кольцо(Зч)">Малахитовое кольцо(Зч)</option></select><br>'+
+			'<nobr><input type="submit" value="ОК" class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+			'<input type="button" value="Отменить" class="submit" onclick="RP_useSlotClose();">&nbsp;&nbsp;</nobr></div>';
+		break;
+
+		case 'magic_zch_11':
+		body ='<div id="magic_zch_11" align="center">Выберите название предмета:'+
+		'<br><select name="wname11"><option value=""></option>'+
+			'<option value="Шлем противостояния(Зч)">Шлем противостояния(Зч)</option>'+
+			'<option value="Шлем скорпиона(Зч)">Шлем скорпиона(Зч)</option>'+
+			'<option value="Небесный шлем(Зч)">Небесный шлем(Зч)</option>'+
+			'<option value="Ожерелье противостояния(Зч)">Ожерелье противостояния(Зч)</option>'+
+			'<option value="Кулон скорпиона(Зч)">Кулон скорпиона(Зч)</option>'+
+			'<option value="Небесный кулон(Зч)">Небесный кулон(Зч)</option>'+
+			'<option value="Сапоги противостояния(Зч)">Сапоги противостояния(Зч)</option>'+
+			'<option value="Ботинки скорпиона(Зч)">Ботинки скорпиона(Зч))</option>'+
+			'<option value="Небесные сапоги(Зч)">Небесные сапоги(Зч)</option></select><br>'+
+			'<nobr><INPUT TYPE="submit" value="ОК" class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+			'<INPUT TYPE="button" value="Отменить" class="submit" onclick="RP_useSlotClose();" > &nbsp;&nbsp;</nobr></div>';
+		break;
+
+		case 'magic_zch_13':
+		body ='<div style="display:none" id="magic_zch_13" align="center">'+
+		'Выберите название предмета:'+
+			'<br><select name="wname13">'+
+          '<option value=""></option>'+
+          '<option value="Шлем феникса(Зч)">Шлем феникса(Зч)</option>'+
+          '<option value="Сапоги феникса(Зч)">Сапоги феникса(Зч)</option>'+
+          '<option value="Амулет феникса(Зч)">Амулет феникса(Зч)</option>'+
+          '<option value="Шлем тарантула(Зч)">Шлем тарантула(Зч)</option>'+
+          '<option value="Сапоги тарантула(Зч)">Сапоги тарантула(Зч)</option>'+
+          '<option value="Кулон тарантула(Зч)">Кулон тарантула(Зч)</option>'+
+          '<option value="Змеиные сапоги(Зч)">Змеиные сапоги(Зч)</option>'+
+          '<option value="Амулет змеи(Зч)">Амулет змеи(Зч)</option>'+
+          '<option value="Змеиный шлем(Зч)">Змеиный шлем(Зч)</option>'+
+				'</select><br>'+
+			'<nobr>'+
+ 		    '<INPUT TYPE="submit" value="ОК" class="submit" onclick="RP_useSubmit();" > &nbsp;&nbsp;'+
+		    '<INPUT TYPE="button" value="Отменить" class="submit" onclick="RP_useSlotClose();" > &nbsp;&nbsp;'+
+			'</nobr>'+
+		  '</div>';
+		break;
+
+		case 'magic_zch_9':
+		body = '<div id="magic_zch_9" align="center">Выберите название предмета:'+
+			'<br><select name="wname9">'+
+			'<option value=""></option>'+
+			'<option value="Рунный амулет(Зч)">Рунный амулет(Зч)</option>'+
+			'<option value="Лесное ожерелье(Зч)">Лесное ожерелье(Зч)</option>'+
+			'<option value="Амулет защиты(Зч)">Амулет защиты(Зч)</option>'+
+			'<option value="Кулон крови(Зч)">Кулон крови(Зч)</option>'+
+			'<option value="Шлем солнца(Зч)">Шлем солнца(Зч)</option>'+
+			'<option value="Шлем болотной виверны(Зч)">Шлем болотной виверны(Зч)</option>'+
+			'<option value="Шлем мантикоры(Зч)">Шлем мантикоры(Зч)</option>'+
+			'<option value="Сапоги солнца(Зч)">Сапоги солнца(Зч)</option>'+
+			'<option value="Ботинки болотной виверны(Зч)">Ботинки болотной виверны(Зч)</option>'+
+			'<option value="Ботинки мантикоры(Зч)">Ботинки мантикоры(Зч)</option>'+
+			'</select><br><nobr>'+
+			'<INPUT TYPE="submit" value="ОК" class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+			'<INPUT TYPE="button" value="Отменить" class="submit" onclick="RP_useSlotClose();" > &nbsp;&nbsp;</nobr></div>';
+		break;
+
+
+
+
+		case 'magic_stong':
+		body = '<div id="magic_stong" align="center">Выберите '+
+			'<br><select name="list">'+
+			'<option value=""></option>'+
+			'<option value="strong">сила</option>'+
+			'<option value="elf">разум</option>'+
+			'<option value="people">инта</option>'+
+			'<option value="ork">Мардок</option></select><br>'+
+			'<nobr><INPUT TYPE="submit" value="ОК" class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+			'<INPUT TYPE="button" value="Отменить" class="submit" onclick="RP_useSlotClose();">&nbsp;&nbsp;</nobr></div>';
+		break;
+
+		case 'magic_skin':
+		body = '<div id="magic_skin" align="center">'+
+			'<table align="center" cellpadding="3">'+
+			'<tr><td align="right">Название предмета:</td>'+
+			'<td><input name="item_name" type="text" size="32" maxlength="50"></td></tr>'+
+			'<tr><td align="right">Долговечность:</td>'+
+			'<td><table border="0" cellpadding="0" cellspacing="0"><tr><td><input name="wear" type="text" size="10" maxlength="5"></td><td>&nbsp;из&nbsp;</td><td><input name="base_wear" type="text" size="10" maxlength="5"></td></tr></table></td>'+
+			'</tr></table>'+
+			'<nobr>'+
+			'<INPUT TYPE="submit" value="ОК" class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+			'<INPUT TYPE="button" value="Отменить" class="submit" onclick="RP_useSlotClose();">&nbsp;&nbsp;</nobr></div>';
+		break;
+
+		case 'magic_repare':
+		body = '<div id="magic_repare" align="center">'+
+			'<table align="center" cellpadding="3">'+
+			'<tr><td align="right">Название предмета:</td><td><input name="item_name_repare" type="text" size="32" maxlength="50"></td></tr>'+
+			'<tr><td align="right">Долговечность:</td><td><table border="0" cellpadding="0" cellspacing="0"><tr><td><input name="wear_repare" type="text" size="10" maxlength="5"></td><td>&nbsp;из&nbsp;</td><td><input name="base_wear_repare" type="text" size="10" maxlength="5"></td></tr></table></td></tr>'+
+			'<tr><td align="right">На сколько единиц починить: </td><td><input name="repare_ware" type="text" size="10" maxlength="5" /></td></tr>'+
+			'</table>'+
+			'<nobr><INPUT TYPE="submit" value="ОК" class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+			'<INPUT TYPE="button" value="Отменить" class="submit" onclick="RP_useSlotClose();">&nbsp;&nbsp;</nobr></div>';
+		break;
+
+		case 'magic_mutant':
+		body = '<div id="magic_mutant" align="center">Выберите монстра, в которого вы хотите перевоплотиться'+
+			'<br><select name="list">'+
+			'<option value=""></option>'+
+			'<option value="traglodit">Вампир</option>';//+
+			/*'<option value="skeleton">Cкелет</option>'+
+			'<option value="centaur">Кентавр</option>'+
+			'<option value="golem">Голем</option>'+
+			'<option value="harpy">Гарпия</option>'+
+			'<option value="gargoyle">Гаргулья</option>'+
+			'<option value="troll">Тролль</option>'+
+			'<option value="dendroid">Дендроид</option>'+
+			'<option value="unicorn">Единорог</option>'+
+			'<option value="wyvern">Виверна</option>'+
+			'<option value="griffin">Грифон</option>'+
+			'<option value="cyclop">Циклоп</option>'+
+			'<option value="rocthunderbird">Птица грома</option>'+
+			'<option value="phoenix">Феникс</option>';*/
+			//body = body +'<option value="ice">Новогодний персонаж</option>';
+			if (AddMutantVip)
+			{
+				body = body + AddMutantVip;
+			}
+
+			body = body +
+			'</select><br><nobr><INPUT TYPE="submit" value="ОК" class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+			'<INPUT TYPE="button" value="Отменить" class="submit" onclick="RP_useSlotClose();">&nbsp;&nbsp;</nobr></div>';
+		break;
+
+		case 'mch_property':
+		body = '<div id="mch_property" align="center"><div>Вы уверены?</div>'+
+			'<nobr><INPUT TYPE="submit" value="ОК" class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+			'<INPUT TYPE="button" value="Отменить" class="submit" onclick="RP_useSlotClose();">&nbsp;&nbsp;</nobr></div>';
+		break;
+
+		case 'ch_property':
+			body = '<div id="mch_property" align="center"><div>Вы уверены?</div>'+
+				'<nobr><input type="submit" value="ОК" class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+				'<input type="button" value="Отменить" class="submit" onclick="RP_useSlotClose();">&nbsp;&nbsp;</nobr></div>';
+		break;
+
+		case 'magic_race':
+		body = '<div id="magic_race" align="center">Выберите новую расу<br/><br/>'+
+			'<select name="newRace"><option value=""></option><option value="people">Человек</option>'+
+			'<option value="gnome">Гном</option>'+
+			'<option value="elf">Ельф</option>'+
+			'<option value="ork">Орк</option></select><br/><br/>'+
+			'<nobr><INPUT TYPE="submit" value="ОК" class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+			'<INPUT TYPE="button" value="Отменить" class="submit" onclick="RP_useSlotClose();">&nbsp;&nbsp;</nobr></div>';
+		break;
+		case 'magic_portal_adm':
+			body = '<div id="magic_portal_adm" align="center">Выберите имя города, в который хотите попасть<br/><br/>'+
+				'<select name="portal_adm"><option value=""></option>' +
+				'<option value="people">В город</option>'+
+				'<option value="cave">Серая Пещера</option>'+
+				'<option value="hermitage">Пустынь Иллюзий</option></select><br/><br/>'+
+				'<nobr><INPUT TYPE="submit" value="ОК" class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+				'<INPUT TYPE="button" value="Отменить" class="submit" onclick="RP_useSlotClose();">&nbsp;&nbsp;</nobr></div>';
+		break;
+		case 'magic_portal':
+			body = '<div id="magic_portal_adm" align="center">Выберите имя города, в который хотите попасть<br/><br/>'+
+				'<select name="portal_adm"><option value=""></option><option value="people">В город</option>'+
+				'<option value="cave">Серая Пещера</option>'+
+				'<option value="hermitage">Пустынь Иллюзий</option></select><br/><br/>'+
+				'<nobr><INPUT TYPE="submit" value="ОК" class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+				'<INPUT TYPE="button" value="Отменить" class="submit" onclick="RP_useSlotClose();">&nbsp;&nbsp;</nobr></div>';
+			break;
+		case 'status':
+			body = '<div id="mch_property" align="center"><br/>'+msg+'<br/><br/><INPUT TYPE="submit" value="ОК" class="submit" onclick="RP_useSlotClose();"></div>';
+			break;
+
+		case 'use_complete':
+			body = '<div id="mch_property" align="center"><br/>Надеть комплект: <span color="blue">"'+msg+'"?</span><br/><br/>'+
+			'<nobr><INPUT TYPE="submit" value="ОК" class="submit" onclick="RP_useSubmit();">&nbsp;&nbsp;'+
+			'<INPUT TYPE="button" value="Отменить" class="submit" onclick="RP_useSlotClose();">&nbsp;&nbsp;</nobr></div>';
+			break;
+		case 'elik_VIP':
+			body = '<div id="elik_VIP" align="center"><br>'+
+			'<select name="elik_VIPList"><option value="">Выберите..</option>'+
+			'<optgroup label="Жизнь">'+
+            '<option value="3399">Средний эликсир сопротивляемости (+5)[6]</option>'+
+        '<option value="3400">Слабый эликсир жизни (+50)[6]</option>'+
+        '<option value="3404">Умеренный эликсир жизни(+100)[8]</option>'+
+        '<option value="3408">Средний эликсир жизни (+200)[10]</option>'+
+        '<option value="3412">Мощный эликсир жизни (+400)[12]</option>'+
+        '<option value="3407">Усиленный эликсир жизни(+600)[14]</option>'+
+        '<option value="3452">Усиленный эликсир жизни(+1000)[15]</option>'+
+        '<option value="4210">Легендарный эликсир жизни(+2000)[16]</option>'+
+        '</optgroup>'+
+        '<optgroup label="Мана">'+
+        '<option value="3401">Средний эликсир манны (+50)[6]</option>'+
+        '<option value="3405">Сильный эликсир манны (+100)[10]</option>'+
+        '<option value="3409">Очень сильный эликсир манны (+150)[14]</option>'+
+        '<option value="3456">Уникальный эликсир манны (+300)[15]</option>'+
+		'<option value="4211">Легендарный эликсир маны[16]</option>'+
+        '</optgroup>'+
+        '<optgroup label="Характеристики">'+
+        '<option value="3413">Мощный эликсир защиты (+7)[6]</option>'+
+        '<option value="3414">Усиленный эликсир защиты(+15)[8]</option>'+
+        '<option value="3411">Очень сильный эликсир ВХО (+10)[8]</option>'+
+        '<option value="3402">Сильный эликсир игнорирования (+10)[10]</option>'+
+		'<option value="3403">Усиленный эликсир сопротивляемости(+10)[12]</option>'+
+		'<option value="4212">Легендарный эликсир защиты[16]</option>'+
+        '</optgroup></select>'+
+			'<br><nobr><INPUT TYPE="submit" value="ОК" class="submit" onclick="RP_useSubmit();"> &nbsp;&nbsp;'+
+			'<INPUT TYPE="button" value="Отменить" class="submit" onclick="RP_useSlotClose();" > &nbsp;&nbsp;</nobr>'+
+			'</div>';
+			break;
+	}
+	return RP_main_header + body + RP_main_foother;
+}//--------For alert End--------//
+
+//--------Использование свитков из быстрой панели--------//
+//Показ окна использования свитка
+
+function RP_useSlot(slot) {
+    console.log('RP_useSlot'+slot);
+	if (RP_slots[slot]!=undefined) {
+		RP_curSlot = slot;
+		if (RP_slots[slot].item_type=='magic') {
+			if (RP_slots[slot].add_mutant)
+			{
+				AddMutantVip=RP_slots[slot].add_mutant;
+			}
+			jQuery('#RP_useSlot').html( RP_buildAlert(RP_slots[slot].alert_type, RP_layout_url));
+		} else if (RP_slots[slot].item_type=='doctor') {
+			jQuery('#RP_useSlot').html( RP_buildAlert('magic_login_price', RP_layout_url));
+		} else {
+			jQuery('#RP_useSlot').html( RP_buildAlert('use_complete', RP_layout_url, RP_slots[slot].name));
+		}
+
+		jQuery('#RP_useSlot').css({top:'30%',left:'50%',margin:'-'+(jQuery('#RP_useSlot').height() / 2)+'px 0 0 -'+(jQuery('#RP_useSlot').width() / 2)+'px'});
+
+		jQuery('#RP_useSlot').show();
+		return true;
+	} else {
+		return false;
+	}
+}
+//Закрытие окна использования свитка
+function RP_useSlotClose() {
+	jQuery('#RP_useSlot').hide();
+	return true;
+}
+//Отправка формы использования свитка
+function RP_useSubmit() {
+    console.log('RP_useSubmit');
+	RP_useSlotClose();
+	addPars = jQuery('#RP_frmUsemagic').serialize(); //Form.serialize(document.forms.RP_frmUsemagic);//this using prototype
+	var wid = RP_slots[RP_curSlot].wid;
+	var item_type = RP_slots[RP_curSlot].item_type;
+	RP_ajaxRequest('use', RP_curSlot, item_type, wid, addPars);
+	return false;//Форма отправляется через AJAX
+}
+//--------End Использование--------//
+
+//--------Флеш отображение для использования--------//
+//Вызывается из флешки, при нажатии на слот флешки
+function openMenu(status) {
+    console.log('openMenu RP_ajaxResponse='+RP_ajaxResponse);
+	jQuery('#slotList').show();
+	if (RP_ajaxResponse == null) {
+		RP_ajaxRequest('list');
+	} else {
+		RP_ajaxCompleteUse();
+	}
+
+
+}
+//Выполняется при нажатии на слот в флешке
+function RapidPanel(slot) {
+    console.log('RapidPanel'+slot);
+	RP_useSlot(slot);
+}
+//--------End Флеш--------//
+
+//--------Ajax--------//
+function RP_buildSlots(RP_ajaxResponse) {
+	var content = RP_ajaxResponse.content;
+
+	for ( var i = 0; i < content.length; i++) {
+		RP_slots[content[i].slot] = content[i];
+	}
+}
+var onp=false;
+
+//Установить пункты меню в флешку и показать(раскрыть) меню флешки
+function RP_ajaxCompleteUse() {
+    console.log('RP_ajaxCompleteUse'+RP_flashStatus);
+
+    if (RP_flashStatus==true) {//Спрятать флешку
+        RP_flashStatus=false;
+		jQuery('#slotList').hide();
+    } else {//Показать флешку
+        for (var i = 1; i < RP_slots.length; i++) {//Устанавливаем изображения
+            var el = RP_slots[i];
+            if (el) {
+                if (el.item_type=='complete') {
+                    var image_src=RP_layout_url_all+'/subject/rapid/shlem' + el.image + '.gif';
+                } else {
+
+                    if (el.notImage!=1){
+                        var image = el.image.replace(/01\.gif/, "00.gif");
+                        var image_src=RP_layout_url_all+'/subject/' + image;
+                    } else{
+                        var image_src=RP_layout_url_all+'/subject/rapid/none.gif';
+                    }
+                }
+            } else {
+                var image_src=RP_layout_url_all+'/subject/defaults/ge-spell.gif';
+            }
+			jQuery('#svitok'+i).attr("src",image_src);
+
+            //flash.SetVariable('svitok'+i, image_src);
+        }
+        RP_flashStatus=true;
+        onp=true;
+
+    }
+}
+
+
+//Показ панели компоновки в инвентаре
+function RP_ajaxCompleteInventar() {
+
+	var content = '<table class="TB-MF-ItemBox" border="0" cellpadding="0"><tr><td class="TD-MF-ItemNumber">§</td>';
+	for ( var i = 1; i < RP_slots.length; i++) {
+		var el = RP_slots[i];
+		var num_slot = i;
+		if (el) {
+			if (el.item_type=='complete') {
+				var image_src=RP_layout_url_all+'/subject/rapid/shlem' + el.image + '.gif';
+			} else {
+                if (el.notImage=="0"){
+                    var image = el.image.replace(/01\.gif/, "00.gif");
+                    var image_src=RP_layout_url_all+'/subject/' + image;
+                } else{
+                    var image_src=RP_layout_url_all+'/subject/rapid/none.gif';
+                }
+
+
+			}
+			var onclick = "RP_delItem(" + el.slot + ")";
+			var comment_alt = num_slot;
+			var comment_title = 'Слот ' + num_slot + ': ' + el.name + '';
+			content += '<td style="width: 20px; height: 20px;" id="slot_'
+					+ num_slot + '"><img onclick="' + onclick
+					+ ';" src="' + image_src + '" alt="' + comment_alt + '" title="' + comment_title + '" border="0" width="27" height="14"></td>';
+		} else {
+			content += '<td style="width: 20px; height: 20px;" id="slot_'
+				+ num_slot + '"><img src="'+RP_layout_url_all+'/subject/defaults/ge-spell.gif"></td>';
+		}
+	}
+	content += '</tr></table>';
+	jQuery('#RP_use').html(content);
+}
+//Обработка удачного ответа от AJAX
+function RP_ajaxComplete(RP_ajaxResponse) {
+
+	//RP_ajaxResponse = eval('(' + transport.responseText + ')');
+	if (RP_ajaxResponse.action == 'list') {//Получили список предметов
+		RP_buildSlots(RP_ajaxResponse);
+		if (RP_use_action == 'use') {//Отображаем полученные предметы
+			RP_ajaxCompleteUse();
+		} else if (RP_use_action == 'del') {
+			RP_ajaxCompleteInventar();
+		}
+	} else if (RP_ajaxResponse.action == 'add') {//Перерысовываем панель компоновки после добавления свитка
+		RP_buildSlots(RP_ajaxResponse);
+		RP_ajaxCompleteInventar();
+		if (RP_ajaxResponse.status==0 || RP_ajaxResponse.msg!='') {//Ошибка добавления в панель или информац. сообщ.
+			jQuery('#RP_useSlot').html(RP_buildAlert('status', RP_layout_url, RP_ajaxResponse.msg));
+
+			jQuery('#RP_useSlot').css({top:'30%',left:'50%',margin:'-'+(jQuery('#RP_useSlot').height() / 2)+'px 0 0 -'+(jQuery('#RP_useSlot').width() / 2)+'px'});
+
+			jQuery('#RP_useSlot').show();
+		}
+	} else if (RP_ajaxResponse.action == 'use' && RP_ajaxResponse.msg!='') {//Вывод сообщения после использования
+		jQuery('#RP_useSlot').html( RP_buildAlert('status', RP_layout_url, RP_ajaxResponse.msg));
+		//center
+		jQuery('#RP_useSlot').css({top:'30%',left:'50%',margin:'-'+(jQuery('#RP_useSlot').height() / 2)+'px 0 0 -'+(jQuery('#RP_useSlot').width() / 2)+'px'});
+
+
+		jQuery('#RP_useSlot').show();
+	}
+}
+/**
+ * Запрос на получение информации/выполнения действия.
+ * При добавлении елемента на панель получаем новый список елементов панели.
+ */
+function RP_ajaxRequest(action, slot, item_type, wid, addPars) {
+	item_type = typeof (item_type) != 'undefined' ? item_type : 'magic';
+	slot = typeof (slot) != 'undefined' ? slot : 0;
+	wid = typeof (wid) != 'undefined' ? wid : 0;
+	addPars = typeof (addPars) != 'undefined' ? '&' + addPars : '';
+	var url = '/index.php';
+	var pars =  addPars;
+	jQuery.post( '/index.php?file=rapid_panel'+pars, {'ajax':1, 'action': action,'wid':wid,'slot':slot,'item_type':item_type } )
+		.done(function( json_ans ) {
+			console.log(json_ans);
+			if (json_ans.run=='RP_ajaxComplete'){
+				RP_ajaxComplete(json_ans);
+			}
+			if (json_ans.run=='RP_Portal'){
+				if (json_ans.params.resresh!=undefined && json_ans.params.resresh!=''){
+					window.location.href = json_ans.params.resresh;
+				}
+			}
+
+			if (json_ans.run=='updateLMHAfterDress'){
+
+				updateLMHAfterDress(json_ans.params.feature_life,json_ans.params.feature_manna,30,json_ans.params.real_life,json_ans.params.real_manna);
+
+				RP_ajaxComplete(json_ans);
+			}
+		});
+
+}
+//--------Ajax End--------//
+
+//--------Панель быстрого доступа--------//
+//Добавление в панель быстрого доступа комплекта
+function RP_addComplete() {
+	var frm = document.ComplectInventar.elements.set;
+	var wid = frm[frm.selectedIndex].value;
+	RP_ajaxRequest('add', 0, 'complete', wid);
+}
+//Удалить елемент из панели
+function RP_delItem(slot) {
+	RP_ajaxRequest('del', slot);
+	delete RP_slots[slot];
+	jQuery('#slot_' + slot).html('<img src="'+RP_layout_url_all+'/subject/defaults/ge-spell.gif">');//Удаляем предмет из панели, не дожидаясь ответа сервера
+}
+//Управление(компоновка) панели из инвентаря
+function RP_showInventar() {
+	jQuery('#RP_use').html( '<table class="TB-MF-ItemBox" border="0" cellpadding="0"><tr><td class="TD-MF-ItemNumber">§</td><td>Подождите...<br/>&nbsp;</td></tr></table>');
+	RP_ajaxRequest('list');
+}
+//Использование панели
+function RP_showUse(rassa) {
+
+    var contentHtml = '<div style="margin: 0px; padding: 0px; position: absolute; z-index: 100; right: 10px; top: 0;cursor:pointer" onclick="openMenu()"><img src="/layout/all/bg/rapid_panel.png"/></div> ';
+
+	var SlotHtml='<div style="width: 70px; display: none;margin: 0px; padding: 0px; position: absolute; z-index: 100; right: 0px; top: 25px;cursor:pointer" id="slotList">';
+    for (var i = 1; i < RP_slots.length; i++) {
+      SlotHtml+='<div id="slot_'+i+'" onclick="RP_useSlot('+i+')" style="float: left;margin-left: 2px; "><img id="svitok'+i  + '" src="/layout/all/subject/defaults/ge-spell.gif" width="27" height="14"></div>';
+    }
+      SlotHtml+='</div>';
+
+	jQuery('#RP_use').html( contentHtml+SlotHtml);
+}
+

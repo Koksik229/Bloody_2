@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)https://dm-game.com/xmir/b/index.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="Cache-Control" content="no-cache, max-age=0, must-revalidate, no-store">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="./swfobject.js.Без названия"></script>
+    <script type="text/javascript">
+        var layout_url_all = "//dm-game.com//layout//all/";
+        var off_users = null;
+        var tower_atc = false;
+        var ignor_list = {};
+        var serverTime =1750242762;
+    </script>
+    <script type="text/javascript" src="./smile_list.php"></script>
+    <!-- <script language="JavaScript" src='../b/emotion_list.php'></script> -->
+    <script type="text/javascript" src="./simplebar.js.Без названия"></script>
+    <script type="text/javascript" src="./jquery.min.js.Без названия"></script>
+    <script type="text/javascript" src="./dm2019_v12.js.Без названия"></script>
+    <script type="text/javascript" src="./clock2.js.Без названия"></script>
+    <script type="text/javascript" src="./notife.js.Без названия"></script>
+        <script type="text/javascript" src="./base64.js.Без названия"></script>
+    <style>
+        body {
+            background: url("../img/chat-bg.png") repeat-x;
+            width: 100%;
+            height: 31px;
+        }
+
+        .flex-container {
+            background: url("../img/chat-bg.png") repeat-x;
+            width: 100%;
+            height: 31px;
+        }
+
+        .flex-container > form {
+            display: flex;
+            align-items: stretch;
+            /*background-color: #f1f1f1;*/
+            position: relative;
+            background: url("../img/chat-bg.png") repeat-x;
+            width: 100%;
+            height: 31px;
+
+        }
+
+        .flex-container > form > div {
+            color: #000;
+            width: 100px;
+            margin: 0px;
+            text-align: center;
+            height: 29px;
+            line-height: 29px;
+            /*border-right: 3px double #8c7e31;*/
+        }
+
+        .flex-container > form > div:after {
+            content: url("../img/chat-border.png");
+            width: 14px;
+            height: 29px;
+            float: right;
+            margin-top: -1px;
+        }
+
+        .flex-container > form > div:last-child::after {
+            content: none;
+        }
+
+        #chat-area {
+            margin-top: 2px;
+            margin-left: -7px;
+            height: 25px;
+            line-height: 25px;
+        }
+
+        #iclock {
+            padding: 2px 0 0 2px;
+            font-size: 12px;
+            font-weight: bold;
+            width: 70px;
+        }
+
+        .flex-container > form > div > input {
+            width: calc(100% - 34px);
+            margin: 2px 10px 0 5px;
+            padding: 2px;
+            background-color: #ebce42;
+            outline: none;
+            border: none;
+            height: 21px;
+            line-height: 21px;
+        }
+
+        #chat-tool-1 {
+            flex-grow: 0.001;
+            width: 240px;
+            text-align: center;
+            border-right: none;
+            margin-top: 1px;
+        }
+
+        form a {
+            text-decoration: none;
+        }
+
+        @media screen and (max-width: 767px) {
+            #iclock {
+                display: none;
+            }
+
+            form a img {
+                width: 22.5px;
+                height: 22.5px;
+                position: relative;
+                top: 3px;
+            }
+
+            #chat-tool-1 {
+                width: 190px;
+            }
+        }
+    </style>
+</head>
+<body border="0" leftmargin="0" rightmargin="0" topmargin="0" bottommargin="0" marginheight="0" marginwidth="0">
+
+<div class="flex-container">
+    <form onsubmit="sendMsg(); return false" name="msg_inp_f">
+        <div id="iclock" style="flex-grow: 0.001">15:33:03</div>
+        <input type="hidden" value="" id="op" name="op">
+        <div id="chat-area" style="flex-grow: 8">
+            <input type="text" id="msgput" name="msgput" autocomplete="off" maxlength="350">
+        </div>
+        <div id="beepswf" name="beepswf" style="display: none">
+            <audio id="beepswf_audio">
+                <source src="../img/play/horse.ogg" type="audio/ogg">
+                <source src="../img/play/horse.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <div id="beepswf2" name="beepswf2" style="display: none">
+            <audio id="beepswf2_audio">
+                <source src="../img/play/beep2.ogg" type="audio/ogg">
+                <source src="../img/play/beep2.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+        <div id="chat-tool-1">
+            <a id="sendMsg" href="https://dm-game.com/xmir/b/index.php#" onclick="sendMsg();return false;">
+                <img src="./enter2.png">
+            </a>
+            <a href="https://dm-game.com/xmir/b/index.php#" onclick="conf_xfn_clear();return false;" alt="Очистить окно чата">
+                <img src="./close.png">
+            </a>
+            <a href="https://dm-game.com/xmir/b/index.php#" onclick="conf_xfn_translit();return false;" alt="Транслит" title="Транслит">
+                <img src="./translate.png">
+            </a>
+            <a href="https://dm-game.com/xmir/b/index.php#" onclick="conf_xfn_message_type2();return false;" alt="Только приватные сообщения">
+                <img src="./prv_off.png" name="message_type" border="0" id="img_filtr">
+            </a>
+            <a href="https://dm-game.com/xmir/b/index.php#" onclick="setSysNotife();return false;" alt="Вкл оповешения">
+                <img id="img_sysNotife" src="./sys_on.png" name="clear" border="0" title="Оповещение приватных сообщений в браузер">
+            </a>
+            <a href="https://dm-game.com/xmir/b/index.php#" onclick="snd_sw();return false;" title="Звук системных">
+                <img src="./beep_off.png" alt="Звук" name="img_snd" border="0" id="img_snd">
+            </a>
+                            <a href="https://dm-game.com/xmir/b/index.php#" onclick="opensmiles(&#39;/xmir/b/smiles.php?u=12343&amp;c=0&amp;a=0&amp;g=0&#39;,503,450,0,&#39;wnd_xfn&#39;)">
+                    <img src="./smile2.png" alt="Смайлики :о)" name="smile" border="0">
+                </a>
+                    </div>
+    </form>
+</div>
+
+<form name="sndForm" action="https://dm-game.com/xmir/b/g.php" target="sndIfr" method="post">
+    <input type="hidden" value="" id="op" name="op">
+    <input type="hidden" name="f" value="s">
+    <input type="hidden" name="v" value="">
+</form>
+<iframe src="./elb-xfn-left.html" name="sndIfr" width="0" height="0" valign="top" style="visibility:hidden;display:none"></iframe>
+<form name="gForm" action="https://dm-game.com/xmir/b/p.php" target="gIfr" method="GET">
+    <input type="hidden" name="f" value="">
+    <input type="hidden" name="v" value="">
+    <input type="hidden" name="m" value="">
+    <input type="hidden" name="p" value="">
+    <input type="hidden" name="c" value="">
+    <input type="hidden" name="k" value="">
+</form>
+<iframe src="./elb-xfn-left(1).html" name="gIfr" width="0" height="0" valign="top" style="visibility:hidden;display:none"></iframe>
+<script type="text/javascript">
+    //startTime();
+    GU('12343');
+    var Mprv = 'all';
+    setTimeout("conf_xfn_message_typeSet(Mprv);", 1000);
+            UserLevel=2;
+    setTimeout("init();cXFN(0)", 1000);
+
+
+    </script>
+
+
+</body></html>

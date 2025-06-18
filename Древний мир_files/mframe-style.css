@@ -1,0 +1,1563 @@
+body{
+	margin: 0px 0px 0px 0px;
+	background-color: #BCBCBC!important;
+	font-family: Tahoma;	font-size: 11px;
+	background-image: url('../img/bg.png') ;
+	background-image:no-repeat;
+}
+td{
+	font-size: 11px;
+	color: #374048;
+}
+input.submit{
+	background-color: #737373;
+	color: White;
+	cursor:pointer;
+	height: 20px;
+	font-weight: bold;
+	font-size: 11px;
+	width: 100px;
+}
+input.submit{
+background-color: #737373;
+color: White;
+cursor:pointer;
+height: 20px;
+font-family: Tahoma;
+font-weight: bold;
+font-size: 11px;
+width: 100px;
+}
+H1{
+	font-family: Tahoma;
+	font-size: 13px;
+	color: Black;
+	width: 200px;
+	margin-top:0px;
+	margin-bottom:5px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url(../img/rassa/mframe/ContentBox/el-h2.gif);
+	padding: 3px 3px 3px 3px;
+	text-align: center;
+	height: 30px;
+}
+H2{
+	font-family: Tahoma;
+	font-size: 13px;
+	color: Black;
+	width: 200px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url(../img/rassa/mframe/ContentBox/el-h2.gif);
+	padding: 4px 2px 2px 2px;
+	vertical-align: middle;
+	text-align: center;
+	height: 25px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+H3{
+	font-family: Tahoma;
+	font-size: 11px;
+	color: Black;
+	width: 250px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-image: url(../img/rassa/mframe/ContentBox/el-h3.gif);
+	padding: 2px 2px 18px 2px;
+	vertical-align: middle;
+	text-align: center;
+	height: 35px;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+H4{
+	color: Black;
+	font-size: 12px;
+	font-weight: bold;
+	margin: 0px 0px 0px 0px;
+	padding: 3px 3px 3px 3px;
+}
+/*--------Edited 2006.02.01-------------*/
+H5{
+font-size: 12px;
+color: Black;
+background-position: left;
+background-repeat: no-repeat;
+background-image: url(../img/rassa/mframe/ContentBox/el-h5.gif);
+padding: 5px 2px 0px 25px;
+vertical-align: bottom;
+text-align: left;
+height: 25px;
+margin: 0px 0px 0px 0px;
+}
+b.distinguished{
+	color: #0a4679;
+}
+b.distinguishedDark{
+	color: #0098D2;
+}
+.status{
+	color: White;
+	font-size: 10px;
+	background-color: #868284;
+	padding: 3px;
+	text-align: center;
+	vertical-align: middle;
+	height: 20px;
+}
+b.statusD{
+	color: #454344;
+	font-size: 10px;
+}
+.TB-MF-General{
+	width: 960px;
+}
+.TD-MF-Tborder-TL{
+	width: 5px;
+	height: 5px;
+	background-image: url(../img/rassa/mframe/bg-tab-corn-tl.gif);
+	background-repeat: no-repeat;
+	background-position: bottom left;
+}
+.TD-MF-Tborder-TC{
+	height: 5px;
+	background-image: url(../img/rassa/mframe/bg-cnt-tp.gif);
+	background-repeat: repeat-x;
+	background-position: bottom;
+}
+.TD-MF-Tborder-TR{
+	width: 5px;
+	height: 5px;
+	background-image: url(../img/rassa/mframe/bg-tab-corn-tr.gif);
+	background-repeat: no-repeat;
+	background-position: bottom right;
+}
+.TD-MF-Tborder-ML{
+	width: 5px;
+	background-image: url(../img/rassa/mframe/bg-tab-left.gif);
+	background-repeat: repeat-y;
+}
+.TD-MF-Tborder-BL{
+	width: 5px;
+	height: 5px;
+	background-image: url(../img/rassa/mframe/bg-tab-corn-bl.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+}
+.TD-MF-Tborder-BC{
+	height: 5px;
+	background-image: url(../img/rassa/mframe/bg-cnt-bp.gif);
+	background-repeat: repeat-x;
+}
+.TD-MF-Tborder-BR{
+	width: 5px;
+	height: 5px;
+	background-image: url(../img/rassa/mframe/bg-tab-corn-br.gif);
+	background-repeat: no-repeat;
+	background-position: top right;
+}
+.TD-MF-Tborder-MR{
+	width: 5px;
+	background-image: url(../img/rassa/mframe/bg-tab-right.gif);
+	background-repeat: repeat-y;
+}
+.TD-MF-CNT{
+	background-image: url(../img/rassa/mframe/BG-MF-CNT.gif);
+	text-align: left;
+	vertical-align: top;
+}
+.TD-HeroFightBox{
+	text-align: center;
+	vertical-align: top;
+	width: 530px;
+}
+.TD-USERSKILLS{
+	background-image: url(../img/rassa/mframe/Hero_Items/BG-USERSKILLS.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+	height: 25px;
+}
+.TB-USERSKILLS{
+	width: 200px;
+	font-family: Tahoma;
+	font-size: 10px;
+	text-align: center;
+	color: #434343;
+}
+/*---------------------------------------------Bookmark Styles------------------------------------------------------------------------------------------------*/
+.TB-MF-Bookmark{
+	background-image: url(../img/rassa/mframe/bg-cnt-tp.gif);
+	background-position: bottom;
+	background-repeat: repeat-x;
+	width: 574px;
+}
+.TD-MF-Bookmark{
+	vertical-align: bottom;
+}
+.TD-BookmarkItem-A{
+	background-image: url(../img/rassa/mframe/BookmarkBox/TD-BookmarkItem-A.gif);
+	font-family: Tahoma;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	padding: 8px 4px 4px 4px;
+	color: White;
+	width: 120px;
+	height: 35px;
+	background-repeat: no-repeat;
+	background-position: bottom center;
+}
+.TD-BookmarkItem-D{
+	background-image: url(../img/rassa/mframe/BookmarkBox/TD-BookmarkItem-D.gif);
+	font-family: Tahoma;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	padding: 8px 1px 4px 1px;
+	color: White;
+	width: 120px;
+	height: 35px;
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	cursor: pointer;
+}
+.TD-BookmarkImg-A{
+	background-image: url(../img/rassa/mframe/BookmarkBox/TD-BookmarkImg-A.gif);
+	width: 48px;
+	height: 35px;
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	text-align: center;
+}
+.TD-BookmarkImg-D{
+	background-image: url(../img/rassa/mframe/BookmarkBox/TD-BookmarkImg-D.gif);
+	width: 48px;
+	height: 35px;
+	background-repeat: no-repeat;
+	background-position: bottom center;
+	text-align: center;
+}
+.TD-BookmarkLarge{
+	background-image: url(../img/rassa/mframe/BookmarkBox/TD-BookmarkLarge-A.gif);
+	font-family: Tahoma;
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	padding: 8px 1px 4px 1px;
+	color: White;
+	width: 181px;
+	height: 35px;
+	background-repeat: no-repeat;
+	background-position: bottom center;
+}
+a.aBookmark{
+	color: White;
+}
+a.aBookmark:hover{
+	color: #ffd700;
+}
+/*---------------------------------------------Bookmark Styles------------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------Fight Styles-------------------------------------------------------------------------------------------------------*/
+.TD-MF-Tborder-TBreak{
+	background-image: url(../img/rassa/mframe/Fight_items/bg-MF-Tborder-TBreak.gif);
+	background-repeat: no-repeat;
+	background-position: bottom left;
+}
+.TD-MF-Tborder-MBreak{
+	background-image: url(../img/rassa/mframe/Fight_items/bg-MF-Tborder-MBreak.gif);
+	background-repeat: repeat-y;
+	vertical-align: middle;
+}
+.TD-MF-Tborder-BBreak{
+	background-image: url(../img/rassa/mframe/Fight_items/bg-MF-Tborder-BBreak.gif);
+	background-repeat: no-repeat;
+	background-position: top left;
+}
+.TD-FightButtonsMenu{
+	background-image: url(../img/rassa/mframe/BG-MF-CNT.gif);
+}
+/*---------------------------------------------Fight Styles-------------------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------Health Box  Styles---------------------------------------------------------------------------------------------*/
+.TB-UserStat{
+	width:33px;
+	height: 285px;
+	background-image: url(../img/rassa/mframe/Health_Box/bg_User-Stat.gif);
+	background-repeat: no-repeat;
+	background-position: top;
+}
+.TD-UserStat-GR{
+	padding: 7px 5px 1px 6px;
+	text-align: center;
+	width: 33px;
+	height: 245px;
+}
+.TD-UserStat-scale{
+	width: 8px;
+	padding: 0px 1px 0px 1px;
+}
+.TB-UserStat-scale{
+	width: 6px;
+	height: 237px;
+}
+.TB-UserStat-TXT{
+	height: 40px;
+	width: 33px;
+}
+.TD-UserStat-TXT{
+	font-family: "Times New Roman";
+	font-size: 9px;
+	text-align: center;
+	height: 11px;
+	line-height: 6px;
+	color:#fff;
+	font-weight: bold;
+}
+.TD-UserStat-HEALTH{
+	background-image: url(../img/rassa/mframe/Health_Box/BG-User-Stat-HEALTH.gif);
+	background-repeat: repeat-y;
+}
+.TD-UserStat-EAT{
+	background-image: url(../img/rassa/mframe/Health_Box/BG-User-Stat-EAT.gif);
+	background-repeat: repeat-y;
+}
+.TD-UserStat-MANNA{
+	background-image: url(../img/rassa/mframe/Health_Box/BG-User-Stat-MANNA.gif);
+	background-repeat: repeat-y;
+}
+/*---------------------------------------------Health Box  Styles---------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------User List Box  Styles------------------------------------------------------------------------------------------*/
+.TB-LEFT-UL{
+	text-align: left;
+	width: 220px;
+	background-color: #DCECFD;
+}
+.TB-RIGHT-UL{
+	text-align: left;
+	width: 220px;
+	background-color:  #FEFBD6;
+}
+.TD-left-UL{
+	text-align: right;
+	vertical-align: top;
+}
+.TD-right-UL{
+	text-align: left;
+	vertical-align: top;
+}
+.TD-USER-NAME{
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #434343;
+	padding: 1px 1px 1px 7px;
+	background-image: url(../img/rassa/mframe/User_list/ecrnr-ul-ml.gif);
+	background-repeat: repeat-y;
+	background-position: left;
+}
+.TD-USER-NAME-OUN{
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #434343;
+	padding: 1px 1px 1px 7px;
+	background-image: url(../img/rassa/mframe/User_list/ecrnr-ul-ml.gif);
+	background-repeat: repeat-y;
+	background-position: left;
+}
+.TD-SERV-Live-Full{
+	font-family: Arial;
+	font-size: 11px;
+	color: #434343;
+	font-weight: bold;
+	padding: 1px 7px 1px 1px;
+	background-image: url(../img/rassa/mframe/User_list/ecrnr-ul-mr.gif);
+	background-repeat: repeat-y;
+	background-position: right;
+	white-space:nowrap;
+	width: 40px;
+	text-align: right;
+}
+.TD-USER-TL{
+	background-image: url(../img/rassa/mframe/User_list/ecrnr-ul-tc.gif);
+	background-repeat: repeat-x;
+	text-align: left;
+}
+.TD-USER-TR{
+	background-image: url(../img/rassa/mframe/User_list/ecrnr-ul-tc.gif);
+	background-repeat: repeat-x;
+	text-align: right;
+}
+.TD-USER-BL{
+	background-image: url(../img/rassa/mframe/User_list/ecrnr-ul-bc.gif);
+	background-repeat: repeat-x;
+	text-align: left;
+	background-position: bottom;
+}
+.TD-USER-BR{
+	background-image: url(../img/rassa/mframe/User_list/ecrnr-ul-bc.gif);
+	background-repeat: repeat-x;
+	text-align: right;
+}
+/*- Жинзнь ----*/
+
+/*---- Герой --*/
+.TD-PHeroName{
+	width:386px;
+	text-align: left;
+	vertical-align: top;
+/*	background-color: #BCBCBC;*/
+}
+.TD-PHeroNameArena{
+	width:326px;
+	text-align: left;
+	vertical-align: top;
+	background-color: #BCBCBC;
+}
+.TB-HeroName{
+	width: 220px;
+	margin-bottom: 2px;
+}
+.TD-HeroName{
+	background-color:#D3D3D3;
+}
+.TD-HeroName-TXT{
+	font-family: Tahoma;
+	font-weight: bold;
+	font-size: 10px;
+	color:#ffd700;
+}
+.TD-HeroClan{
+	width: 21px;
+}
+.TD-HeroName-CTL{
+	background-image: url(../img/rassa/mframe/Hero_Name/bg-HeroName-CTL.gif);
+	background-repeat: no-repeat;
+	height: 10px;
+	width: 10px;
+}
+.TD-HeroName-CTR{
+	background-image: url(../img/rassa/mframe/Hero_Name/bg-HeroName-CTR.gif);
+	background-repeat: no-repeat;
+	height: 10px;
+	width: 10px;
+}
+.TD-HeroName-CBL{
+	background-image: url(../img/rassa/mframe/Hero_Name/bg-HeroName-CBL.gif);
+	background-repeat: no-repeat;
+	height: 10px;
+	width: 10px;
+}
+.TD-HeroName-CBR{
+	background-image: url(../img/rassa/mframe/Hero_Name/bg-HeroName-CBR.gif);
+	background-repeat: no-repeat;
+	height: 10px;
+	width: 10px;
+}
+.TD-HeroName-L{
+	background-image: url(../img/rassa/mframe/Hero_Name/bg-HeroName-L.gif);
+	background-repeat: repeat-y;
+	width: 10px;
+}
+.TD-HeroName-R{
+	background-image: url(../img/rassa/mframe/Hero_Name/bg-HeroName-R.gif);
+	background-repeat: repeat-y;
+	width: 10px;
+}
+.TD-HeroName-T{
+	background-image: url(../img/rassa/mframe/Hero_Name/bg-HeroName-T.gif);
+	background-repeat: repeat-x;
+	height: 10px;
+}
+.TD-HeroName-B{
+	background-image: url(../img/rassa/mframe/Hero_Name/bg-HeroName-B.gif);
+	background-repeat: repeat-x;
+	height: 10px;
+}
+/*---------------------------------------------Hero Name Box  Styles--------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------Common Pages  Styles--------------------------------------------------------------------------------------*/
+.TD-MF-Left-Nav-Box{
+	width: 370px;
+	vertical-align: top;
+}
+.TB-MF-BSeparator{
+	background-image: url(../img/rassa/mframe/TabS-Elments/BG-MF-BSeparator.png);
+	background-repeat: repeat-y;
+	width: 21px;
+	height: 295px;
+}
+.TD-MF-Separator{
+	width: 21px;
+	background-image: url(../img/rassa/mframe/TabS-Elments/BG-MF-Separator.png);
+	background-repeat: repeat-y;
+	vertical-align: top;
+}
+.TD-MF-SeparatorF{
+	width: 21px;
+	background-image: url(../img/rassa/mframe/TabS-Elments/BG-MF-BSeparator.png);
+	background-repeat: repeat-y;
+}
+.TD-MF-BSeparator-T{
+	background-image: url(../img/rassa/mframe/TabS-Elments/BG-MF-BSeparator-T.gif);
+	background-repeat: no-repeat;
+	height: 5px;
+}
+.TD-MF-BSeparator-B{
+	background-image: url(../img/rassa/mframe/TabS-Elments/BG-MF-BSeparator-B.gif);
+	background-repeat: no-repeat;
+	height: 5px;
+}
+.TD-MF-Separator-B{
+	background-image: url(../img/rassa/mframe/TabS-Elments/BG-MF-Separator-B.gif);
+	background-repeat: no-repeat;
+	height: 5px;
+}
+.TB-MF-PLContentBlock{
+	width: 100%;
+	height: 500px;
+}
+/*---------------------------------------------Common Pages  Styles--------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------Small User Gifts Box  Styles---------------------------------------------------------------------------------*/
+.TB-MF-SmallUGifts{
+	width: 120px;
+}
+.TD-MF-SmallUGifts-L{
+	background-image: url(../img/rassa/mframe/SmallUserGiftsBox/bg-MF-SmallUGifts-L.gif);
+	width: 6px;
+	background-repeat: no-repeat;
+}
+.TD-MF-SmallUGifts-C{
+	background-image: url(../img/rassa/mframe/SmallUserGiftsBox/bg-MF-SmallUGifts-C.gif);
+	background-repeat: repeat-x;
+	height: 285px;
+	font-family: Tahoma;
+	font-size: 10px;
+	text-align: left;
+	color: #434343;
+	font-weight: bold;
+	vertical-align: top;
+	padding: 8px 5px 8px 5px;
+}
+.TD-MF-SmallUGifts-R{
+	background-image: url(../img/rassa/mframe/SmallUserGiftsBox/bg-MF-SmallUGifts-R.gif);
+	width: 6px;
+	background-repeat: no-repeat;
+}
+/*---------------------------------------------Small User Gifts Box  Styles---------------------------------------------------------------------------------*/
+
+/*---------------------------------------------Buttons-----------------------------------------------------------------------------------------------------------*/
+.D-ANButtom{
+	background-image: url(../img/rassa/mframe/sbottom.gif);
+	font-family: Tahoma;
+	color: White;
+	font-size: 10px;
+	font-weight: bold;
+	height: 20px;
+	width: 90px;
+	text-align: center;
+	padding: 3px 4px 2px 4px;
+	background-repeat: no-repeat;
+	background-position: top;
+}
+.D-ANButtomB{
+	background-image: url(../img/rassa/mframe/sbottomB.gif);
+	font-family: Tahoma;
+	color: White;
+	font-size: 11px;
+	font-weight: bold;
+	height: 20px;
+	width: 140px;
+	text-align: center;
+	padding: 3px 4px 2px 4px;
+	background-repeat: no-repeat;
+	background-position: top;
+}
+.D-ANButtomSq{
+	background-image: url(../img/rassa/mframe/sbottomSq.gif);
+	font-family: Tahoma;
+	color: White;
+	font-size: 10px;
+	font-weight: bold;
+	height: 20px;
+	width: 120px;
+	text-align: center;
+	padding: 3px 4px 2px 4px;
+	background-repeat: no-repeat;
+	background-position: top;
+}
+.D-ANButtomSqB{
+	background-image: url(../img/rassa/mframe/sbottomSqB.gif);
+	font-family: Tahoma;
+	color: White;
+	font-size: 10px;
+	font-weight: bold;
+	height: 20px;
+	width: 160px;
+	text-align: center;
+	padding: 3px 4px 2px 4px;
+	background-repeat: no-repeat;
+	background-position: top;
+}
+.D-ANButtomSqB_Blink{
+	background-image: url(../img/rassa/mframe/sbottomSqB_f.gif);
+	font-family: Tahoma;
+	color: White;
+	font-size: 10px;
+	font-weight: bold;
+	height: 20px;
+	width: 160px;
+	text-align: center;
+	padding: 3px 4px 2px 4px;
+	background-repeat: no-repeat;
+	background-position: top;
+}
+.D-ANButtomSqSm{
+	background-image: url(../img/rassa/mframe/sbottomSqSM.gif);
+	font-family: Tahoma;
+	color: White;
+	font-size: 10px;
+	font-weight: bold;
+	height: 20px;
+	width: 100px;
+	text-align: center;
+	padding: 3px 4px 2px 4px;
+	background-repeat: no-repeat;
+	background-position: top;
+}
+.D-ANButtomSq-Blue{
+	background-image: url(../img/rassa/mframe/sbottomSq-Blue.gif);
+	font-family: Tahoma;
+	color: White;
+	font-size: 10px;
+	font-weight: bold;
+	height: 20px;
+	width: 120px;
+	text-align: center;
+	padding: 3px 4px 2px 4px;
+	background-repeat: no-repeat;
+	background-position: top;
+}
+.D-ANButtomNxtLeft{
+	background-image: url(../img/rassa/mframe/sbottom-next-l.gif);
+	font-family: Tahoma;
+	color: White;
+	font-size: 10px;
+	height: 20px;
+	width: 160px;
+	text-align: center;
+	padding: 3px 4px 2px 25px;
+	background-repeat: no-repeat;
+	background-position: top;
+}
+.D-ANButtomNxtRight{
+	background-image: url(../img/rassa/mframe/sbottom-next-r.gif);
+	font-family: Tahoma;
+	color: White;
+	font-size: 10px;
+	height: 20px;
+	width: 160px;
+	text-align: center;
+	padding: 3px 25px 2px 4px;
+	background-repeat: no-repeat;
+	background-position: top;
+}
+.D-ANButtomSt{
+	background-image: url(../img/rassa/mframe/sbottomSt.gif);
+	font-family: Tahoma;
+	color: White;
+	font-size: 10px;
+	font-weight: bold;
+	height: 20px;
+	width: 140px;
+	text-align: center;
+	padding: 3px 4px 2px 4px;
+	background-repeat: no-repeat;
+	background-position: top;
+}
+.D-ANButtomSqSm{
+	background-image: url(../img/rassa/mframe/sbottomSq.gif);
+	font-family: Tahoma;
+	color: White;
+	font-size: 9px;
+	font-weight: bold;
+	height: 20px;
+	width: 120px;
+	text-align: center;
+	padding: 3px 2px 2px 2px;
+	background-repeat: no-repeat;
+	background-position: top;
+}
+.D-ANButtomSqS{
+	background-image: url(../img/rassa/mframe/sbottomSqS.gif);
+	font-family: Tahoma;
+	color: White;
+	font-size: 10px;
+	font-weight: bold;
+	height: 20px;
+	width: 120px;
+	text-align: center;
+	padding: 3px 4px 2px 4px;
+	background-repeat: no-repeat;
+	background-position: top;
+}
+a.ANButtom{
+	color: White;
+	text-decoration: none;
+}
+a.ANButtom:hover{
+	color: #ffd700;
+	text-decoration: none;
+}
+a.ANButtomDisable{
+	color: #BCBCBC;
+	text-decoration: none;
+}
+a.ANButtomDisable:hover{
+	color: #9B9B9B;
+	text-decoration: none;
+}
+/*---------------------------------------------Buttons-----------------------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------Navigation Box Styles---------------------------------------------------------------------------------------*/
+.TD-NavButtonsBox{
+	width: 330px;
+	background-image: url(../img/rassa/mframe/NavBlock/bg-NavButtonsBox.gif);
+	background-repeat: no-repeat;
+}
+.TD-NavButtonsBoxSmall{
+	width: 270px;
+	background-image: url(../img/rassa/mframe/NavBlock/bg-NavButtonsBoxSmall.gif);
+	background-repeat: no-repeat;
+}
+.TB-NavButtonsBoxSmall{
+	width: 270px;
+}
+.TB-NavButtonsBox{
+	width: 330px;
+}
+.TD-NavButtonsBox-Full{
+	width: 92px;
+	text-align: center;
+	height: 30px;
+	padding: 5px 1px 5px 1px;
+}
+.TD-NavButtonsBox-Blank{
+	width: 10px;
+}
+.TD-NavImageBox{
+	height: 255px;
+	width: 330px;
+	background-image: url(../img/rassa/mframe/NavBlock/BG-NavImageBox.gif);
+	background-repeat: no-repeat;
+	padding: 2px 2px 2px 2px;
+	text-align: center;
+}
+.TD-NavMenuBox{
+	height: 285px;
+	width:330px;
+	background-image: url(../img/rassa/mframe/NavBlock/BG-NavMenuBox.gif);
+	background-repeat: no-repeat;
+	padding: 2px 2px 2px 2px;
+	text-align: center;
+}
+.TB-NavBoxBottom{
+	height: 255px;
+	width: 270px;
+}
+.TB-NavBoxWide{
+	height: 30px;
+	width: 894px;
+}
+.TD-NavBoxWide-L{
+	width: 5px;
+	background-image: url(../img/rassa/mframe/NavBlock/BG-NavBoxWide-L.gif);
+	background-position: right;
+	background-repeat: no-repeat;
+}
+.TD-NavBoxWide-C{
+	background-image: url(../img/rassa/mframe/NavBlock/BG-NavBoxWide-C.gif);
+	background-position: left;
+	background-repeat: repeat-x;
+}
+.TD-NavBoxWide-R{
+	width: 5px;
+	background-image: url(../img/rassa/mframe/NavBlock/BG-NavBoxWide-R.gif);
+	background-position: left;
+	background-repeat: no-repeat;
+}
+.TD-NavBox-Top{
+	vertical-align: top;
+	height: 5px;
+	background-image: url(../img/rassa/mframe/NavBlock/bg-NavBox-top.gif);
+	background-repeat: no-repeat;
+	background-position: bottom center;
+}
+.TD-NavBox-Middle{
+	text-align: center;
+	vertical-align: top;
+	background-image: url(../img/rassa/mframe/NavBlock/bg-NavBox-middle.gif);
+	background-repeat: repeat-y;
+}
+.TD-NavBox-Bottom{
+	vertical-align: bottom;
+	height: 5px;
+	background-image: url(../img/rassa/mframe/NavBlock/bg-NavBox-bottom.gif);
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+/*---------------------------------------------Navigation Box Styles---------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------Content Box Styles------------------------------------------------------------------------------------------*/
+.TB-MF-ContentBox{
+	width: 564px;
+	height: 295px;
+}
+.TB-MF-ContentBoxLarge{
+	width: 894px;
+	height: 295px;
+}
+.TB-MF-ContentBoxLargest{
+	width: 954px;
+}
+.TB-MF-ContentBoxMiddle{
+	width: 564px;
+	height: 263px;
+}
+.TB-MF-ContentBoxSmall{
+	width: 564px;
+	margin-bottom: 2px;
+}
+.TD-MF-ContentBox-TL{
+	background-image: url(../img/rassa/mframe/ContentBox/ecrnr-ul-tl.gif);
+	background-repeat: no-repeat;
+	width: 5px;
+	height: 5px
+}
+.TD-MF-ContentBox-TR{
+	background-image: url(../img/rassa/mframe/ContentBox/ecrnr-ul-tr.gif);
+	background-repeat: no-repeat;
+	width: 5px;
+	height: 5px
+}
+.TD-MF-ContentBox-TC{
+	background-image: url(../img/rassa/mframe/ContentBox/ecrnr-ul-tc.gif);
+	background-repeat: repeat-x;
+	background-color: #D3D3D3;
+	height: 5px
+}
+.TD-MF-ContentBox-ML{
+	background-image: url(../img/rassa/mframe/ContentBox/ecrnr-ul-ml.gif);
+	background-repeat: repeat-y;
+	width: 5px;
+	background-position: left;
+	background-color: #D3D3D3;
+}
+.TD-MF-ContentBox-MR{
+	background-image: url(../img/rassa/mframe/ContentBox/ecrnr-ul-mr.gif);
+	background-repeat: repeat-y;
+	width: 5px;
+	background-position: right;
+	background-color: #D3D3D3;
+}
+.TD-MF-Content{
+	background-color: #D3D3D3;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #374048;
+	padding: 3px 3px 3px 3px;
+	vertical-align: top;
+}
+.TD-MF-ContentSmall{
+	background-color: #D3D3D3;
+	font-family: Tahoma;
+	font-size: 10px;
+	color: #374048;
+	padding: 1px 3px 1px 3px;
+}
+.TD-MF-ContentBold{
+	background-color: #D3D3D3;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #374048;
+	padding: 3px 3px 3px 3px;
+	font-weight: bold;
+}
+.TD-MF-ContentBox{
+	background-color: #D3D3D3;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #374048;
+	padding: 5px 1px 5px 1px;
+	vertical-align: top;
+}
+.TD-MF-ContentBoxM{
+	background-color: #D3D3D3;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #374048;
+	padding: 5px 1px 5px 1px;
+	vertical-align: middle;
+}
+.TD-MF-ContentBoxMidle{
+	background-color: #D3D3D3;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #374048;
+	padding: 5px 1px 5px 1px;
+	vertical-align: middle;
+	text-align: center;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.TD-MF-ContentBoxX{
+	background-color: #D3D3D3;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #374048;
+	vertical-align: top;
+}
+.TD-MF-ContentBoxSmall{
+	background-color: #D3D3D3;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #374048;
+	padding: 3px 10px 3px 10px;
+	vertical-align: top;
+}
+
+.TD-MF-ContentBoxShort{
+	background-color: #D3D3D3;
+	font-family: Tahoma;
+	font-size: 11px;
+	color: #374048;
+	padding: 3px 4px 3px 4px;
+	vertical-align: top;
+}
+.TD-MF-ContentBoxLow{
+	background-color: #D3D3D3;
+	width: 860px;
+}
+.TD-MF-ContentBox-BL{
+	background-image: url(../img/rassa/mframe/ContentBox/ecrnr-ul-bl.gif);
+	background-repeat: no-repeat;
+	width: 5px;
+	height: 5px
+}
+.TD-MF-ContentBox-BR{
+	background-image: url(../img/rassa/mframe/ContentBox/ecrnr-ul-br.gif);
+	background-repeat: no-repeat;
+	width: 5px;
+	height: 5px
+}
+.TD-MF-ContentBox-BC{
+	background-image: url(../img/rassa/mframe/ContentBox/ecrnr-ul-bc.gif);
+	background-repeat: repeat-x;
+	background-color: #D3D3D3;
+	height: 5px
+}
+/*---------------------------------------------Content Box Styles------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------Item Box Styles----------------------------------------------------------------------------------------------*/
+.TB-MF-ItemBox{
+	width:530px;
+	border: 1px solid #0a4679;
+	margin-bottom: 3px;
+}
+.TD-MF-ItemNumber{
+	background-color: #0a4679;
+	color: #D3D3D3;
+	font-family: Tahoma;
+	font-size: 12px;
+	font-weight: bold;
+	text-align: center;
+	width: 20px;
+}
+.TD-MF-ItemPrice{
+	width: 280px;
+	color: #383838;
+	padding: 1px 3px 1px 3px;
+	font-weight: bold;
+}
+.TD-MF-ItemDescription{
+	color: #383838;
+	padding: 1px 3px 1px 3px;
+
+}
+.TD-MF-ItemSumm{
+	width: 150px;
+	color: #383838;
+	padding: 1px 3px 1px 3px;
+	font-weight: bold;
+}
+.TD-MF-PItemImage{
+	text-align: center;
+	padding: 5px 5px 5px 5px;
+	width: 100px;
+
+}
+.TD-MF-PItemIco{
+	text-align: center;
+	padding: 5px 3px 5px 3px;
+	width: 100px;
+	background-color: #0a4679;
+	width: 29px;
+}
+.TD-MF-ItemImage{
+	padding-top:4px;
+	padding-bottom:4px;
+	width: 80px;
+	text-align: center;
+}
+
+/*---------------------------------------------Item Box Styles----------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------Square Box Styles-------------------------------------------------------------------------------------------*/
+.TB-MF-SqTopBox{
+	width: 960px;
+}
+.TD-MF-Left-Square-Box{
+	width: 40px;
+	vertical-align: top;
+}
+.TB-MF-SquareBox{
+	width: 894px;
+}
+.TB-MF-SquareNavBox{
+	height: 285px;
+}
+.TD-MF-PSquareNavBox{
+	width: 150px;
+}
+.TD-MF-PSquareFlashBox{
+	text-align: center;
+}
+.TD-MF-SqHeroHameBox{
+	width: 395px;
+}
+.TB-MF-SquareBookmark{
+	width: 100%;
+	background-image: url(../img/rassa/mframe/ContentBox/ecrnr-ul-tc.gif);
+	background-repeat: repeat-x;
+	background-position: bottom;
+}
+.TB-MF-SquareBookmarkRB{
+	width: 620px;
+	background-image: url(../img/rassa/mframe/ContentBox/ecrnr-ul-tc.gif);
+	background-repeat: repeat-x;
+	background-position: bottom;
+}
+.TD-MF-SquareBookmark{
+	width: 565px;
+	vertical-align: bottom;
+}
+/*---------------------------------------------Square Box Styles-------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------Inventory Pages Styles-------------------------------------------------------------------------------------*/
+.iselect{
+	font-family: Tahoma;
+	font-size: 10px;
+	font-weight: bold;
+	color:Black;
+	background-color: #F0F0F0;
+	width: 120px;
+}
+.iselectMedium{
+	font-family: Tahoma;
+	font-size: 10px;
+	font-weight: bold;
+	color:Black;
+	background-color: #F0F0F0;
+	width: 90px;
+}
+.iselectSmall{
+	font-family: Tahoma;
+	font-size: 10px;
+	font-weight: bold;
+	color:Black;
+	background-color: #F0F0F0;
+	width: 50px;
+}
+.iselectLarge{
+	font-family: Tahoma;
+	font-size: 10px;
+	font-weight: bold;
+	color:Black;
+	background-color: #F0F0F0;
+	width: 220px;
+}
+.iinput{
+	color:Black;
+	background-color: #F0F0F0;
+}
+/*---------------------------------------------Inventory Pages Styles-------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------Gifts Pages Styles-------------------------------------------------------------------------------------------*/
+.bblue{
+	background-color: #0a4679;
+	padding: 2px 4px 2px 4px;
+	color: White;
+}
+/*---------------------------------------------Gifts Pages Styles-------------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------Settings Pages Styles--------------------------------------------------------------------------------------*/
+.TB-MF-SettingsCNTBox{
+	width: 696px;
+	height: 331px;
+}
+.TB-MF-ClanCNTBox{
+	width: 675px;
+	height: 331px;
+}
+.TB-MF-PSecurity{
+	width: 894px;
+	height: 295px;
+}
+a.atxt{
+	color: #0a4679;
+}
+a.atxt:hover{
+	color: #12439C;
+}
+/*---------------------------------------------Settings Pages Styles--------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------Arena Pages Styles--------------------------------------------------------------------------------------*/
+.TD-MF-LeftAS{
+	height: 255px;
+	width: 270px;
+	background-image: url(../img/rassa/mframe/NavBlock/BG-NavImageBox.gif);
+	background-repeat: no-repeat;
+	padding: 2px 5px 2px 5px;
+	text-align: center;
+	vertical-align: top;
+}
+.TD-MF-Left-Arena-Box{
+	width: 310px;
+	vertical-align: top;
+}
+.TB-MF-LeftAS{
+	height: 255px;
+	width: 270px;
+}
+.TB-MF-Request{
+	width: 530px;
+	border: 1px solid #747474;
+	margin-bottom: 3px;
+}
+.TB-MF-RequestLarge{
+	width: 750px;
+	border: 1px solid #747474;
+	margin-bottom: 3px;
+}
+.TD-MF-Request-RadioB{
+	background-color: #747474;
+	padding: 2px 2px 2px 2px;
+	text-align: center;
+	width: 30px;
+}
+.TD-MF-Request-TXT{
+	font-family: Tahoma;
+	font-size: 10px;
+	color: white;
+	padding: 2px 3px 2px 3px;
+	background-color: #747474;
+	text-align: left;
+	white-space: nowrap;
+}
+.TD-MF-Request-IMG{
+	padding: 1px 3px 1px 3px;
+	background-color: #747474;
+	width: 27px;
+}
+.TD-MF-Request-TXT-Name{
+	font-family: Tahoma;
+	font-size: 10px;
+	padding: 3px 3px 3px 3px;
+	background-color: #D2D3D3;
+	width: 180px;
+	text-align: center;
+}
+.TD-MF-Request-TXT-FirstCommand{
+	font-family: Tahoma;
+	font-size: 9px;
+	color: #373737;
+	padding: 3px 5px 3px 5px;
+	white-space: nowrap;
+	border-right: 1px solid #747474;
+	border-bottom: 1px solid #747474;
+	text-align: center;
+	background-color: #E8F7FF;
+	font-weight: bold;
+	width: 35px;
+}
+.TD-MF-Request-TXT-SecondCommand{
+	font-family: Tahoma;
+	font-size: 9px;
+	color: white;
+	color: #373737;
+	padding: 3px 5px 3px 5px;
+	white-space: nowrap;
+	border-right: 1px solid #747474;
+	background-color: #FEFBD6;
+	font-weight: bold;
+	text-align: center;
+	width: 35px;
+}
+.InptUserName{
+	width: 100px;
+	color: #373737;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	text-align: center;
+}
+.InptUserDate{
+	width: 77px;
+	color: #373737;
+	font-family: Tahoma;
+	font-size: 11px;
+	font-weight: bold;
+	text-align: center;
+}
+.TB-QuryStat{
+	border: 1px solid #747474;
+}
+.TD-QuryStat{
+	color: White;
+	font-size: 10px;
+	background-color: #747474;
+	padding: 3px;
+	text-align: center;
+	vertical-align: middle;
+}
+.TD-QuryStatI{
+	padding: 2px;
+	width: 25px;
+}
+.TD-QuryStatD{
+	color: #747474;
+	font-size: 10px;
+	padding: 3px;
+	font-weight: bold;
+	vertical-align: middle;
+	height: 20px;
+}
+/*---------------------------------------------Arena Pages Styles--------------------------------------------------------------------------------------*/
+
+/*---------------------------------------------User Info Pages Styles---------------------------------------------------------------------------------*/
+
+.TD-MF-Left-Info-Box{
+	width: 245px;
+	vertical-align: top;
+}
+.TD-MF-Right-Info-Box{
+	width: 710px;
+	vertical-align: top;
+}
+.TB-MF-BookmarkInfo{
+	width: 694px;
+}
+.TB-MF-ContentBox-Info{
+	width: 684px;
+	margin-bottom: 2px;
+}
+/*---------------------------------------------User Info Pages Styles---------------------------------------------------------------------------------*/
+.TD-BotRequest{
+	height: 200px;
+	width: 170px;
+}
+.TB-BotName{
+	background-image: url(../img/rassa/mframe/bg-botname.gif);
+	width: 170px;
+	height: 39px;
+	background-repeat: no-repeat;
+}
+.TD-BotNameImg{
+	width: 40px;
+	padding-left: 16px;
+}
+.D-MCENTERBOX{
+	text-align: justify;
+	margin: 20px 150px 10px 150px;
+}
+.D-MCENTERBOX-wide{
+	text-align: justify;
+	margin: 15px 25px 15px 25px;
+}
+.TB-Discription{
+	color:#0a4679;
+	border-color: #0a4679;
+	border-style: solid;
+	border-width: 1px;
+	font-size: 11px;
+	font-weight: bold;
+}
+/*-------------------------ITEM DESCRIPTION BLOCK---------------------------------------*/
+.TD-id-header{
+	color:white;
+	font-size: 11px;
+	font-weight: bold;
+	width: 213px;
+	padding: 0px 10px 0px 10px;
+	text-align: center;
+	background-image: url(../img/rassa/mframe/item_desc/bg-itdes-top-m.gif);
+	background-repeat: repeat-y;
+}
+.TD-id-header-x{
+	color:white;
+	font-weight: bold;
+	padding: 0px 10px 0px 10px;
+	text-align: center;
+	background-color: #737373;
+}
+.TD-id-header-x{
+	color:white;
+	font-size: 11px;
+	font-weight: bold;
+	padding: 0px 10px 0px 10px;
+	text-align: center;
+	background-color: #737373;
+}
+.TD-id-headerSm{
+	color:white;
+	font-size: 10px;
+	font-weight: bold;
+	padding: 0px 10px 0px 10px;
+	text-align: center;
+	background-image: url(../img/rassa/mframe/item_desc/bg-itdes-top-m-sm.gif);
+	background-repeat: repeat-y;
+}
+.TD-id-middle{
+	color:#374048;
+	font-size: 10px;
+	width: 213px;
+	padding: 5px 10px 10px 15px;
+	background-image: url(../img/rassa/mframe/item_desc/bg-itdes-middle-m.gif);
+	background-repeat: repeat-y;
+}
+.TD-id-middle-x{
+	color:#374048;
+	font-size: 10px;
+	padding: 5px 10px 10px 15px;
+	background-color: #d3d3d3;
+}
+.TD-id-middle-x{
+	color:#374048;
+	font-size: 10px;
+	padding: 5px 10px 10px 15px;
+	background-color: #d3d3d3;
+}
+
+/*-------------------------ITEM DESCRIPTION BLOCK---------------------------------------*/
+/*-------------------------Magic Color BLOCK---------------------------------------------------*/
+.b-mg-death{
+	background-color: #7d090d;
+	color:white;
+	padding: 0px 3px 2px 3px;
+}
+.b-mg-life{
+	background-color: #046935;
+	color:white;
+	padding: 0px 3px 2px 3px;
+}
+.b-mg-chaos{
+	background-color: #6d126b;
+	color:white;
+	padding: 0px 3px 2px 3px;
+}
+.b-mg-order{
+	background-color: #0071bc;
+	color:white;
+	padding: 0px 3px 2px 3px;
+}
+.b-mg-gray{
+	background-color: #525252;
+	color:white;
+	padding: 0px 3px 2px 3px;
+}
+/*-------------------------Magic Color BLOCK---------------------------------------------------*/
+.ANButtomSelect
+{
+	color: #ffd700;
+	text-decoration: none;
+}
+.td-clanstatus{
+	color: White;
+	font-size: 10px;
+	background-color: #868284;
+	padding: 3px;
+	text-align: left;
+	vertical-align: middle;
+	height: 22px;
+}
+.td-clantabletop{
+	font-size: 10px;
+}
+
+.TD-BookmarkItemSm-A{
+
+	background-image: url(../img/rassa/mframe/BookmarkBox/TD-BookmarkItemSm-A.gif);
+
+	font-size: 10px;
+
+	font-weight: bold;
+
+	text-align: center;
+
+	padding: 8px 4px 4px 4px;
+
+	color: White;
+
+	width: 100px;
+
+	height: 35px;
+
+	background-repeat: no-repeat;
+
+	background-position: bottom center;
+
+}
+
+.TD-BookmarkItemSm-D{
+
+	background-image: url(../img/rassa/mframe/BookmarkBox/TD-BookmarkItemSm-D.gif);
+
+	font-size: 10px;
+
+	font-weight: bold;
+
+	text-align: center;
+
+	padding: 8px 1px 4px 1px;
+
+	color: White;
+
+	width: 100px;
+
+	height: 35px;
+
+	background-repeat: no-repeat;
+
+	background-position: bottom center;
+
+	cursor: pointer;
+
+}
+.but_up
+{
+	background-position: top left;
+	background-repeat:repeat-x;
+	width:600px;
+	height: 22px;
+	margin-top: 5px;
+}
+.but_body
+{
+	background-image: url(../img/rassa/mframe/podarki/height.gif);
+	background-repeat:repeat-x;
+	width:160px;
+	height: 17px;
+	padding-top: 4px;
+}
+.but_down
+{
+	background-position: 0% 100%;
+	background-repeat:repeat-x;
+	width:600px;
+	height: 22px;
+	margin-top: 5px;
+}
+.but_body2
+{
+	background-image: url(../img/rassa/mframe/podarki/height2.gif);
+	background-position:0% 100%;
+	background-repeat:repeat-x;
+	width:160px;
+	height: 17px;
+	padding-bottom: 4px;
+}
+.but_txt
+{
+	font-family: Tahoma;
+	font-size: 9px;
+	color: White;
+	text-decoration:none;
+}
+
+/*new*/
+.brd
+{
+	border: 1px solid #383838;
+}
+.list
+{
+	margin-top: 20px;
+	background: #EDEDED;
+	padding: 3px;
+}
+.GrayBox{
+	background-color: #383838;
+	color: #D3D3D3;
+	padding: 2px 2px 2px 2px;
+	font-size: 11px;
+	font-weight: bold;
+	text-align: center;
+	white-space: nowrap;
+}
+
+.TD-BookmarkLarge-D{
+	background-image: url(../img/rassa/mframe/BookmarkBox/TD-BookmarkLarge-D.gif);
+	font-size: 10px;
+	font-weight: bold;
+	text-align: center;
+	padding: 8px 1px 4px 1px;
+	color: White;
+	width: 181px;
+	height: 35px;
+	background-repeat: no-repeat;
+	background-position: bottom center;
+}
+
+.bg_head
+{
+	background: url(../img/rassa/mframe/ContentBox/el-h3.gif) center bottom no-repeat;
+	width: 250px;
+	height:38px;
+}
+
+/*  New 29.10.08  */
+.crutch
+{
+	padding:0;
+	line-height: 18px;
+}
+/*  New 27.01.09  */
+.white_bg {
+	background: url(../img/rassa/mframe/stat/white_bg.gif) 0 50% repeat-x;
+	height: 10px;
+}
+.black_bg {
+	background: url(../img/rassa/mframe/stat/black_bg.gif) 0 50% repeat-x;
+	height: 10px;
+}
+.red_bg {
+	background: url(../img/rassa/mframe/stat/red_bg.gif) 0 50% repeat-x;
+	height: 10px;
+}
+.green_bg {
+	background: url(../img/rassa/mframe/stat/green_bg.gif) 0 50% repeat-x;
+	height: 10px;
+}
+.blue_bg {
+	background: url(../img/rassa/mframe/stat/blue_bg.gif) 0 50% repeat-x;
+	height: 10px;
+}
+.tab_bg
+{
+	background:#e1e1e1;
+	border: solid 1px #434343;
+}

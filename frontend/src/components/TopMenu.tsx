@@ -11,7 +11,8 @@ const icons = [
   { name: "Выход", src: "/icons/logout.png" }
 ];
 
-const TopMenu: React.FC = () => {
+interface Props { onInventory?: () => void }
+const TopMenu: React.FC<Props> = ({ onInventory }) => {
   const { logout } = useAuth();
   const [hovered, setHovered] = useState<string | null>(null);
 
@@ -24,6 +25,8 @@ const TopMenu: React.FC = () => {
           onClick={() => {
             if (icon.name === "Выход") {
               logout();
+            } else if (icon.name === 'Инвентарь' && onInventory) {
+              onInventory();
             } else {
               console.log("Открыть: " + icon.name);
             }

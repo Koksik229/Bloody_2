@@ -1,5 +1,5 @@
 .location-view {
-  margin-top: 28vh;
+  margin-top: 14vh;
   text-align: center;
   color: #fff;
   z-index: 2;
@@ -7,7 +7,7 @@
 }
 
 .location-view h2 {
-  font-size: 1.8rem;
+  font-size: 1.2rem;
   margin-bottom: 0.3em;
 }
 
@@ -40,4 +40,40 @@
 
 .move-buttons button:hover {
   background-color: #aa6633;
+}
+
+/* Кнопки над фоном базовый */
+.move-buttons-top {
+  position: absolute;
+  top: 2vh;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  justify-content: center;
+}
+
+/* Спец-позиционирование для type1 (изображение слева) */
+.type1 .move-buttons-top {
+  left: 16%;
+  top: 5vh;
+  width: 36vw;
+  transform: none;
+  justify-content: center;
+}
+
+.type1 h2 {
+  position: absolute;
+  left: 16%;
+  top: 4vh;
+  transform: none;
+}
+
+/* Кнопки под фоном */
+.move-buttons-bottom {
+  position: static;
+  margin-top: 45vh;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
 }

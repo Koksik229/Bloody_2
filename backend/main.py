@@ -22,7 +22,7 @@ from models.chat import ChatMessage
 from models.location import Location, LocationLink, LocationType
 from models.race import Race
 from models.skills import Skill
-from routes import auth, profile, chat, users, location
+from routes import auth, profile, chat, users, location, inventory
 
 load_dotenv()
 
@@ -56,3 +56,4 @@ app.include_router(profile.router, tags=["profile"])
 app.include_router(chat.router, tags=["chat"])
 app.include_router(users.router, prefix="/users", tags=["users"])
 app.include_router(location.router)
+app.include_router(inventory.router, tags=["inventory"])

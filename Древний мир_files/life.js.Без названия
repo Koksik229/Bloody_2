@@ -1,0 +1,26 @@
+function getLifeEl(){
+	return(document.getElementById('IdHelth'));
+}
+
+function increaseLife(){
+	if(realLife<maxLife){
+		getLifeEl().height = parseFloat(getLifeEl().height)+(100/maxLife)+"%";
+		realLife+=1;
+		document.getElementById('IdHelthP').firstChild.nodeValue = realLife;
+	}else{
+		clearInterval(window.lifeTimer);
+	}
+}
+ 
+function getLifeIntervalTimer(){
+	return(maxLifeTime/maxLife*60*1000);
+}
+
+function initLifeTimer(){
+	realLife==0?realLife=1:true;
+	if(realLife<maxLife&&fLifeStop!=1){
+		window.lifeTimer = setInterval("increaseLife()",getLifeIntervalTimer());
+	}else{
+		return(true);
+	}
+}
