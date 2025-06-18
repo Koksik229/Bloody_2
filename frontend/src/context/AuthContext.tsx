@@ -9,9 +9,11 @@ export interface UserData {
   location?: {
     id: number;
     name: string;
-    description: string;
+    description?: string;
     background?: string;
+    type_id?: number;
   };
+  available_locations?: { id: number; name: string; is_locked?: boolean }[];
   hp: number;
   mp: number;
   strength: number;

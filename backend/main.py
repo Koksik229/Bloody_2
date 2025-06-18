@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
 import logging
+from starlette.middleware.sessions import SessionMiddleware
 
 # Настройка логирования
 logging.basicConfig(
@@ -21,7 +22,7 @@ from models.chat import ChatMessage
 from models.location import Location, LocationLink, LocationType
 from models.race import Race
 from models.skills import Skill
-from routes import auth, profile, chat, users
+from routes import auth, profile, chat, users, location
 
 load_dotenv()
 
@@ -41,6 +42,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+app.add_middleware(
+    SessionMiddleware,
+    secret_key="your-secret-key"  # Замени на свой секретный ключ
+)
+
 # Создаем таблицы
 Base.metadata.create_all(bind=engine)
 
@@ -49,3 +55,4 @@ app.include_router(auth.router, tags=["auth"])
 app.include_router(profile.router, tags=["profile"])
 app.include_router(chat.router, tags=["chat"])
 app.include_router(users.router, prefix="/users", tags=["users"])
+app.include_router(location.router)

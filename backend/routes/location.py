@@ -3,8 +3,10 @@ from sqlalchemy.orm import Session
 from db import get_db
 from models.location import Location, LocationLink
 from services.profile_service import get_user_by_token
+import logging
 
 router = APIRouter(prefix="/location", tags=["location"])
+logger = logging.getLogger(__name__)
 
 @router.get("/{location_id}")
 def get_location(location_id: int, db: Session = Depends(get_db)):
@@ -38,6 +40,7 @@ def get_location(location_id: int, db: Session = Depends(get_db)):
 
 @router.post("/move")
 def move(request: Request, data: dict, db: Session = Depends(get_db)):
+    logger.info(f"Попытка перехода: data={data}, session={getattr(request, 'session', None)}")
     user = get_user_by_token(request, db)
     location_id = data.get("location_id")
 

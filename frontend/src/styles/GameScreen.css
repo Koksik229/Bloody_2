@@ -23,16 +23,6 @@ body, html, #root {
   gap: 16px;
 }
 
-.player-hud {
-  position: absolute;
-  left: 20px;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 20;
-  color: white;
-  text-align: center;
-}
-
 .player-name {
   font-size: 14px;
   margin-bottom: 8px;
@@ -88,13 +78,32 @@ body, html, #root {
   padding: 0;
   cursor: pointer;
   transition: transform 0.2s ease;
+  position: relative;
 }
 
 .menu-icon img {
-  width: 40px;
-  height: 40px;
+  width: 50px;
+  height: 50px;
 }
 
 .menu-icon:hover {
   transform: scale(1.15);
+}
+
+.menu-tooltip {
+  position: absolute;
+  left: 50%;
+  top: 60px;
+  transform: translateX(-50%);
+  background: rgba(40, 40, 40, 0.95);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 15px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 100;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  opacity: 1;
+  transition: opacity 0.1s;
 }

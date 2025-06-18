@@ -9,6 +9,9 @@ from models.race import Race
 from models.level_progression import LevelProgression
 from typing import Dict, Any, Optional
 from datetime import datetime
+import logging
+
+logger = logging.getLogger(__name__)
 
 def get_user_profile(db: Session, user_id: int) -> Dict[str, Any]:
     user = db.query(User).filter(User.id == user_id).first()
@@ -48,7 +51,9 @@ def get_user_profile(db: Session, user_id: int) -> Dict[str, Any]:
         },
         "location": {
             "id": location.id if location else None,
-            "name": location.name if location else None
+            "name": location.name if location else None,
+            "background": location.background if location else None,
+            "type_id": location.type_id if location else None
         },
         "attributes": {
             "strength": skill.strength,
@@ -69,8 +74,10 @@ def get_user_profile(db: Session, user_id: int) -> Dict[str, Any]:
     }
 
 def get_user_by_token(request: Request, db: Session):
+    logger.info(f"get_user_by_token: session={getattr(request, 'session', None)}")
     user = get_user_from_session(request, db)
     if user is None:
+        logger.warning("Пользователь не найден в сессии!")
         raise HTTPException(status_code=401, detail="Unauthorized")
     return user
 

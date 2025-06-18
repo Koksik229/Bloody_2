@@ -4,7 +4,6 @@ import PlayerHUD from './PlayerHUD';
 import TopMenu from './TopMenu';
 import '../styles/GameScreen.css';
 import LocationView from './LocationView';
-import Chat from './Chat';
 
 export default function GameScreen() {
   const { user } = useAuth();
@@ -28,24 +27,39 @@ export default function GameScreen() {
       {user.location?.background && (
         <div
           className="location-background"
-          style={{
-            backgroundImage: `url(/images/locations/${user.location.background})`,
-            backgroundSize: 'contain',
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'center',
-            position: 'absolute',
-            height: '25vh',
-            width: '65vw',
-            top: '50%',
-            left: '50%',
-            transform: 'translate(-50%, -50%)',
-            zIndex: 0,
-          }}
+          style={
+            user.location.type_id === 1
+              ? {
+                  backgroundImage: `url(/images/locations/${user.location.background})`,
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center left',
+                  position: 'absolute',
+                  height: '33vh',
+                  width: '42vw',
+                  top: 'calc(50% - 100px)',
+                  left: '16%',
+                  transform: 'translateY(-50%)',
+                  zIndex: 0,
+                }
+              : {
+                  backgroundImage: `url(/images/locations/${user.location.background})`,
+                  backgroundSize: 'contain',
+                  backgroundRepeat: 'no-repeat',
+                  backgroundPosition: 'center',
+                  position: 'absolute',
+                  height: '25vh',
+                  width: '65vw',
+                  top: '50%',
+                  left: '50%',
+                  transform: 'translate(-50%, -50%)',
+                  zIndex: 0,
+                }
+          }
         />
       )}
 
       {/* Чат */}
-      <Chat />
     </div>
   );
 }

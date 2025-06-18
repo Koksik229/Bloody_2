@@ -9,7 +9,7 @@ const LocationView: React.FC = () => {
 
   const handleMove = async (locationId: number) => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_API_URL}/move`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/location/move`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -31,15 +31,38 @@ const LocationView: React.FC = () => {
 
   return (
     <div className="location-view">
-      <h2>{user.location_name}</h2>
-      <p>{user.location_desc}</p>
-      <div className="move-buttons">
-        {user.available_moves?.map((move) => (
-          <button key={move.id} onClick={() => handleMove(move.id)}>
-            Перейти в {move.name}
-          </button>
-        ))}
-      </div>
+      {/* Кнопки над фоном для type_id = 1 */}
+      {user.location?.type_id === 1 && (user.available_locations ?? []).length > 0 && (
+        <div className="move-buttons move-buttons-top">
+          {(user.available_locations ?? []).map((move: {id: number, name: string, is_locked?: boolean}) => (
+            <button key={move.id} onClick={() => handleMove(move.id)}>
+              Перейти в {move.name}
+            </button>
+          ))}
+        </div>
+      )}
+      <h2>{user.location?.name}</h2>
+      <p>{user.location?.description}</p>
+      {/* Кнопки под фоном для type_id = 2 */}
+      {user.location?.type_id === 2 && (user.available_locations ?? []).length > 0 && (
+        <div className="move-buttons move-buttons-bottom">
+          {(user.available_locations ?? []).map((move: {id: number, name: string, is_locked?: boolean}) => (
+            <button key={move.id} onClick={() => handleMove(move.id)}>
+              Перейти в {move.name}
+            </button>
+          ))}
+        </div>
+      )}
+      {/* Для остальных типов — как раньше */}
+      {![1,2].includes(user.location?.type_id ?? 0) && (
+        <div className="move-buttons">
+          {(user.available_locations ?? []).map((move: {id: number, name: string, is_locked?: boolean}) => (
+            <button key={move.id} onClick={() => handleMove(move.id)}>
+              Перейти в {move.name}
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

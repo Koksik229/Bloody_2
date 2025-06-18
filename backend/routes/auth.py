@@ -54,6 +54,9 @@ async def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends
         user.last_login = datetime.utcnow()
         db.commit()
         
+        # Сохраняем user_id в сессию
+        request.session["user_id"] = user.id
+        
         # Получаем навыки пользователя
         skills = db.query(Skill).filter(Skill.user_id == user.id).first()
         
