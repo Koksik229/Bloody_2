@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../styles/InventoryScreen.css';
 import { useAuth } from '../context/AuthContext';
 import EquipmentPanel, { EquipSlot } from './EquipmentPanel';
+import TopMenu from './TopMenu';
 
 export interface Item {
   id: number;
@@ -54,6 +55,8 @@ const InventoryScreen: React.FC<Props> = ({ onClose }) => {
 
   return (
     <div className="inventory-screen">
+      {/* фиксированное верхнее меню */}
+      <TopMenu />
       <div className="equip-side">
         <EquipmentPanel equipment={equipment} />
         <button className="back-btn" onClick={onClose}>Назад</button>

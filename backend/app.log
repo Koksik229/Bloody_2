@@ -14182,3 +14182,1144 @@ ConnectionResetError: [WinError 10054] Удаленный хост принудительно разорвал сущ
 2025-06-18 17:40:11,655 - routes.chat - INFO - Online users list broadcasted
 2025-06-18 17:40:11,659 - routes.chat - INFO - Sent 15 recent messages to user
 2025-06-18 17:40:11,659 - routes.chat - INFO - Recent messages sent
+2025-06-18 18:00:03,344 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-18 18:00:03,345 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-18 18:00:03,345 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-18 18:00:03,347 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:00:03,349 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:00:03,349 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-18 18:00:03,349 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-18 18:00:03,349 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:00:03,349 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:00:03,349 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-18 18:00:03,349 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-18 18:00:03,349 - routes.chat - INFO - Disconnected failed connection
+2025-06-18 18:00:03,349 - routes.chat - INFO - WebSocket connection closed
+2025-06-18 18:00:03,350 - routes.chat - ERROR - Error sending message to user 7: 
+2025-06-18 18:00:04,158 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 18:00:04,158 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 18:00:04,158 - auth - ERROR - JWT decode error: Signature has expired.
+2025-06-18 18:00:04,159 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 18:00:04,159 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 18:00:04,159 - auth - ERROR - JWT decode error: Signature has expired.
+2025-06-18 18:00:05,611 - auth - INFO - Created token: eyJhbGciOi...
+2025-06-18 18:00:05,618 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 18:00:05,618 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 18:00:05,618 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750253405}
+2025-06-18 18:00:05,618 - auth - INFO - Looking up user with id: 7
+2025-06-18 18:00:05,619 - auth - INFO - User found: lemure7
+2025-06-18 18:00:05,619 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-18 18:00:05,943 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-18 18:00:05,943 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-18 18:00:05,943 - routes.chat - INFO - WebSocket connection accepted
+2025-06-18 18:00:05,943 - routes.chat - INFO - Waiting for authorization message...
+2025-06-18 18:00:05,944 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMjUzNDA1fQ.d2rviUvEGGYxfa7UJ12o8Y-WNQqOZHn_KMHxBImGcZs"}
+2025-06-18 18:00:05,945 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:00:05,945 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:00:05,945 - routes.chat - INFO - User authentication result: lemure7
+2025-06-18 18:00:05,945 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-18 18:00:05,945 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-18 18:00:05,945 - routes.chat - INFO - User lemure7 added to online users
+2025-06-18 18:00:05,946 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:00:05,946 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:00:05,946 - routes.chat - INFO - Message sent successfully
+2025-06-18 18:00:05,946 - routes.chat - INFO - Online users list broadcasted
+2025-06-18 18:00:05,950 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-18 18:00:05,950 - routes.chat - INFO - Recent messages sent
+2025-06-18 18:00:05,959 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-18 18:00:05,959 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-18 18:00:05,959 - routes.chat - INFO - WebSocket connection accepted
+2025-06-18 18:00:05,959 - routes.chat - INFO - Waiting for authorization message...
+2025-06-18 18:00:05,961 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMjUzNDA1fQ.d2rviUvEGGYxfa7UJ12o8Y-WNQqOZHn_KMHxBImGcZs"}
+2025-06-18 18:00:05,961 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:00:05,961 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:00:05,962 - routes.chat - INFO - User authentication result: lemure7
+2025-06-18 18:00:05,962 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-18 18:00:05,962 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-18 18:00:05,962 - routes.chat - INFO - User lemure7 added to online users
+2025-06-18 18:00:05,963 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:00:05,963 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:00:05,963 - routes.chat - INFO - Message sent successfully
+2025-06-18 18:00:05,963 - routes.chat - INFO - Online users list broadcasted
+2025-06-18 18:00:05,970 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-18 18:00:05,970 - routes.chat - INFO - Recent messages sent
+2025-06-18 18:00:07,511 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-18 18:00:07,515 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-18 18:00:07,516 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-18 18:00:07,516 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:00:07,516 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:00:07,516 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-18 18:00:07,517 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-18 18:00:07,517 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:00:07,517 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:00:07,517 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-18 18:00:07,517 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-18 18:00:07,517 - routes.chat - INFO - Disconnected failed connection
+2025-06-18 18:00:07,518 - routes.chat - INFO - WebSocket connection closed
+2025-06-18 18:00:07,518 - routes.chat - ERROR - Error sending message to user 7: 
+2025-06-18 18:00:07,670 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 18:00:07,670 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 18:00:07,671 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750253405}
+2025-06-18 18:00:07,671 - auth - INFO - Looking up user with id: 7
+2025-06-18 18:00:07,672 - auth - INFO - User found: lemure7
+2025-06-18 18:00:07,672 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-18 18:00:07,677 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 18:00:07,677 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 18:00:07,677 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750253405}
+2025-06-18 18:00:07,678 - auth - INFO - Looking up user with id: 7
+2025-06-18 18:00:07,678 - auth - INFO - User found: lemure7
+2025-06-18 18:00:07,678 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-18 18:00:07,993 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-18 18:00:07,993 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-18 18:00:07,993 - routes.chat - INFO - WebSocket connection accepted
+2025-06-18 18:00:07,993 - routes.chat - INFO - Waiting for authorization message...
+2025-06-18 18:00:07,994 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMjUzNDA1fQ.d2rviUvEGGYxfa7UJ12o8Y-WNQqOZHn_KMHxBImGcZs"}
+2025-06-18 18:00:07,994 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:00:07,995 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:00:07,995 - routes.chat - INFO - User authentication result: lemure7
+2025-06-18 18:00:07,996 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-18 18:00:07,996 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-18 18:00:07,996 - routes.chat - INFO - User lemure7 added to online users
+2025-06-18 18:00:07,997 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:00:07,997 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:00:07,997 - routes.chat - INFO - Message sent successfully
+2025-06-18 18:00:07,997 - routes.chat - INFO - Online users list broadcasted
+2025-06-18 18:00:08,004 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-18 18:00:08,004 - routes.chat - INFO - Recent messages sent
+2025-06-18 18:00:08,005 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-18 18:00:08,006 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-18 18:00:08,006 - routes.chat - INFO - WebSocket connection accepted
+2025-06-18 18:00:08,006 - routes.chat - INFO - Waiting for authorization message...
+2025-06-18 18:00:08,007 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMjUzNDA1fQ.d2rviUvEGGYxfa7UJ12o8Y-WNQqOZHn_KMHxBImGcZs"}
+2025-06-18 18:00:08,007 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:00:08,008 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:00:08,009 - routes.chat - INFO - User authentication result: lemure7
+2025-06-18 18:00:08,009 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-18 18:00:08,010 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-18 18:00:08,010 - routes.chat - INFO - User lemure7 added to online users
+2025-06-18 18:00:08,010 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:00:08,010 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:00:08,011 - routes.chat - INFO - Message sent successfully
+2025-06-18 18:00:08,011 - routes.chat - INFO - Online users list broadcasted
+2025-06-18 18:00:08,017 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-18 18:00:08,017 - routes.chat - INFO - Recent messages sent
+2025-06-18 18:20:53,269 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-18 18:20:53,269 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-18 18:20:53,269 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-18 18:20:53,270 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:20:53,270 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:20:53,270 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-18 18:20:53,270 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-18 18:20:53,270 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:20:53,271 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:20:53,271 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-18 18:20:53,271 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-18 18:20:53,271 - routes.chat - INFO - Disconnected failed connection
+2025-06-18 18:20:53,271 - routes.chat - INFO - WebSocket connection closed
+2025-06-18 18:20:53,272 - routes.chat - ERROR - Error sending message to user 7: 
+2025-06-18 18:20:53,765 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 18:20:53,765 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 18:20:53,766 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750253405}
+2025-06-18 18:20:53,766 - auth - INFO - Looking up user with id: 7
+2025-06-18 18:20:53,767 - auth - INFO - User found: lemure7
+2025-06-18 18:20:53,767 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-18 18:20:53,770 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 18:20:53,770 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 18:20:53,771 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750253405}
+2025-06-18 18:20:53,771 - auth - INFO - Looking up user with id: 7
+2025-06-18 18:20:53,771 - auth - INFO - User found: lemure7
+2025-06-18 18:20:53,772 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-18 18:20:54,087 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-18 18:20:54,087 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-18 18:20:54,087 - routes.chat - INFO - WebSocket connection accepted
+2025-06-18 18:20:54,087 - routes.chat - INFO - Waiting for authorization message...
+2025-06-18 18:20:54,089 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMjUzNDA1fQ.d2rviUvEGGYxfa7UJ12o8Y-WNQqOZHn_KMHxBImGcZs"}
+2025-06-18 18:20:54,089 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:20:54,091 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:20:54,092 - routes.chat - INFO - User authentication result: lemure7
+2025-06-18 18:20:54,093 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-18 18:20:54,093 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-18 18:20:54,093 - routes.chat - INFO - User lemure7 added to online users
+2025-06-18 18:20:54,093 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:20:54,093 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:20:54,094 - routes.chat - INFO - Message sent successfully
+2025-06-18 18:20:54,095 - routes.chat - INFO - Online users list broadcasted
+2025-06-18 18:20:54,108 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-18 18:20:54,109 - routes.chat - INFO - Recent messages sent
+2025-06-18 18:20:54,112 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-18 18:20:54,112 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-18 18:20:54,112 - routes.chat - INFO - WebSocket connection accepted
+2025-06-18 18:20:54,112 - routes.chat - INFO - Waiting for authorization message...
+2025-06-18 18:20:54,115 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMjUzNDA1fQ.d2rviUvEGGYxfa7UJ12o8Y-WNQqOZHn_KMHxBImGcZs"}
+2025-06-18 18:20:54,115 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:20:54,115 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:20:54,122 - routes.chat - INFO - User authentication result: lemure7
+2025-06-18 18:20:54,123 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-18 18:20:54,123 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-18 18:20:54,123 - routes.chat - INFO - User lemure7 added to online users
+2025-06-18 18:20:54,124 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:20:54,124 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:20:54,124 - routes.chat - INFO - Message sent successfully
+2025-06-18 18:20:54,125 - routes.chat - INFO - Online users list broadcasted
+2025-06-18 18:20:54,136 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-18 18:20:54,136 - routes.chat - INFO - Recent messages sent
+2025-06-18 18:30:15,024 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 18:30:15,024 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 18:30:15,024 - auth - ERROR - JWT decode error: Signature has expired.
+2025-06-18 18:30:15,026 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 18:30:15,026 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 18:30:15,027 - auth - ERROR - JWT decode error: Signature has expired.
+2025-06-18 18:34:40,585 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-18 18:34:40,585 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-18 18:34:40,585 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-18 18:34:40,586 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:34:40,586 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:34:40,586 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-18 18:34:40,586 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-18 18:34:40,586 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:34:40,586 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:34:40,587 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-18 18:34:40,587 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-18 18:34:40,587 - routes.chat - INFO - Disconnected failed connection
+2025-06-18 18:34:40,587 - routes.chat - INFO - WebSocket connection closed
+2025-06-18 18:34:40,588 - routes.chat - ERROR - Error sending message to user 7: 
+2025-06-18 18:34:43,036 - auth - INFO - Created token: eyJhbGciOi...
+2025-06-18 18:34:43,363 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 18:34:43,363 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 18:34:43,363 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750255483}
+2025-06-18 18:34:43,363 - auth - INFO - Looking up user with id: 7
+2025-06-18 18:34:43,364 - auth - INFO - User found: lemure7
+2025-06-18 18:34:43,364 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-18 18:34:43,688 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-18 18:34:43,688 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-18 18:34:43,688 - routes.chat - INFO - WebSocket connection accepted
+2025-06-18 18:34:43,688 - routes.chat - INFO - Waiting for authorization message...
+2025-06-18 18:34:43,689 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMjU1NDgzfQ.nAuuqwzf0SbOa09_4UAoKD1az7WIqmL9-7PH4oLZ7-I"}
+2025-06-18 18:34:43,690 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:34:43,690 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:34:43,690 - routes.chat - INFO - User authentication result: lemure7
+2025-06-18 18:34:43,690 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-18 18:34:43,690 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-18 18:34:43,691 - routes.chat - INFO - User lemure7 added to online users
+2025-06-18 18:34:43,691 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:34:43,691 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:34:43,691 - routes.chat - INFO - Message sent successfully
+2025-06-18 18:34:43,691 - routes.chat - INFO - Online users list broadcasted
+2025-06-18 18:34:43,697 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-18 18:34:43,697 - routes.chat - INFO - Recent messages sent
+2025-06-18 18:34:43,703 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-18 18:34:43,703 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-18 18:34:43,703 - routes.chat - INFO - WebSocket connection accepted
+2025-06-18 18:34:43,703 - routes.chat - INFO - Waiting for authorization message...
+2025-06-18 18:34:43,705 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMjU1NDgzfQ.nAuuqwzf0SbOa09_4UAoKD1az7WIqmL9-7PH4oLZ7-I"}
+2025-06-18 18:34:43,705 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:34:43,705 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:34:43,706 - routes.chat - INFO - User authentication result: lemure7
+2025-06-18 18:34:43,706 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-18 18:34:43,706 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-18 18:34:43,706 - routes.chat - INFO - User lemure7 added to online users
+2025-06-18 18:34:43,707 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:34:43,707 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:34:43,707 - routes.chat - INFO - Message sent successfully
+2025-06-18 18:34:43,707 - routes.chat - INFO - Online users list broadcasted
+2025-06-18 18:34:43,712 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-18 18:34:43,713 - routes.chat - INFO - Recent messages sent
+2025-06-18 18:40:07,100 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-18 18:40:07,100 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-18 18:40:07,100 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-18 18:40:07,100 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:40:07,100 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:40:07,101 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-18 18:40:07,101 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-18 18:40:07,101 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:40:07,101 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:40:07,101 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-18 18:40:07,102 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-18 18:40:07,102 - routes.chat - INFO - Disconnected failed connection
+2025-06-18 18:40:07,102 - routes.chat - INFO - WebSocket connection closed
+2025-06-18 18:40:07,103 - routes.chat - ERROR - Error sending message to user 7: 
+2025-06-18 18:40:07,574 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 18:40:07,574 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 18:40:07,575 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750255483}
+2025-06-18 18:40:07,575 - auth - INFO - Looking up user with id: 7
+2025-06-18 18:40:07,575 - auth - INFO - User found: lemure7
+2025-06-18 18:40:07,575 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-18 18:40:07,581 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 18:40:07,582 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 18:40:07,582 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750255483}
+2025-06-18 18:40:07,582 - auth - INFO - Looking up user with id: 7
+2025-06-18 18:40:07,583 - auth - INFO - User found: lemure7
+2025-06-18 18:40:07,583 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-18 18:40:07,899 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-18 18:40:07,899 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-18 18:40:07,899 - routes.chat - INFO - WebSocket connection accepted
+2025-06-18 18:40:07,900 - routes.chat - INFO - Waiting for authorization message...
+2025-06-18 18:40:07,901 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMjU1NDgzfQ.nAuuqwzf0SbOa09_4UAoKD1az7WIqmL9-7PH4oLZ7-I"}
+2025-06-18 18:40:07,901 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:40:07,901 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:40:07,901 - routes.chat - INFO - User authentication result: lemure7
+2025-06-18 18:40:07,902 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-18 18:40:07,902 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-18 18:40:07,902 - routes.chat - INFO - User lemure7 added to online users
+2025-06-18 18:40:07,902 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:40:07,902 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:40:07,902 - routes.chat - INFO - Message sent successfully
+2025-06-18 18:40:07,902 - routes.chat - INFO - Online users list broadcasted
+2025-06-18 18:40:07,907 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-18 18:40:07,907 - routes.chat - INFO - Recent messages sent
+2025-06-18 18:40:07,912 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-18 18:40:07,912 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-18 18:40:07,912 - routes.chat - INFO - WebSocket connection accepted
+2025-06-18 18:40:07,912 - routes.chat - INFO - Waiting for authorization message...
+2025-06-18 18:40:07,915 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMjU1NDgzfQ.nAuuqwzf0SbOa09_4UAoKD1az7WIqmL9-7PH4oLZ7-I"}
+2025-06-18 18:40:07,915 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:40:07,915 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:40:07,916 - routes.chat - INFO - User authentication result: lemure7
+2025-06-18 18:40:07,916 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-18 18:40:07,916 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-18 18:40:07,916 - routes.chat - INFO - User lemure7 added to online users
+2025-06-18 18:40:07,916 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:40:07,917 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:40:07,918 - routes.chat - INFO - Message sent successfully
+2025-06-18 18:40:07,918 - routes.chat - INFO - Online users list broadcasted
+2025-06-18 18:40:07,924 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-18 18:40:07,925 - routes.chat - INFO - Recent messages sent
+2025-06-18 18:50:50,974 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-18 18:50:50,974 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-18 18:50:50,974 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-18 18:50:50,974 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:50:50,975 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:50:50,975 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-18 18:50:50,975 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-18 18:50:50,975 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:50:50,975 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:50:50,975 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-18 18:50:50,976 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-18 18:50:50,976 - routes.chat - INFO - Disconnected failed connection
+2025-06-18 18:50:50,976 - routes.chat - INFO - WebSocket connection closed
+2025-06-18 18:50:50,977 - routes.chat - ERROR - Error sending message to user 7: 
+2025-06-18 18:50:51,821 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 18:50:51,822 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 18:50:51,822 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750255483}
+2025-06-18 18:50:51,822 - auth - INFO - Looking up user with id: 7
+2025-06-18 18:50:51,822 - auth - INFO - User found: lemure7
+2025-06-18 18:50:51,823 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-18 18:50:51,825 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 18:50:51,825 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 18:50:51,825 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750255483}
+2025-06-18 18:50:51,825 - auth - INFO - Looking up user with id: 7
+2025-06-18 18:50:51,826 - auth - INFO - User found: lemure7
+2025-06-18 18:50:51,826 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-18 18:50:52,146 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-18 18:50:52,147 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-18 18:50:52,147 - routes.chat - INFO - WebSocket connection accepted
+2025-06-18 18:50:52,147 - routes.chat - INFO - Waiting for authorization message...
+2025-06-18 18:50:52,148 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMjU1NDgzfQ.nAuuqwzf0SbOa09_4UAoKD1az7WIqmL9-7PH4oLZ7-I"}
+2025-06-18 18:50:52,148 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:50:52,148 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:50:52,149 - routes.chat - INFO - User authentication result: lemure7
+2025-06-18 18:50:52,149 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-18 18:50:52,149 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-18 18:50:52,149 - routes.chat - INFO - User lemure7 added to online users
+2025-06-18 18:50:52,149 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:50:52,150 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:50:52,150 - routes.chat - INFO - Message sent successfully
+2025-06-18 18:50:52,150 - routes.chat - INFO - Online users list broadcasted
+2025-06-18 18:50:52,153 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-18 18:50:52,154 - routes.chat - INFO - Recent messages sent
+2025-06-18 18:50:52,161 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-18 18:50:52,161 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-18 18:50:52,161 - routes.chat - INFO - WebSocket connection accepted
+2025-06-18 18:50:52,161 - routes.chat - INFO - Waiting for authorization message...
+2025-06-18 18:50:52,163 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMjU1NDgzfQ.nAuuqwzf0SbOa09_4UAoKD1az7WIqmL9-7PH4oLZ7-I"}
+2025-06-18 18:50:52,163 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:50:52,163 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-18 18:50:52,163 - routes.chat - INFO - User authentication result: lemure7
+2025-06-18 18:50:52,163 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-18 18:50:52,163 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-18 18:50:52,163 - routes.chat - INFO - User lemure7 added to online users
+2025-06-18 18:50:52,164 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 18:50:52,164 - routes.chat - INFO - Sending message to user 7
+2025-06-18 18:50:52,164 - routes.chat - INFO - Message sent successfully
+2025-06-18 18:50:52,164 - routes.chat - INFO - Online users list broadcasted
+2025-06-18 18:50:52,168 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-18 18:50:52,168 - routes.chat - INFO - Recent messages sent
+2025-06-18 19:49:40,832 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-18 19:49:40,834 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-18 19:49:40,834 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-18 19:49:40,834 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 19:49:40,834 - routes.chat - INFO - Sending message to user 7
+2025-06-18 19:49:40,836 - routes.chat - INFO - Message sent successfully
+2025-06-18 19:49:40,836 - routes.chat - INFO - WebSocket connection closed
+2025-06-18 19:49:40,838 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-18 19:49:40,840 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-18 19:49:40,840 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 19:49:40,840 - routes.chat - INFO - Sending message to user 7
+2025-06-18 19:49:40,840 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-18 19:49:40,840 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-18 19:49:40,840 - routes.chat - INFO - Disconnected failed connection
+2025-06-18 19:49:40,841 - routes.chat - INFO - WebSocket connection closed
+2025-06-18 19:49:41,673 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 19:49:41,673 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 19:49:41,674 - auth - ERROR - JWT decode error: Signature has expired.
+2025-06-18 19:49:41,676 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 19:49:41,676 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 19:49:41,676 - auth - ERROR - JWT decode error: Signature has expired.
+2025-06-18 19:49:42,648 - auth - INFO - Created token: eyJhbGciOi...
+2025-06-18 19:49:42,659 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 19:49:42,659 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 19:49:42,659 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750259982}
+2025-06-18 19:49:42,659 - auth - INFO - Looking up user with id: 7
+2025-06-18 19:49:42,661 - auth - INFO - User found: lemure7
+2025-06-18 19:49:42,661 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-18 19:49:42,984 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-18 19:49:42,984 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-18 19:49:42,984 - routes.chat - INFO - WebSocket connection accepted
+2025-06-18 19:49:42,984 - routes.chat - INFO - Waiting for authorization message...
+2025-06-18 19:49:42,988 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMjU5OTgyfQ.QVSHo4Ae-UNOdjA1AWzNPh-4MLIBCjJjYj4IJUNdPHI"}
+2025-06-18 19:49:42,988 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-18 19:49:42,988 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-18 19:49:42,989 - routes.chat - INFO - User authentication result: lemure7
+2025-06-18 19:49:42,989 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-18 19:49:42,989 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-18 19:49:42,989 - routes.chat - INFO - User lemure7 added to online users
+2025-06-18 19:49:42,989 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 19:49:42,989 - routes.chat - INFO - Sending message to user 7
+2025-06-18 19:49:42,990 - routes.chat - INFO - Message sent successfully
+2025-06-18 19:49:42,990 - routes.chat - INFO - Online users list broadcasted
+2025-06-18 19:49:42,995 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-18 19:49:42,995 - routes.chat - INFO - Recent messages sent
+2025-06-18 19:49:42,998 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-18 19:49:42,998 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-18 19:49:42,998 - routes.chat - INFO - WebSocket connection accepted
+2025-06-18 19:49:42,998 - routes.chat - INFO - Waiting for authorization message...
+2025-06-18 19:49:43,001 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMjU5OTgyfQ.QVSHo4Ae-UNOdjA1AWzNPh-4MLIBCjJjYj4IJUNdPHI"}
+2025-06-18 19:49:43,001 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-18 19:49:43,001 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-18 19:49:43,002 - routes.chat - INFO - User authentication result: lemure7
+2025-06-18 19:49:43,002 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-18 19:49:43,002 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-18 19:49:43,002 - routes.chat - INFO - User lemure7 added to online users
+2025-06-18 19:49:43,003 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 19:49:43,003 - routes.chat - INFO - Sending message to user 7
+2025-06-18 19:49:43,003 - routes.chat - INFO - Message sent successfully
+2025-06-18 19:49:43,003 - routes.chat - INFO - Online users list broadcasted
+2025-06-18 19:49:43,007 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-18 19:49:43,007 - routes.chat - INFO - Recent messages sent
+2025-06-18 19:55:09,498 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-18 19:55:09,498 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-18 19:55:09,499 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-18 19:55:09,499 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 19:55:09,499 - routes.chat - INFO - Sending message to user 7
+2025-06-18 19:55:09,499 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-18 19:55:09,499 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-18 19:55:09,500 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 19:55:09,500 - routes.chat - INFO - Sending message to user 7
+2025-06-18 19:55:09,500 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-18 19:55:09,500 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-18 19:55:09,500 - routes.chat - INFO - Disconnected failed connection
+2025-06-18 19:55:09,500 - routes.chat - INFO - WebSocket connection closed
+2025-06-18 19:55:09,501 - routes.chat - ERROR - Error sending message to user 7: 
+2025-06-18 19:55:10,360 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 19:55:10,360 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 19:55:10,360 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750259982}
+2025-06-18 19:55:10,360 - auth - INFO - Looking up user with id: 7
+2025-06-18 19:55:10,361 - auth - INFO - User found: lemure7
+2025-06-18 19:55:10,361 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-18 19:55:10,364 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-18 19:55:10,364 - auth - INFO - Attempting to decode JWT token...
+2025-06-18 19:55:10,364 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750259982}
+2025-06-18 19:55:10,364 - auth - INFO - Looking up user with id: 7
+2025-06-18 19:55:10,364 - auth - INFO - User found: lemure7
+2025-06-18 19:55:10,364 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-18 19:55:10,682 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-18 19:55:10,682 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-18 19:55:10,682 - routes.chat - INFO - WebSocket connection accepted
+2025-06-18 19:55:10,683 - routes.chat - INFO - Waiting for authorization message...
+2025-06-18 19:55:10,684 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMjU5OTgyfQ.QVSHo4Ae-UNOdjA1AWzNPh-4MLIBCjJjYj4IJUNdPHI"}
+2025-06-18 19:55:10,684 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-18 19:55:10,685 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-18 19:55:10,685 - routes.chat - INFO - User authentication result: lemure7
+2025-06-18 19:55:10,685 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-18 19:55:10,685 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-18 19:55:10,685 - routes.chat - INFO - User lemure7 added to online users
+2025-06-18 19:55:10,686 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 19:55:10,686 - routes.chat - INFO - Sending message to user 7
+2025-06-18 19:55:10,686 - routes.chat - INFO - Message sent successfully
+2025-06-18 19:55:10,686 - routes.chat - INFO - Online users list broadcasted
+2025-06-18 19:55:10,690 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-18 19:55:10,690 - routes.chat - INFO - Recent messages sent
+2025-06-18 19:55:10,698 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-18 19:55:10,698 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-18 19:55:10,698 - routes.chat - INFO - WebSocket connection accepted
+2025-06-18 19:55:10,698 - routes.chat - INFO - Waiting for authorization message...
+2025-06-18 19:55:10,699 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMjU5OTgyfQ.QVSHo4Ae-UNOdjA1AWzNPh-4MLIBCjJjYj4IJUNdPHI"}
+2025-06-18 19:55:10,699 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-18 19:55:10,699 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-18 19:55:10,700 - routes.chat - INFO - User authentication result: lemure7
+2025-06-18 19:55:10,700 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-18 19:55:10,700 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-18 19:55:10,700 - routes.chat - INFO - User lemure7 added to online users
+2025-06-18 19:55:10,700 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-18 19:55:10,700 - routes.chat - INFO - Sending message to user 7
+2025-06-18 19:55:10,701 - routes.chat - INFO - Message sent successfully
+2025-06-18 19:55:10,701 - routes.chat - INFO - Online users list broadcasted
+2025-06-18 19:55:10,706 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-18 19:55:10,706 - routes.chat - INFO - Recent messages sent
+2025-06-19 09:25:23,386 - routes.location - INFO - Попытка перехода: data={'location_id': 16}, session={'user_id': 7}
+2025-06-19 09:25:23,387 - services.profile_service - INFO - get_user_by_token: session={'user_id': 7}
+2025-06-19 09:25:23,401 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 09:25:23,401 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 09:25:23,402 - auth - ERROR - JWT decode error: Signature has expired.
+2025-06-19 09:25:23,405 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 09:25:23,405 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-19 09:25:23,405 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 09:25:23,405 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 09:25:23,406 - routes.chat - INFO - Sending message to user 7
+2025-06-19 09:25:23,406 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-19 09:25:23,406 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-19 09:25:23,406 - routes.chat - INFO - Disconnected failed connection
+2025-06-19 09:25:23,406 - routes.chat - INFO - WebSocket connection closed
+2025-06-19 09:26:03,880 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 09:26:03,880 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 09:26:03,880 - routes.chat - INFO - Broadcasting message to 0 connections
+2025-06-19 09:26:03,880 - routes.chat - INFO - WebSocket connection closed
+2025-06-19 10:05:40,815 - auth - INFO - Created token: eyJhbGciOi...
+2025-06-19 10:05:41,138 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 10:05:41,138 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 10:05:41,139 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750311340}
+2025-06-19 10:05:41,139 - auth - INFO - Looking up user with id: 7
+2025-06-19 10:05:41,139 - auth - INFO - User found: lemure7
+2025-06-19 10:05:41,140 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 10:05:41,463 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 10:05:41,464 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 10:05:41,464 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 10:05:41,464 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 10:05:41,465 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzExMzQwfQ.LvJ1Qya1GvR746_rIGDaQJH0lOSzUAkNCAdtx93K0QQ"}
+2025-06-19 10:05:41,465 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:05:41,465 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:05:41,466 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 10:05:41,466 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 10:05:41,466 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 10:05:41,466 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 10:05:41,467 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:05:41,467 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:05:41,467 - routes.chat - INFO - Message sent successfully
+2025-06-19 10:05:41,467 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 10:05:41,473 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 10:05:41,473 - routes.chat - INFO - Recent messages sent
+2025-06-19 10:05:41,480 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 10:05:41,480 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 10:05:41,480 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 10:05:41,480 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 10:05:41,481 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzExMzQwfQ.LvJ1Qya1GvR746_rIGDaQJH0lOSzUAkNCAdtx93K0QQ"}
+2025-06-19 10:05:41,481 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:05:41,481 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:05:41,482 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 10:05:41,483 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 10:05:41,483 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 10:05:41,483 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 10:05:41,483 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:05:41,484 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:05:41,484 - routes.chat - INFO - Message sent successfully
+2025-06-19 10:05:41,484 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 10:05:41,488 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 10:05:41,489 - routes.chat - INFO - Recent messages sent
+2025-06-19 10:05:42,758 - routes.location - INFO - Попытка перехода: data={'location_id': 14}, session={'user_id': 7}
+2025-06-19 10:05:42,758 - services.profile_service - INFO - get_user_by_token: session={'user_id': 7}
+2025-06-19 10:05:42,768 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 10:05:42,768 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 10:05:42,768 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750311340}
+2025-06-19 10:05:42,768 - auth - INFO - Looking up user with id: 7
+2025-06-19 10:05:42,769 - auth - INFO - User found: lemure7
+2025-06-19 10:05:42,769 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 10:19:09,105 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 10:19:09,105 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-19 10:19:09,105 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 10:19:09,106 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:19:09,106 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:19:09,106 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 10:19:09,106 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 10:19:09,106 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:19:09,106 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:19:09,106 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-19 10:19:09,107 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-19 10:19:09,107 - routes.chat - INFO - Disconnected failed connection
+2025-06-19 10:19:09,107 - routes.chat - INFO - WebSocket connection closed
+2025-06-19 10:19:09,107 - routes.chat - ERROR - Error sending message to user 7: 
+2025-06-19 10:19:09,900 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 10:19:09,900 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 10:19:09,900 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750311340}
+2025-06-19 10:19:09,900 - auth - INFO - Looking up user with id: 7
+2025-06-19 10:19:09,901 - auth - INFO - User found: lemure7
+2025-06-19 10:19:09,901 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 10:19:09,906 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 10:19:09,906 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 10:19:09,906 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750311340}
+2025-06-19 10:19:09,906 - auth - INFO - Looking up user with id: 7
+2025-06-19 10:19:09,906 - auth - INFO - User found: lemure7
+2025-06-19 10:19:09,906 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 10:19:10,228 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 10:19:10,228 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 10:19:10,228 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 10:19:10,228 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 10:19:10,230 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzExMzQwfQ.LvJ1Qya1GvR746_rIGDaQJH0lOSzUAkNCAdtx93K0QQ"}
+2025-06-19 10:19:10,230 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:19:10,230 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:19:10,234 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 10:19:10,234 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 10:19:10,234 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 10:19:10,234 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 10:19:10,234 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:19:10,234 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:19:10,235 - routes.chat - INFO - Message sent successfully
+2025-06-19 10:19:10,235 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 10:19:10,246 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 10:19:10,247 - routes.chat - INFO - Recent messages sent
+2025-06-19 10:19:10,249 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 10:19:10,249 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 10:19:10,249 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 10:19:10,249 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 10:19:10,252 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzExMzQwfQ.LvJ1Qya1GvR746_rIGDaQJH0lOSzUAkNCAdtx93K0QQ"}
+2025-06-19 10:19:10,252 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:19:10,253 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:19:10,253 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 10:19:10,253 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 10:19:10,254 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 10:19:10,254 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 10:19:10,254 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:19:10,254 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:19:10,254 - routes.chat - INFO - Message sent successfully
+2025-06-19 10:19:10,254 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 10:19:10,258 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 10:19:10,258 - routes.chat - INFO - Recent messages sent
+2025-06-19 10:32:21,704 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 10:32:21,704 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-19 10:32:21,704 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 10:32:21,704 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:32:21,705 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:32:21,705 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 10:32:21,705 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 10:32:21,705 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:32:21,705 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:32:21,705 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-19 10:32:21,705 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-19 10:32:21,706 - routes.chat - INFO - Disconnected failed connection
+2025-06-19 10:32:21,706 - routes.chat - INFO - WebSocket connection closed
+2025-06-19 10:32:21,706 - routes.chat - ERROR - Error sending message to user 7: 
+2025-06-19 10:32:22,530 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 10:32:22,530 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 10:32:22,530 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750311340}
+2025-06-19 10:32:22,530 - auth - INFO - Looking up user with id: 7
+2025-06-19 10:32:22,531 - auth - INFO - User found: lemure7
+2025-06-19 10:32:22,531 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 10:32:22,536 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 10:32:22,536 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 10:32:22,537 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750311340}
+2025-06-19 10:32:22,537 - auth - INFO - Looking up user with id: 7
+2025-06-19 10:32:22,537 - auth - INFO - User found: lemure7
+2025-06-19 10:32:22,537 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 10:32:22,857 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 10:32:22,857 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 10:32:22,857 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 10:32:22,857 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 10:32:22,858 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzExMzQwfQ.LvJ1Qya1GvR746_rIGDaQJH0lOSzUAkNCAdtx93K0QQ"}
+2025-06-19 10:32:22,858 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:32:22,858 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:32:22,859 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 10:32:22,859 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 10:32:22,859 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 10:32:22,859 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 10:32:22,860 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:32:22,860 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:32:22,860 - routes.chat - INFO - Message sent successfully
+2025-06-19 10:32:22,860 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 10:32:22,864 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 10:32:22,864 - routes.chat - INFO - Recent messages sent
+2025-06-19 10:32:22,877 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 10:32:22,877 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 10:32:22,877 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 10:32:22,878 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 10:32:22,879 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzExMzQwfQ.LvJ1Qya1GvR746_rIGDaQJH0lOSzUAkNCAdtx93K0QQ"}
+2025-06-19 10:32:22,879 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:32:22,879 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:32:22,880 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 10:32:22,880 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 10:32:22,880 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 10:32:22,880 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 10:32:22,881 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:32:22,881 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:32:22,881 - routes.chat - INFO - Message sent successfully
+2025-06-19 10:32:22,881 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 10:32:22,884 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 10:32:22,885 - routes.chat - INFO - Recent messages sent
+2025-06-19 10:45:04,419 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 10:45:04,420 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-19 10:45:04,420 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 10:45:04,421 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:45:04,422 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:45:04,422 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 10:45:04,422 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 10:45:04,422 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:45:04,422 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:45:04,422 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-19 10:45:04,423 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-19 10:45:04,423 - routes.chat - INFO - Disconnected failed connection
+2025-06-19 10:45:04,423 - routes.chat - INFO - WebSocket connection closed
+2025-06-19 10:45:04,424 - routes.chat - ERROR - Error sending message to user 7: 
+2025-06-19 10:45:05,237 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 10:45:05,237 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 10:45:05,238 - auth - ERROR - JWT decode error: Signature has expired.
+2025-06-19 10:45:05,239 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 10:45:05,239 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 10:45:05,239 - auth - ERROR - JWT decode error: Signature has expired.
+2025-06-19 10:45:07,386 - auth - INFO - Created token: eyJhbGciOi...
+2025-06-19 10:45:07,396 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 10:45:07,396 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 10:45:07,396 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750313707}
+2025-06-19 10:45:07,396 - auth - INFO - Looking up user with id: 7
+2025-06-19 10:45:07,397 - auth - INFO - User found: lemure7
+2025-06-19 10:45:07,397 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 10:45:07,718 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 10:45:07,719 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 10:45:07,719 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 10:45:07,719 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 10:45:07,720 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzEzNzA3fQ.EQWAC8mZrlQClBH0WJFpCSqDRqD0ZIj5RwtNIMwNDiw"}
+2025-06-19 10:45:07,720 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:45:07,720 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:45:07,721 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 10:45:07,721 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 10:45:07,721 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 10:45:07,721 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 10:45:07,722 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:45:07,722 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:45:07,722 - routes.chat - INFO - Message sent successfully
+2025-06-19 10:45:07,722 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 10:45:07,726 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 10:45:07,726 - routes.chat - INFO - Recent messages sent
+2025-06-19 10:45:07,735 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 10:45:07,735 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 10:45:07,736 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 10:45:07,736 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 10:45:07,738 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzEzNzA3fQ.EQWAC8mZrlQClBH0WJFpCSqDRqD0ZIj5RwtNIMwNDiw"}
+2025-06-19 10:45:07,738 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:45:07,738 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:45:07,739 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 10:45:07,741 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 10:45:07,741 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 10:45:07,741 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 10:45:07,742 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:45:07,742 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:45:07,742 - routes.chat - INFO - Message sent successfully
+2025-06-19 10:45:07,742 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 10:45:07,753 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 10:45:07,755 - routes.chat - INFO - Recent messages sent
+2025-06-19 10:51:46,124 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 10:51:46,124 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-19 10:51:46,124 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 10:51:46,125 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:51:46,125 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:51:46,125 - routes.chat - INFO - Message sent successfully
+2025-06-19 10:51:46,125 - routes.chat - INFO - WebSocket connection closed
+2025-06-19 10:51:46,126 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 10:51:46,126 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 10:51:46,126 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:51:46,126 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:51:46,127 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-19 10:51:46,127 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-19 10:51:46,127 - routes.chat - INFO - Disconnected failed connection
+2025-06-19 10:51:46,127 - routes.chat - INFO - WebSocket connection closed
+2025-06-19 10:51:46,757 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 10:51:46,757 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 10:51:46,758 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750313707}
+2025-06-19 10:51:46,758 - auth - INFO - Looking up user with id: 7
+2025-06-19 10:51:46,758 - auth - INFO - User found: lemure7
+2025-06-19 10:51:46,758 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 10:51:46,763 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 10:51:46,764 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 10:51:46,764 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750313707}
+2025-06-19 10:51:46,764 - auth - INFO - Looking up user with id: 7
+2025-06-19 10:51:46,764 - auth - INFO - User found: lemure7
+2025-06-19 10:51:46,765 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 10:51:47,083 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 10:51:47,083 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 10:51:47,084 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 10:51:47,084 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 10:51:47,098 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 10:51:47,098 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 10:51:47,098 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 10:51:47,098 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 10:51:47,104 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzEzNzA3fQ.EQWAC8mZrlQClBH0WJFpCSqDRqD0ZIj5RwtNIMwNDiw"}
+2025-06-19 10:51:47,105 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:51:47,105 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:51:47,106 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 10:51:47,106 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 10:51:47,106 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 10:51:47,106 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 10:51:47,107 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:51:47,107 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:51:47,107 - routes.chat - INFO - Message sent successfully
+2025-06-19 10:51:47,107 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 10:51:47,111 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 10:51:47,111 - routes.chat - INFO - Recent messages sent
+2025-06-19 10:51:47,123 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzEzNzA3fQ.EQWAC8mZrlQClBH0WJFpCSqDRqD0ZIj5RwtNIMwNDiw"}
+2025-06-19 10:51:47,123 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:51:47,123 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:51:47,124 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 10:51:47,125 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 10:51:47,125 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 10:51:47,125 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 10:51:47,125 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:51:47,125 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:51:47,125 - routes.chat - INFO - Message sent successfully
+2025-06-19 10:51:47,125 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 10:51:47,129 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 10:51:47,129 - routes.chat - INFO - Recent messages sent
+2025-06-19 10:53:38,356 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 10:53:38,356 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-19 10:53:38,356 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 10:53:38,356 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:53:38,356 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:53:38,357 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 10:53:38,357 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 10:53:38,357 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:53:38,357 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:53:38,357 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-19 10:53:38,357 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-19 10:53:38,358 - routes.chat - INFO - Disconnected failed connection
+2025-06-19 10:53:38,358 - routes.chat - INFO - WebSocket connection closed
+2025-06-19 10:53:38,358 - routes.chat - ERROR - Error sending message to user 7: 
+2025-06-19 10:53:39,208 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 10:53:39,208 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 10:53:39,209 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750313707}
+2025-06-19 10:53:39,209 - auth - INFO - Looking up user with id: 7
+2025-06-19 10:53:39,209 - auth - INFO - User found: lemure7
+2025-06-19 10:53:39,209 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 10:53:39,212 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 10:53:39,212 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 10:53:39,212 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750313707}
+2025-06-19 10:53:39,212 - auth - INFO - Looking up user with id: 7
+2025-06-19 10:53:39,212 - auth - INFO - User found: lemure7
+2025-06-19 10:53:39,212 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 10:53:39,538 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 10:53:39,538 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 10:53:39,538 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 10:53:39,538 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 10:53:39,539 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzEzNzA3fQ.EQWAC8mZrlQClBH0WJFpCSqDRqD0ZIj5RwtNIMwNDiw"}
+2025-06-19 10:53:39,539 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:53:39,539 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:53:39,540 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 10:53:39,540 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 10:53:39,540 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 10:53:39,540 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 10:53:39,541 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:53:39,541 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:53:39,541 - routes.chat - INFO - Message sent successfully
+2025-06-19 10:53:39,541 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 10:53:39,545 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 10:53:39,545 - routes.chat - INFO - Recent messages sent
+2025-06-19 10:53:39,553 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 10:53:39,553 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 10:53:39,553 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 10:53:39,553 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 10:53:39,554 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzEzNzA3fQ.EQWAC8mZrlQClBH0WJFpCSqDRqD0ZIj5RwtNIMwNDiw"}
+2025-06-19 10:53:39,554 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:53:39,554 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:53:39,555 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 10:53:39,556 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 10:53:39,556 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 10:53:39,556 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 10:53:39,556 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:53:39,556 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:53:39,556 - routes.chat - INFO - Message sent successfully
+2025-06-19 10:53:39,557 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 10:53:39,560 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 10:53:39,560 - routes.chat - INFO - Recent messages sent
+2025-06-19 10:55:10,412 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 10:55:10,413 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-19 10:55:10,413 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 10:55:10,413 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:55:10,413 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:55:10,414 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 10:55:10,414 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 10:55:10,414 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:55:10,414 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:55:10,414 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-19 10:55:10,415 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-19 10:55:10,415 - routes.chat - INFO - Disconnected failed connection
+2025-06-19 10:55:10,415 - routes.chat - INFO - WebSocket connection closed
+2025-06-19 10:55:10,416 - routes.chat - ERROR - Error sending message to user 7: 
+2025-06-19 10:55:10,931 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 10:55:10,931 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 10:55:10,931 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750313707}
+2025-06-19 10:55:10,932 - auth - INFO - Looking up user with id: 7
+2025-06-19 10:55:10,932 - auth - INFO - User found: lemure7
+2025-06-19 10:55:10,932 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 10:55:10,938 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 10:55:10,938 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 10:55:10,938 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750313707}
+2025-06-19 10:55:10,938 - auth - INFO - Looking up user with id: 7
+2025-06-19 10:55:10,939 - auth - INFO - User found: lemure7
+2025-06-19 10:55:10,939 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 10:55:11,257 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 10:55:11,257 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 10:55:11,257 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 10:55:11,257 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 10:55:11,259 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzEzNzA3fQ.EQWAC8mZrlQClBH0WJFpCSqDRqD0ZIj5RwtNIMwNDiw"}
+2025-06-19 10:55:11,260 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:55:11,260 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:55:11,261 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 10:55:11,261 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 10:55:11,261 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 10:55:11,261 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 10:55:11,261 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:55:11,262 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:55:11,262 - routes.chat - INFO - Message sent successfully
+2025-06-19 10:55:11,262 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 10:55:11,268 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 10:55:11,269 - routes.chat - INFO - Recent messages sent
+2025-06-19 10:55:11,272 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 10:55:11,272 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 10:55:11,272 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 10:55:11,273 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 10:55:11,275 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzEzNzA3fQ.EQWAC8mZrlQClBH0WJFpCSqDRqD0ZIj5RwtNIMwNDiw"}
+2025-06-19 10:55:11,275 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:55:11,275 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 10:55:11,277 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 10:55:11,277 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 10:55:11,277 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 10:55:11,277 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 10:55:11,278 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 10:55:11,278 - routes.chat - INFO - Sending message to user 7
+2025-06-19 10:55:11,278 - routes.chat - INFO - Message sent successfully
+2025-06-19 10:55:11,278 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 10:55:11,284 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 10:55:11,285 - routes.chat - INFO - Recent messages sent
+2025-06-19 11:21:05,102 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 11:21:05,102 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-19 11:21:05,103 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 11:21:05,103 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 11:21:05,103 - routes.chat - INFO - Sending message to user 7
+2025-06-19 11:21:05,103 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 11:21:05,104 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 11:21:05,104 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 11:21:05,104 - routes.chat - INFO - Sending message to user 7
+2025-06-19 11:21:05,104 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-19 11:21:05,104 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-19 11:21:05,104 - routes.chat - INFO - Disconnected failed connection
+2025-06-19 11:21:05,104 - routes.chat - INFO - WebSocket connection closed
+2025-06-19 11:21:05,105 - routes.chat - ERROR - Error sending message to user 7: 
+2025-06-19 11:21:05,965 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 11:21:05,966 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 11:21:05,966 - auth - ERROR - JWT decode error: Signature has expired.
+2025-06-19 11:21:05,968 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 11:21:05,969 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 11:21:05,969 - auth - ERROR - JWT decode error: Signature has expired.
+2025-06-19 11:21:06,897 - auth - INFO - Created token: eyJhbGciOi...
+2025-06-19 11:21:06,904 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 11:21:06,904 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 11:21:06,905 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750315866}
+2025-06-19 11:21:06,905 - auth - INFO - Looking up user with id: 7
+2025-06-19 11:21:06,905 - auth - INFO - User found: lemure7
+2025-06-19 11:21:06,905 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 11:21:07,233 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 11:21:07,233 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 11:21:07,233 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 11:21:07,233 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 11:21:07,234 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzE1ODY2fQ.AtM7JDyHqT9wPBAF4Dlsa8RMCoTtbqQ1IBL79r2Hs9U"}
+2025-06-19 11:21:07,235 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 11:21:07,235 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 11:21:07,236 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 11:21:07,236 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 11:21:07,236 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 11:21:07,236 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 11:21:07,237 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 11:21:07,238 - routes.chat - INFO - Sending message to user 7
+2025-06-19 11:21:07,239 - routes.chat - INFO - Message sent successfully
+2025-06-19 11:21:07,239 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 11:21:07,245 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 11:21:07,245 - routes.chat - INFO - Recent messages sent
+2025-06-19 11:21:07,248 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 11:21:07,248 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 11:21:07,248 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 11:21:07,248 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 11:21:07,251 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzE1ODY2fQ.AtM7JDyHqT9wPBAF4Dlsa8RMCoTtbqQ1IBL79r2Hs9U"}
+2025-06-19 11:21:07,252 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 11:21:07,252 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 11:21:07,253 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 11:21:07,253 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 11:21:07,253 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 11:21:07,253 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 11:21:07,254 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 11:21:07,254 - routes.chat - INFO - Sending message to user 7
+2025-06-19 11:21:07,254 - routes.chat - INFO - Message sent successfully
+2025-06-19 11:21:07,255 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 11:21:07,261 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 11:21:07,262 - routes.chat - INFO - Recent messages sent
+2025-06-19 11:53:22,198 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 11:53:22,201 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-19 11:53:22,202 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 11:53:22,202 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 11:53:22,202 - routes.chat - INFO - Sending message to user 7
+2025-06-19 11:53:22,202 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 11:53:22,202 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 11:53:22,203 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 11:53:22,203 - routes.chat - INFO - Sending message to user 7
+2025-06-19 11:53:22,203 - routes.chat - ERROR - Error sending message to user 7: Unexpected ASGI message 'websocket.send', after sending 'websocket.close' or response already completed.
+2025-06-19 11:53:22,203 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-19 11:53:22,204 - routes.chat - INFO - Disconnected failed connection
+2025-06-19 11:53:22,204 - routes.chat - INFO - WebSocket connection closed
+2025-06-19 11:53:22,205 - routes.chat - ERROR - Error sending message to user 7: 
+2025-06-19 11:53:23,054 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 11:53:23,054 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 11:53:23,054 - auth - ERROR - JWT decode error: Signature has expired.
+2025-06-19 11:53:23,055 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 11:53:23,055 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 11:53:23,055 - auth - ERROR - JWT decode error: Signature has expired.
+2025-06-19 11:53:24,062 - auth - INFO - Created token: eyJhbGciOi...
+2025-06-19 11:53:24,074 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 11:53:24,074 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 11:53:24,074 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750317804}
+2025-06-19 11:53:24,075 - auth - INFO - Looking up user with id: 7
+2025-06-19 11:53:24,075 - auth - INFO - User found: lemure7
+2025-06-19 11:53:24,075 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 11:53:24,395 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 11:53:24,396 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 11:53:24,396 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 11:53:24,396 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 11:53:24,397 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzE3ODA0fQ.rI8JIj2LrUrC4Xtj0fGcvM0rwJ9xzP09rCfQTrO_q_0"}
+2025-06-19 11:53:24,397 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 11:53:24,397 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 11:53:24,398 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 11:53:24,398 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 11:53:24,398 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 11:53:24,398 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 11:53:24,399 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 11:53:24,399 - routes.chat - INFO - Sending message to user 7
+2025-06-19 11:53:24,399 - routes.chat - INFO - Message sent successfully
+2025-06-19 11:53:24,399 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 11:53:24,402 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 11:53:24,403 - routes.chat - INFO - Recent messages sent
+2025-06-19 11:53:24,412 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 11:53:24,412 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 11:53:24,412 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 11:53:24,412 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 11:53:24,413 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzE3ODA0fQ.rI8JIj2LrUrC4Xtj0fGcvM0rwJ9xzP09rCfQTrO_q_0"}
+2025-06-19 11:53:24,415 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 11:53:24,415 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 11:53:24,417 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 11:53:24,417 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 11:53:24,417 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 11:53:24,417 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 11:53:24,418 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 11:53:24,418 - routes.chat - INFO - Sending message to user 7
+2025-06-19 11:53:24,418 - routes.chat - INFO - Message sent successfully
+2025-06-19 11:53:24,418 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 11:53:24,437 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 11:53:24,437 - routes.chat - INFO - Recent messages sent
+2025-06-19 14:59:05,398 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 14:59:05,399 - routes.chat - INFO - User lemure7 removed from online users. Total online: 0
+2025-06-19 14:59:05,399 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 14:59:05,399 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 14:59:05,400 - routes.chat - INFO - Sending message to user 7
+2025-06-19 14:59:05,400 - routes.chat - ERROR - Error sending message to user 7: 
+2025-06-19 14:59:05,400 - routes.chat - INFO - User 7 disconnected. Total connections: 0
+2025-06-19 14:59:05,400 - routes.chat - INFO - Disconnected failed connection
+2025-06-19 14:59:05,400 - routes.chat - INFO - WebSocket connection closed
+2025-06-19 14:59:05,402 - routes.chat - INFO - WebSocket disconnected for user lemure7
+2025-06-19 14:59:05,402 - routes.chat - INFO - User lemure7 removed from online users
+2025-06-19 14:59:05,402 - routes.chat - INFO - Broadcasting message to 0 connections
+2025-06-19 14:59:05,402 - routes.chat - INFO - WebSocket connection closed
+2025-06-19 17:29:22,566 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 17:29:22,566 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 17:29:22,568 - auth - ERROR - JWT decode error: Signature has expired.
+2025-06-19 17:29:22,570 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 17:29:22,570 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 17:29:22,570 - auth - ERROR - JWT decode error: Signature has expired.
+2025-06-19 17:29:32,457 - auth - INFO - Created token: eyJhbGciOi...
+2025-06-19 17:29:32,465 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 17:29:32,465 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 17:29:32,465 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750337972}
+2025-06-19 17:29:32,465 - auth - INFO - Looking up user with id: 7
+2025-06-19 17:29:32,466 - auth - INFO - User found: lemure7
+2025-06-19 17:29:32,466 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 17:29:32,807 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 17:29:32,808 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 17:29:32,808 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 17:29:32,808 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 17:29:32,811 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzM3OTcyfQ.tT6jZmVDb4cqz8WvSmKWofXnHPFmbRp9lYcw0sXd8H4"}
+2025-06-19 17:29:32,812 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 17:29:32,812 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 17:29:32,813 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 17:29:32,813 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 17:29:32,813 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 17:29:32,813 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 17:29:32,814 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 17:29:32,815 - routes.chat - INFO - Sending message to user 7
+2025-06-19 17:29:32,815 - routes.chat - INFO - Message sent successfully
+2025-06-19 17:29:32,815 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 17:29:32,825 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 17:29:32,826 - routes.chat - INFO - Recent messages sent
+2025-06-19 17:29:32,827 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 17:29:32,827 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 17:29:32,827 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 17:29:32,827 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 17:29:32,837 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzM3OTcyfQ.tT6jZmVDb4cqz8WvSmKWofXnHPFmbRp9lYcw0sXd8H4"}
+2025-06-19 17:29:32,838 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 17:29:32,838 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 17:29:32,838 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 17:29:32,839 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 17:29:32,839 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 17:29:32,839 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 17:29:32,839 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 17:29:32,839 - routes.chat - INFO - Sending message to user 7
+2025-06-19 17:29:32,840 - routes.chat - INFO - Message sent successfully
+2025-06-19 17:29:32,840 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 17:29:32,846 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 17:29:32,847 - routes.chat - INFO - Recent messages sent
+2025-06-19 17:53:31,204 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 17:53:31,204 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 17:53:31,206 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750337972}
+2025-06-19 17:53:31,206 - auth - INFO - Looking up user with id: 7
+2025-06-19 17:53:31,219 - auth - INFO - User found: lemure7
+2025-06-19 17:53:31,219 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 17:53:31,225 - auth - INFO - get_current_user called with token: eyJhbGciOi...
+2025-06-19 17:53:31,225 - auth - INFO - Attempting to decode JWT token...
+2025-06-19 17:53:31,225 - auth - INFO - Token decoded successfully. Payload: {'sub': '7', 'exp': 1750337972}
+2025-06-19 17:53:31,225 - auth - INFO - Looking up user with id: 7
+2025-06-19 17:53:31,226 - auth - INFO - User found: lemure7
+2025-06-19 17:53:31,226 - routes.profile - INFO - GET /me called for user: lemure7
+2025-06-19 17:53:31,558 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 17:53:31,558 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 17:53:31,559 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 17:53:31,559 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 17:53:31,561 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzM3OTcyfQ.tT6jZmVDb4cqz8WvSmKWofXnHPFmbRp9lYcw0sXd8H4"}
+2025-06-19 17:53:31,561 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 17:53:31,561 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 17:53:31,561 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 17:53:31,561 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 17:53:31,562 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 17:53:31,562 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 17:53:31,562 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 17:53:31,562 - routes.chat - INFO - Sending message to user 7
+2025-06-19 17:53:31,562 - routes.chat - INFO - Message sent successfully
+2025-06-19 17:53:31,562 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 17:53:31,567 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 17:53:31,567 - routes.chat - INFO - Recent messages sent
+2025-06-19 17:53:31,574 - routes.chat - INFO - User 7 connected. Total connections: 1
+2025-06-19 17:53:31,574 - routes.chat - INFO - New WebSocket connection attempt for user_id: 7
+2025-06-19 17:53:31,574 - routes.chat - INFO - WebSocket connection accepted
+2025-06-19 17:53:31,574 - routes.chat - INFO - Waiting for authorization message...
+2025-06-19 17:53:31,581 - routes.chat - INFO - Received auth message: {"type":"authorization","token":"Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI3IiwiZXhwIjoxNzUwMzM3OTcyfQ.tT6jZmVDb4cqz8WvSmKWofXnHPFmbRp9lYcw0sXd8H4"}
+2025-06-19 17:53:31,581 - routes.chat - INFO - Processing token: eyJhbGciOi...
+2025-06-19 17:53:31,581 - auth - INFO - Processing token: eyJhbGciOi...
+2025-06-19 17:53:31,582 - routes.chat - INFO - User authentication result: lemure7
+2025-06-19 17:53:31,582 - routes.chat - INFO - User authenticated successfully: lemure7
+2025-06-19 17:53:31,582 - routes.chat - INFO - User lemure7 added to online users. Total online: 1
+2025-06-19 17:53:31,583 - routes.chat - INFO - User lemure7 added to online users
+2025-06-19 17:53:31,584 - routes.chat - INFO - Broadcasting message to 1 connections
+2025-06-19 17:53:31,584 - routes.chat - INFO - Sending message to user 7
+2025-06-19 17:53:31,584 - routes.chat - INFO - Message sent successfully
+2025-06-19 17:53:31,584 - routes.chat - INFO - Online users list broadcasted
+2025-06-19 17:53:31,588 - routes.chat - INFO - Sent 15 recent messages to user
+2025-06-19 17:53:31,588 - routes.chat - INFO - Recent messages sent

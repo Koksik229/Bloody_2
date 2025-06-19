@@ -1,5 +1,0 @@
-
-function CheckMy()
-{	if (submitMag==0)	{submitMag=1; return true;
-	}else {alert('Подождите обновления страницы'); return false;}
-}
