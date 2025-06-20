@@ -10,10 +10,10 @@ export interface EquipSlot {
 
 const RUS_SLOT_NAMES: Record<string, string> = {
   crossbow: 'Арбалет',
-  darts: 'Дротики',
+  
   hand: 'Наруч',
   head: 'Шлем',
-  neck: 'Ожерелье',
+  amulet: 'Амулет',
   body: 'Броня',
   legs: 'Штаны',
   boots: 'Ботинки',
@@ -24,9 +24,10 @@ const RUS_SLOT_NAMES: Record<string, string> = {
   belt: 'Пояс',
   ring1: 'Кольцо',
   ring2: 'Кольцо',
-  ring3: 'Кольцо',
-  ring4: 'Кольцо',
+  ring3: 'Кольцо 3',
+  ring4: 'Кольцо 4',
   weapon2: 'Второе оружие',
+  arrows: 'Стрелы',
   magic1: 'Магический камень',
   magic2: 'Магический камень',
   magic3: 'Магический камень',
@@ -46,9 +47,9 @@ interface SlotPos { code: string; className: string; sizeClass?: string; }
 
 const SLOT_POSITIONS: SlotPos[] = [
   // top row
-  { code: 'crossbow', className: 'slot-crossbow', sizeClass: 's54x43' },
-  { code: 'darts', className: 'slot-darts', sizeClass: 's54x43' },
-  { code: 'head', className: 'slot-head', sizeClass: 's42x45' },
+  { code: 'crossbow', className: 'slot-crossbow', sizeClass: 's88x85' },
+  { code: 'arrows', className: 'slot-arrows', sizeClass: 's70x85' },
+  { code: 'head', className: 'slot-head', sizeClass: 's80x85' },
   { code: 'magic1', className: 'slot-magic1', sizeClass: 's28x15' },
   { code: 'magic2', className: 'slot-magic2', sizeClass: 's28x15' },
   { code: 'magic3', className: 'slot-magic3', sizeClass: 's28x15' },

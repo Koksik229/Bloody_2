@@ -2,11 +2,14 @@
 .equipment-panel .avatar{position:absolute;top:0;left:102px;width:191.6px;height:334.6px;object-fit:cover;border:1px solid #555}
 .equip-slot{position:absolute;display:flex;border:none;background:#666;box-sizing:border-box}
 .slot-weapon,.slot-body,.slot-boots{border-top:none}
-.slot-hand,.slot-weapon,.slot-weapon2,.slot-gloves,.slot-amulet,.slot-body,.slot-boots,.slot-ring1,.slot-ring2,.slot-ring3,.slot-ring4,.slot-belt{display:flex}
+.slot-hand,.slot-weapon,.slot-weapon2,.slot-gloves,.slot-amulet,.slot-arrows,.slot-crossbow,.slot-body,.slot-boots,.slot-ring1,.slot-ring2,.slot-ring3,.slot-ring4,.slot-belt{display:flex}
 .s70x70{width:70px;height:70px}
+.s80x85{width:79.55px;height:84.52px}
+.s88x85{width:88px;height:84.52px}
 .s54x69{width:54px;height:69px}
 .s54x59{width:54px;height:59px}
 .s54x43{width:54px;height:43px}
+.s70x85{width:70.08px;height:84.52px}
 .s42x45{width:42px;height:45px}
 .s44x36{width:44px;height:36px}
 .s29x18{width:29px;height:18px}
@@ -19,9 +22,9 @@
 .s102x140{width:102px;height:140px}
 .s102x76{width:102px;height:76px}
 /* removed old fixed tooltip */
-.slot-crossbow{grid-column:1;grid-row:1}
-.slot-darts{grid-column:2;grid-row:1}
-.slot-head{grid-column:3;grid-row:1}
+.slot-crossbow{top:-83px;left:0}
+.slot-head{top:-83px;left:158px}
+.slot-arrows{top:-83px;left:90px}
 .slot-magic1{grid-column:4;grid-row:1}
 .slot-magic2{grid-column:5;grid-row:1}
 .slot-magic3{grid-column:6;grid-row:1}
