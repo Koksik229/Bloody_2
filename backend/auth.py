@@ -7,24 +7,23 @@ from typing import Optional
 from sqlalchemy.orm import Session
 from db import get_db
 from models.user import User
-import json
 import logging
 
-# Настройка логирования
-logging.basicConfig(
-    level=logging.INFO,
-    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
-)
 logger = logging.getLogger(__name__)
 
-# Константы для JWT
-SECRET_KEY = "your-secret-key-here"  # В продакшене используйте безопасный ключ
+# -----------------------------------------------------------------------------
+# NOTE: SECRET_KEY теперь импортируется из config.py, чтобы один и тот же ключ
+# использовался во всех частях приложения.
+# -----------------------------------------------------------------------------
+
+# Константы для JWT (ключ берем из config)
+from config import SECRET_KEY, JWT_TTL_MIN
 ALGORITHM = "HS256"
-ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
 # Настройка для хеширования паролей
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
+# указываем корректный эндпоинт, который выдаёт токен
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
 def verify_password(plain_password: str, hashed_password: str) -> bool:
     return pwd_context.verify(plain_password, hashed_password)
@@ -37,7 +36,7 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None) -
     if expires_delta:
         expire = datetime.utcnow() + expires_delta
     else:
-        expire = datetime.utcnow() + timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+        expire = datetime.utcnow() + timedelta(minutes=JWT_TTL_MIN)
     to_encode.update({"exp": expire})
     try:
         # Convert user_id to string if it exists

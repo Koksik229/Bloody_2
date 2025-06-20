@@ -61,6 +61,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         const data = await res.json();
         console.log('User data received:', data);
         setUser(data);
+        // Обновляем token в состоянии, чтобы другие компоненты сразу получили актуальный JWT
+        setToken(currentToken);
       } else {
         console.error('Failed to fetch user:', res.status);
         setUser(null);

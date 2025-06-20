@@ -27,7 +27,7 @@ interface UserData {
 }
 
 const Chat: React.FC = () => {
-  const { user: currentUser } = useAuth();
+  const { user: currentUser, token } = useAuth();
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState('');
   const [onlineUsers, setOnlineUsers] = useState<OnlineUser[]>([]);
@@ -61,7 +61,9 @@ const Chat: React.FC = () => {
   useEffect(() => {
     const fetchTotalUsers = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/users/count`);
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/users/count`, {
+          headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+        });
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -74,7 +76,7 @@ const Chat: React.FC = () => {
       }
     };
     fetchTotalUsers();
-  }, []);
+  }, [token]);
 
   useEffect(() => {
     if (!currentUser?.id) {

@@ -13,9 +13,13 @@ if not SECRET_KEY:
 # Время жизни сессии (в секундах)
 SESSION_MAX_AGE = 900  # 15 минут (по умолчанию)
 
+# Время жизни JWT (в минутах)
+JWT_TTL_MIN = int(os.getenv("JWT_TTL_MIN", 30))
+
 class Settings:
     SECRET_KEY: str = SECRET_KEY
     DEBUG: bool = DEBUG
     HOST: str = APP_HOST
     PORT: int = APP_PORT
     SESSION_MAX_AGE: int = SESSION_MAX_AGE
+    JWT_TTL_MIN: int = JWT_TTL_MIN

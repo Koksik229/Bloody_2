@@ -37,7 +37,6 @@ async def register_user(
     validate_nickname_format(nickname)
 
     user = create_user(db, username, password, email, nickname)
-    request.session["user_id"] = user.id
     return JSONResponse({"message": "Регистрация успешна", "nickname": user.nickname})
 
 @router.post("/login")
@@ -54,8 +53,7 @@ async def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends
         user.last_login = datetime.utcnow()
         db.commit()
         
-        # Сохраняем user_id в сессию
-        request.session["user_id"] = user.id
+
         
         # Получаем навыки пользователя
         skills = db.query(Skill).filter(Skill.user_id == user.id).first()
@@ -93,8 +91,8 @@ async def login(request: Request, form_data: OAuth2PasswordRequestForm = Depends
                 "weapon_skill": skills.weapon_skill if skills else 5,
                 "parry": skills.parry if skills else 5,
                 "shield_block": skills.shield_block if skills else 5,
-                "available_attribute_points": skills.available_attribute_points if skills else 0,
-                "available_skill_points": skills.available_attribute_points_special if skills else 0
+                "attribute_points": skills.available_attribute_points if skills else 0,
+                "skill_points": skills.available_attribute_points_special if skills else 0
             }
         }
     except Exception as e:

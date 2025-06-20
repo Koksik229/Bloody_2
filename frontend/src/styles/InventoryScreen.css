@@ -1,8 +1,8 @@
-.inventory-screen{display:grid;grid-template-columns:30% 70%;height:100vh;color:#333;padding-top:70px;background:transparent}.equip-side{padding:20px;border-right:1px solid #444;background:transparent}.equipment-panel{position:relative;width:300px;height:334.6px;margin:auto;background:none}
+.inventory-screen{display:grid;grid-template-columns:30% 70%;height:100vh;color:#333;padding-top:70px;background:transparent}.equip-side{padding:20px;border-right:1px solid #444;background:transparent}.equipment-panel{position:relative;width:300px;height:486px;margin:auto;background:none}
 .equipment-panel .avatar{position:absolute;top:0;left:102px;width:191.6px;height:334.6px;object-fit:cover;border:1px solid #555}
-.equip-slot{display:none;border:4px solid #222;background:#666;box-sizing:border-box}
+.equip-slot{position:absolute;display:flex;border:none;background:#666;box-sizing:border-box}
 .slot-weapon,.slot-body,.slot-boots{border-top:none}
-.slot-hand,.slot-weapon,.slot-body,.slot-boots{display:flex}
+.slot-hand,.slot-weapon,.slot-weapon2,.slot-gloves,.slot-amulet,.slot-body,.slot-boots,.slot-ring1,.slot-ring2,.slot-ring3,.slot-ring4,.slot-belt{display:flex}
 .s70x70{width:70px;height:70px}
 .s54x69{width:54px;height:69px}
 .s54x59{width:54px;height:59px}
@@ -11,6 +11,13 @@
 .s44x36{width:44px;height:36px}
 .s29x18{width:29px;height:18px}
 .s28x15{width:28px;height:15px}
+.s54x76{width:54px;height:76px}
+.s54x38{width:54px;height:38px}
+.s83x76{width:83px;height:76px}
+.s85x76{width:85px;height:76px}
+.s102x120{width:102px;height:120px}
+.s102x140{width:102px;height:140px}
+.s102x76{width:102px;height:76px}
 /* removed old fixed tooltip */
 .slot-crossbow{grid-column:1;grid-row:1}
 .slot-darts{grid-column:2;grid-row:1}
@@ -34,16 +41,21 @@
 .slot-offhand{grid-column:2;grid-row:4}
 .slot-legs{grid-column:3;grid-row:4}
 .slot-boots{top:336px;left:0;width:102px;height:76px}
-.slot-cloak{grid-column:4;grid-row:5}
+.slot-cloak{top:292px;left:295px}
+
+/* new right column stack */
+.slot-amulet{top:0;left:295px}
+.slot-gloves{top:76px;left:295px}
+.slot-weapon2{top:152px;left:295px}
 
 
 
 
-.slot-ring1{grid-column:2;grid-row:6}
-.slot-ring2{grid-column:4;grid-row:6}
-.slot-belt{grid-column:3;grid-row:6;justify-self:center}
-.slot-ring3{grid-column:2;grid-row:7}
-.slot-ring4{grid-column:4;grid-row:7}.equip-cell{width:60px;height:60px;background:#2a2a2a;border:1px solid #555;display:flex;align-items:center;justify-content:center}.empty{width:100%;height:100%;background:#333}
+.slot-ring1{top:336px;left:102px}
+.slot-ring2{top:374px;left:102px}
+.slot-belt{top:336px;left:156px}
+.slot-ring3{top:336px;left:241px}
+.slot-ring4{top:374px;left:241px}.equip-cell{width:60px;height:60px;background:#2a2a2a;border:1px solid #555;display:flex;align-items:center;justify-content:center}.empty{width:100%;height:100%;background:#333}
 .equip-tooltip{position:fixed;pointer-events:none;background:#222;color:#fff;padding:2px 4px;font-size:11px;white-space:nowrap;border-radius:2px;z-index:1000}.items-side{border:1px solid #555;padding:20px;border-radius:6px;overflow-y:auto;background:rgba(214,194,154,0.9)}.cat-tabs{margin-bottom:10px}.cat-tabs button{margin-right:6px;background:#b8ab92;border:none;padding:6px 12px;color:#333;cursor:pointer}.cat-tabs .active{background:#8b7b62}.sub-tabs{margin-bottom:10px}
 .sub-tabs button{margin-right:5px;background:#d6cbb5;border:none;padding:4px 10px;cursor:pointer;color:#333}
 .sub-tabs .active{background:#8b7b62;color:#fff}

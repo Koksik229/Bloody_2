@@ -3,7 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 import os
 import logging
-from starlette.middleware.sessions import SessionMiddleware
+
 
 # Настройка логирования
 logging.basicConfig(
@@ -42,18 +42,26 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-app.add_middleware(
-    SessionMiddleware,
-    secret_key="your-secret-key"  # Замени на свой секретный ключ
-)
+
 
 # Создаем таблицы
 Base.metadata.create_all(bind=engine)
 
-# ✅ Подключение роутеров
+# ✅ Подключение роутеров без префикса (legacy)
 app.include_router(auth.router, tags=["auth"])
 app.include_router(profile.router, tags=["profile"])
 app.include_router(chat.router, tags=["chat"])
 app.include_router(users.router, prefix="/users", tags=["users"])
 app.include_router(location.router)
 app.include_router(inventory.router, tags=["inventory"])
+
+# 🔄 Подключение тех же роутеров с глобальным префиксом /api/v1 для будущей миграции
+for r, kw in [
+    (auth.router, {"tags":["auth"]}),
+    (profile.router, {"tags":["profile"]}),
+    (chat.router, {"tags":["chat"]}),
+    (users.router, {"prefix":"/users", "tags":["users"]}),
+    (location.router, {}),
+    (inventory.router, {"tags":["inventory"]}),
+]:
+    app.include_router(r, prefix="/api/v1" + kw.pop("prefix", ""), **kw)

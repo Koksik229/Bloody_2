@@ -3,7 +3,6 @@ from sqlalchemy.orm import Session
 from models.user import User
 from models.race import RaceLevelStat
 from models.location import Location, LocationLink
-from services.session_service import get_user_from_session
 from models.skills import Skill
 from models.race import Race
 from models.level_progression import LevelProgression
@@ -72,14 +71,6 @@ def get_user_profile(db: Session, user_id: int) -> Dict[str, Any]:
         },
         "available_locations": available_locations
     }
-
-def get_user_by_token(request: Request, db: Session):
-    logger.info(f"get_user_by_token: session={getattr(request, 'session', None)}")
-    user = get_user_from_session(request, db)
-    if user is None:
-        logger.warning("Пользователь не найден в сессии!")
-        raise HTTPException(status_code=401, detail="Unauthorized")
-    return user
 
 get_player_profile = get_user_profile  # alias
 

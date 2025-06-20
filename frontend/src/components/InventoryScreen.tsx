@@ -33,7 +33,7 @@ interface Props {
 }
 
 const InventoryScreen: React.FC<Props> = ({ onClose }) => {
-  const { user } = useAuth();
+  const { user, token } = useAuth();
   const [categories, setCategories] = useState<Category[]>([]);
   const [equipment, setEquipment] = useState<EquipSlot[]>([]);
   const [activeCat, setActiveCat] = useState<string>('weapon');
@@ -41,13 +41,18 @@ const InventoryScreen: React.FC<Props> = ({ onClose }) => {
 
   useEffect(() => {
     if (!user) return;
-    fetch(`${API}/inventory/categories?user_id=${user.id}`)
-      .then((res) => res.json())
+    fetch(`${API}/inventory/categories`, {
+      headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+    })
+      .then(res => res.json())
       .then(setCategories);
-    fetch(`${API}/inventory/equipment?user_id=${user.id}`)
-      .then((res) => res.json())
+
+    fetch(`${API}/inventory/equipment`, {
+      headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+    })
+      .then(res => res.json())
       .then(setEquipment);
-  }, [user]);
+  }, [user, token]);
 
   if (!user) return null;
 

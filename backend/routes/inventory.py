@@ -1,8 +1,9 @@
 import logging
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
+from auth import get_current_user
 from sqlalchemy import text
-from database import get_db
+from db import get_db
 from schemas.inventory import ItemCategory, ItemGroup, EquipmentSlot, ItemBase, EquipRequest
 from typing import List
 
@@ -12,7 +13,11 @@ router = APIRouter(prefix="/inventory", tags=["inventory"])
 # NOTE: ORM models are not fully described here. Simple raw SQL used for now.
 
 @router.get("/categories", response_model=List[ItemCategory])
-def get_inventory_categories(user_id: int, db: Session = Depends(get_db)):
+def get_inventory_categories(
+    db: Session = Depends(get_db),
+    current_user = Depends(get_current_user)
+):
+    user_id = current_user.id
     """Return categories -> groups -> user items for given user."""
     # fetch all items for user with group and category
     rows = db.execute(
@@ -57,7 +62,11 @@ def get_inventory_categories(user_id: int, db: Session = Depends(get_db)):
     return categories
 
 @router.get("/equipment", response_model=List[EquipmentSlot])
-def get_equipped(user_id: int, db: Session = Depends(get_db)):
+def get_equipped(
+    db: Session = Depends(get_db),
+    current_user = Depends(get_current_user)
+):
+    user_id = current_user.id
     rows = db.execute(
         text("""
         SELECT es.code, es.name_ru,
@@ -81,7 +90,11 @@ def get_equipped(user_id: int, db: Session = Depends(get_db)):
 
 
 @router.post("/equipment/equip")
-def equip_item(req: EquipRequest, db: Session = Depends(get_db)):
+def equip_item(
+    req: EquipRequest,
+    db: Session = Depends(get_db),
+    current_user = Depends(get_current_user)
+):
     slot_id_row = db.execute(text("SELECT id FROM equipment_slots WHERE code=:c"), {"c": req.slot_code}).scalar_one_or_none()
     if slot_id_row is None:
         raise HTTPException(status_code=400, detail="Unknown slot_code")
@@ -92,6 +105,6 @@ def equip_item(req: EquipRequest, db: Session = Depends(get_db)):
         INSERT INTO user_equipment(user_id, slot_id, user_item_id, equipped_at)
         VALUES (:uid, :sid, :ui, CURRENT_TIMESTAMP)
         ON CONFLICT(user_id, slot_id) DO UPDATE SET user_item_id=excluded.user_item_id, equipped_at=CURRENT_TIMESTAMP
-    """), {"uid": req.user_id, "sid": slot_id, "ui": req.user_item_id})
+    """), {"uid": current_user.id, "sid": slot_id, "ui": req.user_item_id})
     db.commit()
-    return {"status": "ok"}
+    return {"status": "ok", "user_id": current_user.id}

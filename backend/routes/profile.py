@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Request, Depends, HTTPException
 from sqlalchemy.orm import Session
-from db import SessionLocal
+from db import get_db
 from services.profile_service import get_user_profile
 from auth import get_current_user
 import logging
@@ -9,12 +9,7 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter()
 
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+
 
 @router.get("/me")
 async def me(request: Request, db: Session = Depends(get_db), current_user = Depends(get_current_user)):

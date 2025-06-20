@@ -1,8 +1,8 @@
-from fastapi import APIRouter, Depends, HTTPException, Request
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from db import get_db
 from models.location import Location, LocationLink
-from services.profile_service import get_user_by_token
+from auth import get_current_user
 import logging
 
 router = APIRouter(prefix="/location", tags=["location"])
@@ -39,9 +39,13 @@ def get_location(location_id: int, db: Session = Depends(get_db)):
     }
 
 @router.post("/move")
-def move(request: Request, data: dict, db: Session = Depends(get_db)):
-    logger.info(f"Попытка перехода: data={data}, session={getattr(request, 'session', None)}")
-    user = get_user_by_token(request, db)
+def move(
+    data: dict,
+    db: Session = Depends(get_db),
+    current_user = Depends(get_current_user)
+):
+    logger.info(f"Попытка перехода: data={data}, user_id={current_user.id}")
+    user = current_user
     location_id = data.get("location_id")
 
     if not location_id:

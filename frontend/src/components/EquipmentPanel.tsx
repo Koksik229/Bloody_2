@@ -60,7 +60,9 @@ const SLOT_POSITIONS: SlotPos[] = [
   { code: 'magic6', className: 'slot-magic6', sizeClass: 's28x15' },
   // third row
   { code: 'weapon', className: 'slot-weapon', sizeClass: 's54x69' },
-  { code: 'gloves', className: 'slot-gloves', sizeClass: 's42x45' },
+  { code: 'weapon2', className: 'slot-weapon2', sizeClass: 's102x140' },
+  { code: 'gloves', className: 'slot-gloves', sizeClass: 's102x76' },
+  { code: 'amulet', className: 'slot-amulet', sizeClass: 's102x76' },
   { code: 'magic7', className: 'slot-magic7', sizeClass: 's28x15' },
   { code: 'magic8', className: 'slot-magic8', sizeClass: 's28x15' },
   { code: 'magic9', className: 'slot-magic9', sizeClass: 's28x15' },
@@ -69,13 +71,13 @@ const SLOT_POSITIONS: SlotPos[] = [
   { code: 'offhand', className: 'slot-offhand', sizeClass: 's54x69' },
   // fifth row
   { code: 'boots', className: 'slot-boots', sizeClass: 's70x70' },
-  { code: 'cloak', className: 'slot-cloak', sizeClass: 's70x70' },
+  { code: 'cloak', className: 'slot-cloak', sizeClass: 's102x120' },
   // rings and belt rows
-  { code: 'ring1', className: 'slot-ring1', sizeClass: 's29x18' },
-  { code: 'ring2', className: 'slot-ring2', sizeClass: 's29x18' },
-  { code: 'ring3', className: 'slot-ring3', sizeClass: 's29x18' },
-  { code: 'ring4', className: 'slot-ring4', sizeClass: 's29x18' },
-  { code: 'belt', className: 'slot-belt', sizeClass: 's44x36' },
+  { code: 'ring1', className: 'slot-ring1', sizeClass: 's54x38' },
+  { code: 'ring2', className: 'slot-ring2', sizeClass: 's54x38' },
+  { code: 'belt', className: 'slot-belt', sizeClass: 's85x76' },
+  { code: 'ring3', className: 'slot-ring3', sizeClass: 's54x38' },
+  { code: 'ring4', className: 'slot-ring4', sizeClass: 's54x38' },
 ];
 
 const EquipmentPanel: React.FC<Props> = ({ equipment }) => {
