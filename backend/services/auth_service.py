@@ -77,6 +77,13 @@ def create_user(db: Session, username: str, password: str, email: str, nickname:
     db.commit()
     db.refresh(user)
 
+    # Стартовый баланс валют
+    from services.wallet_service import WalletService  # локальный импорт, чтобы избежать циклов
+    ws = WalletService(db)
+    ws.credit(user, 'COPPER', 5, reason='starter')
+    ws.credit(user, 'SILVER', 500, reason='starter')
+    db.commit()
+
     # Получаем базовые значения навыков из расы
     race = db.query(Race).filter(Race.id == user.race_id).first()
     if not race:

@@ -12,6 +12,17 @@ class ItemBase(BaseModel):
     durability_cur: Optional[int] = None
     durability_max: Optional[int] = None
     enhance_level: int = 0
+    # optional combat stats
+    min_level: int | None = None
+    min_damage: int | None = None
+    max_damage: int | None = None
+    str_bonus: int | None = None
+    agi_bonus: int | None = None
+    int_bonus: int | None = None
+    # raw stats json
+    base_stats: dict[str, int] | None = None
+    # aggregated effects from item_effects
+    effects: dict[str, int] | None = None
 
     class Config:
         orm_mode = True

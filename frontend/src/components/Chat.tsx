@@ -91,7 +91,8 @@ const Chat: React.FC = () => {
     }
     console.log('Token from localStorage:', token);
 
-    const wsUrl = `ws://localhost:8000/ws/${currentUser.id}`;
+    const WS_BASE = import.meta.env.VITE_WS_URL || 'ws://localhost:8000/api/v1';
+    const wsUrl = `${WS_BASE}/ws/${currentUser.id}`;
     console.log('Connecting to WebSocket:', wsUrl);
     
     const websocket = new WebSocket(wsUrl);

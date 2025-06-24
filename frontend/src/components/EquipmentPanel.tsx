@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { createPortal } from 'react-dom';
 import '../styles/InventoryScreen.css';
 import { Item } from './InventoryScreen';
 
@@ -15,10 +16,10 @@ const RUS_SLOT_NAMES: Record<string, string> = {
   head: 'Шлем',
   amulet: 'Амулет',
   body: 'Броня',
-  legs: 'Штаны',
+
   boots: 'Ботинки',
   weapon: 'Оружие',
-  offhand: 'Левая рука',
+
   gloves: 'Перчатки',
   cloak: 'Плащ',
   belt: 'Пояс',
@@ -28,15 +29,45 @@ const RUS_SLOT_NAMES: Record<string, string> = {
   ring4: 'Кольцо 4',
   weapon2: 'Второе оружие',
   arrows: 'Стрелы',
-  magic1: 'Магический камень',
-  magic2: 'Магический камень',
-  magic3: 'Магический камень',
-  magic4: 'Магический камень',
-  magic5: 'Магический камень',
-  magic6: 'Магический камень',
-  magic7: 'Магический камень',
-  magic8: 'Магический камень',
-  magic9: 'Магический камень',
+  magic1: 'Свиток 1',
+  magic2: 'Свиток 2',
+  magic3: 'Свиток 3',
+  magic4: 'Свиток 4',
+  magic5: 'Свиток 5',
+  magic6: 'Свиток 6',
+  magic7: 'Свиток 7',
+  magic8: 'Свиток 8',
+  magic9: 'Свиток 9',
+};
+
+// Mapping всех слотов к дефолтным пустым изображениям
+const EMPTY_SLOT_IMAGES: Record<string, string> = {
+  body: '/images/slots/empty_body.png',
+  head: '/images/slots/empty_head.png',
+  hand: '/images/slots/empty_hand.png',
+  offhand: '/images/slots/empty_offhand.png',
+  weapon: '/images/slots/empty_weapon.png',
+  weapon2: '/images/slots/empty_weapon2.png',
+  belt: '/images/slots/empty_belt.png',
+  boots: '/images/slots/empty_boots.png',
+  cloak: '/images/slots/empty_cloak.png',
+  gloves: '/images/slots/empty_gloves.png',
+  amulet: '/images/slots/empty_amulet.png',
+  crossbow: '/images/slots/empty_crossbow.png',
+  arrows: '/images/slots/empty_arrows.png',
+  ring1: '/images/slots/empty_ring.png',
+  ring2: '/images/slots/empty_ring.png',
+  ring3: '/images/slots/empty_ring.png',
+  ring4: '/images/slots/empty_ring.png',
+  magic1: '/images/slots/empty_magic.png',
+  magic2: '/images/slots/empty_magic.png',
+  magic3: '/images/slots/empty_magic.png',
+  magic4: '/images/slots/empty_magic.png',
+  magic5: '/images/slots/empty_magic.png',
+  magic6: '/images/slots/empty_magic.png',
+  magic7: '/images/slots/empty_magic.png',
+  magic8: '/images/slots/empty_magic.png',
+  magic9: '/images/slots/empty_magic.png',
 };
 
 interface Props {
@@ -47,30 +78,28 @@ interface SlotPos { code: string; className: string; sizeClass?: string; }
 
 const SLOT_POSITIONS: SlotPos[] = [
   // top row
-  { code: 'crossbow', className: 'slot-crossbow', sizeClass: 's88x85' },
+  { code: 'crossbow', className: 'slot-crossbow', sizeClass: 's90x85' },
   { code: 'arrows', className: 'slot-arrows', sizeClass: 's70x85' },
   { code: 'head', className: 'slot-head', sizeClass: 's80x85' },
-  { code: 'magic1', className: 'slot-magic1', sizeClass: 's28x15' },
-  { code: 'magic2', className: 'slot-magic2', sizeClass: 's28x15' },
-  { code: 'magic3', className: 'slot-magic3', sizeClass: 's28x15' },
+  { code: 'magic1', className: 'slot-magic1', sizeClass: 's54x28' },
+  { code: 'magic2', className: 'slot-magic2', sizeClass: 's54x28' },
+  { code: 'magic3', className: 'slot-magic3', sizeClass: 's54x28' },
   // second row
   { code: 'hand', className: 'slot-hand', sizeClass: 's54x43' },
-  { code: 'neck', className: 'slot-neck' },
-  { code: 'magic4', className: 'slot-magic4', sizeClass: 's28x15' },
-  { code: 'magic5', className: 'slot-magic5', sizeClass: 's28x15' },
-  { code: 'magic6', className: 'slot-magic6', sizeClass: 's28x15' },
+    { code: 'magic4', className: 'slot-magic4', sizeClass: 's54x28' },
+  { code: 'magic5', className: 'slot-magic5', sizeClass: 's54x28' },
+  { code: 'magic6', className: 'slot-magic6', sizeClass: 's54x28' },
   // third row
   { code: 'weapon', className: 'slot-weapon', sizeClass: 's54x69' },
   { code: 'weapon2', className: 'slot-weapon2', sizeClass: 's102x140' },
   { code: 'gloves', className: 'slot-gloves', sizeClass: 's102x76' },
   { code: 'amulet', className: 'slot-amulet', sizeClass: 's102x76' },
-  { code: 'magic7', className: 'slot-magic7', sizeClass: 's28x15' },
-  { code: 'magic8', className: 'slot-magic8', sizeClass: 's28x15' },
-  { code: 'magic9', className: 'slot-magic9', sizeClass: 's28x15' },
+  { code: 'magic7', className: 'slot-magic7', sizeClass: 's54x28' },
+  { code: 'magic8', className: 'slot-magic8', sizeClass: 's54x28' },
+  { code: 'magic9', className: 'slot-magic9', sizeClass: 's54x28' },
   // fourth row (avatar mid)
   { code: 'body', className: 'slot-body', sizeClass: 's54x59' },
-  { code: 'offhand', className: 'slot-offhand', sizeClass: 's54x69' },
-  // fifth row
+    // fifth row
   { code: 'boots', className: 'slot-boots', sizeClass: 's70x70' },
   { code: 'cloak', className: 'slot-cloak', sizeClass: 's102x120' },
   // rings and belt rows
@@ -105,17 +134,18 @@ const EquipmentPanel: React.FC<Props> = ({ equipment }) => {
             onMouseLeave={handleLeave}
           >
             {slot?.item ? (
-              <img src={slot.item.icon || '/images/placeholder.svg'} alt={slot.item.name} />
+              <img className="item-img" src={slot.item.icon || '/images/placeholder.svg'} alt={slot.item.name} />
             ) : (
-              <span className="empty" />
+              <img className="empty-img" src={EMPTY_SLOT_IMAGES[sp.code] || '/images/slots/empty_generic.png'} alt="empty" />
             )}
           </div>
         );
       })}
-      {tooltip.visible && (
+      {tooltip.visible && createPortal(
         <div className="equip-tooltip" style={{ top: tooltip.y, left: tooltip.x }}>
           {tooltip.text}
-        </div>
+        </div>,
+        document.body
       )}
     </div>
   );

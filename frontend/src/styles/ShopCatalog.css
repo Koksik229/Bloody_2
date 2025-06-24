@@ -1,0 +1,142 @@
+.shop-catalog{
+  left:50%;
+  transform: translateX(-50%);
+  margin-left:50px;
+  
+  
+  color:#000;
+  position:absolute;
+  top:90px;
+  width:780px;
+  background:#cfcfcf;
+  border:2px solid #1e4c7b;
+  padding:6px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  height:324.45px;
+  overflow-y:auto;
+  overflow-x:hidden;
+  z-index:5;
+}
+
+/* item icon sizing */
+.item-icon{
+  background:none;
+  width:80px;
+  height:100px;
+  object-fit:contain;
+}
+
+.item-main{
+  flex:1;
+  font-size:0.85rem;
+  font-size:0.85rem;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+}
+.item-main span{ display:block; }
+
+.shop-cat{
+  border:1px solid #2d5c8a;
+  background:#e0e0e0;
+  min-height:32px;
+  padding:4px 8px 6px 32px;
+  position:relative;
+}
+.cat-icon{
+  position:absolute;
+  left:4px;top:4px;width:24px;height:24px;
+}
+.cat-groups{
+  color:#000;
+  color:#000;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  column-gap:10px;row-gap:4px;
+  font-size:0.9rem;
+}
+
+.cat-groups span{
+  cursor:pointer;
+}
+.cat-groups span:hover{
+  text-decoration:underline;
+  font-weight:600;
+}
+
+.cat-groups .active-group{
+  text-decoration:underline;
+  font-weight:600;
+}
+
+.shop-items{
+  margin-top:8px;
+  padding-top:6px;
+  border-top:1px solid #2d5c8a;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  gap:8px;
+}
+
+.item-card{
+  display:flex;
+  gap:12px;
+  width:100%;
+  padding:6px 12px;
+  border-bottom:1px solid #b0b0b0;
+  background:transparent;
+  min-height:110px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:6px 4px;
+  border-bottom:1px solid #b0b0b0;
+}
+.item-info{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:4px;
+}
+.item-stats{
+  min-width:120px;
+  text-align:right;
+  margin-right:8px;
+  margin-left:auto;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+  gap:4px;
+  font-size:0.8rem;
+}
+.item-name{ font-weight:600; }
+.item-price{ font-weight:600; }
+.coin-icon{ width:14px; height:14px; vertical-align:middle; margin-left:2px;}
+.back-btn{
+  position:absolute;
+  top:4px;
+  left:4px;
+  background:#2d5c8a;
+  color:#fff;
+  border:none;
+  padding:4px 8px;
+  cursor:pointer;
+  border-radius:3px;
+}
+.buy-btn{
+  align-self:flex-end;
+  margin-top:4px;
+  align-self:flex-end;
+  margin-left:auto;
+  margin-right:4px;
+  background:#2d5c8a;
+  color:#fff;
+  border:none;
+  padding:4px 8px;
+  cursor:pointer;
+  border-radius:3px;
+}
+

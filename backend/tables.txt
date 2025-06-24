@@ -1,3 +1,188 @@
-chat_messages      locations          races            
-level_progression  login_logs         skills           
-location_links     race_level_stats   users            
+-- chat_messages --
+id                   INTEGER     PK 
+sender_id            INTEGER      
+receiver_id          INTEGER      
+message_type         TEXT         
+content              TEXT         
+created_at           TIMESTAMP    
+is_read              BOOLEAN      
+is_direct_message    BOOLEAN      default=0
+
+-- currencies --
+id                   INTEGER     PK 
+code                 TEXT       NOT NULL  
+name_ru              TEXT       NOT NULL  
+base_copper          INTEGER    NOT NULL  
+
+-- equipment_slots --
+id                   INTEGER     PK 
+code                 TEXT       NOT NULL  
+name_ru              TEXT       NOT NULL  
+max_per_char         INTEGER    NOT NULL  default=1
+
+-- item_categories --
+id                   INTEGER     PK 
+code                 TEXT       NOT NULL  
+name_ru              TEXT       NOT NULL  
+
+-- item_effects --
+item_id              INTEGER    NOT NULL PK 
+stat                 TEXT       NOT NULL PK 
+amount               INTEGER    NOT NULL  
+
+-- item_groups --
+id                   INTEGER     PK 
+category_id          INTEGER    NOT NULL  
+code                 TEXT       NOT NULL  
+name_ru              TEXT       NOT NULL  
+
+-- item_types --
+id                   INTEGER     PK 
+code                 TEXT       NOT NULL  
+name_ru              TEXT       NOT NULL  
+
+-- items --
+id                   INTEGER     PK 
+name                 TEXT       NOT NULL  
+item_type_id         INTEGER    NOT NULL  
+weapon_type_id       INTEGER      
+icon                 TEXT         
+weight               REAL         default=0
+stackable            INTEGER    NOT NULL  default=0
+base_stats_json      TEXT         
+created_at           TEXT         default=CURRENT_TIMESTAMP
+group_id             INTEGER      
+price_copper         INTEGER      default=0
+rarity               INTEGER      default=1
+min_level            INTEGER      default=1
+max_durability       INTEGER      default=0
+sellable             INTEGER      default=1
+tradable             INTEGER      default=1
+description          TEXT         
+hand_type            TEXT       NOT NULL  default='LIGHT'
+two_handed           INTEGER    NOT NULL  default=0
+
+-- level_progression --
+id                   INTEGER    NOT NULL PK 
+level                INTEGER      
+ap                   INTEGER      
+experience_required  INTEGER      
+
+-- location_links --
+id                   INTEGER    NOT NULL PK 
+from_id              INTEGER      
+to_id                INTEGER      
+is_locked            BOOLEAN      
+
+-- location_types --
+id                   INTEGER    NOT NULL PK 
+name                 VARCHAR      
+description          TEXT         
+
+-- locations --
+id                   INTEGER    NOT NULL PK 
+name                 VARCHAR      
+description          TEXT         
+background           VARCHAR      
+type_id              INTEGER      
+
+-- login_logs --
+id                   INTEGER    NOT NULL PK 
+username             VARCHAR      
+success              BOOLEAN      
+timestamp            DATETIME     
+
+-- race_level_stats --
+id                   INTEGER    NOT NULL PK 
+race_id              INTEGER      
+level                INTEGER      
+hp_gain              INTEGER      
+mp_gain              INTEGER      
+
+-- races --
+id                   INTEGER    NOT NULL PK 
+name                 VARCHAR      
+description          TEXT         
+base_strength        INTEGER      default=10
+base_agility         INTEGER      default=10
+base_power           INTEGER      default=10
+base_intuition       INTEGER      default=10
+base_weapon_skill    INTEGER      default=5
+base_parry           INTEGER      default=5
+base_shield_block    INTEGER      default=5
+chat_color           VARCHAR(7)   default='#4CAF50'
+
+-- skills --
+id                   INTEGER     PK 
+user_id              INTEGER    NOT NULL  
+strength             INTEGER      default=0
+agility              INTEGER      default=0
+power                INTEGER      default=0
+parry                INTEGER      default=0
+weapon_skill         INTEGER      default=0
+shield_block         INTEGER      default=0
+intuition            INTEGER      default=0
+available_attribute_points INTEGER      default=0
+available_attribute_points_special INTEGER      default=0
+
+-- slot_allowed_item_types --
+slot_id              INTEGER    NOT NULL PK 
+item_type_id         INTEGER    NOT NULL PK 
+
+-- slot_allowed_weapon_types --
+slot_id              INTEGER    NOT NULL PK 
+weapon_type_id       INTEGER    NOT NULL PK 
+
+-- sqlite_sequence --
+name                              
+seq                               
+
+-- user_equipment --
+user_id              INTEGER    NOT NULL PK 
+slot_id              INTEGER    NOT NULL PK 
+user_item_id         INTEGER      
+equipped_at          TEXT         default=CURRENT_TIMESTAMP
+
+-- user_items --
+id                   INTEGER     PK 
+user_id              INTEGER    NOT NULL  
+item_id              INTEGER    NOT NULL  
+quantity             INTEGER    NOT NULL  default=1
+durability_cur       INTEGER    NOT NULL  default=0
+durability_max       INTEGER    NOT NULL  default=0
+enhance_level        INTEGER    NOT NULL  default=0
+
+-- user_wallets --
+user_id              INTEGER    NOT NULL PK 
+currency_id          INTEGER    NOT NULL PK 
+amount               INTEGER    NOT NULL  default=0
+
+-- users --
+id                   INTEGER    NOT NULL PK 
+username             VARCHAR      
+hashed_password      VARCHAR      
+email                VARCHAR      
+nickname             VARCHAR      
+race_id              INTEGER      
+location_id          INTEGER      
+created_at           DATETIME     
+last_login           DATETIME     
+last_seen            DATETIME     
+is_active            BOOLEAN      
+level                INTEGER      default=1
+experience           INTEGER      default=0
+is_online            BOOLEAN    NOT NULL  default=false
+
+-- wallet_transactions --
+id                   INTEGER     PK 
+user_id              INTEGER    NOT NULL  
+currency_id          INTEGER    NOT NULL  
+delta                INTEGER    NOT NULL  
+reason               TEXT       NOT NULL  
+created_at           TIMESTAMP    default=CURRENT_TIMESTAMP
+
+-- weapon_types --
+id                   INTEGER     PK 
+code                 TEXT       NOT NULL  
+name_ru              TEXT       NOT NULL  
+

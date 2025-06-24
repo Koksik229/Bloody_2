@@ -1,0 +1,39 @@
+.shop-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 260px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.shop-block {
+  border: 1px solid #2d5c8a;
+  background: #d4d4d4;
+  padding: 6px 8px 4px 32px; /* leave space for icon */
+  position: relative;
+}
+
+.shop-icon {
+  position: absolute;
+  left: 4px;
+  top: 4px;
+  width: 24px;
+  height: 24px;
+}
+
+.shop-groups {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 12px;
+  row-gap: 4px;
+}
+
+.shop-group-link {
+  cursor: pointer;
+  user-select: none;
+  font-size: 0.9rem;
+}
+.shop-group-link:hover {
+  text-decoration: underline;
+}

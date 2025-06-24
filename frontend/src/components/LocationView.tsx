@@ -1,6 +1,7 @@
 import React from "react";
 import { useAuth } from "../context/AuthContext";
 import "../styles/LocationView.css";
+import ShopCatalog from './ShopCatalog';
 
 const LocationView: React.FC = () => {
   const { user, fetchUser } = useAuth();
@@ -158,6 +159,7 @@ const LocationView: React.FC = () => {
           {tooltip.text}
         </div>
       )}
+      {user.location?.name === 'Магазин' && <ShopCatalog />}
     </div>
   );
 };
