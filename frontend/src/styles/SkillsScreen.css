@@ -1,0 +1,12 @@
+.skills-screen{
+  position:relative;
+  min-height:100vh;
+  background:#d2c5a1; /* бежевый фон аналогичный игре */
+  overflow:auto;
+}
+
+.skills-container{
+  max-width:1200px;
+  margin:4rem auto;
+  padding:1rem;
+}

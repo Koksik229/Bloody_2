@@ -35,6 +35,11 @@ const Chat: React.FC = () => {
   const [selectedUser, setSelectedUser] = useState<string | null>(null);
   const [isPrivateChat, setIsPrivateChat] = useState(false);
   const [chatHeight, setChatHeight] = useState(30); // Начальная высота в процентах
+
+  // Обновляем CSS переменную, чтобы остальной контент знал высоту чата
+  useEffect(() => {
+    document.documentElement.style.setProperty('--chat-height', `${chatHeight}vh`);
+  }, [chatHeight]);
   const [ws, setWs] = useState<WebSocket | null>(null);
   const [isConnected, setIsConnected] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
@@ -264,7 +269,7 @@ const Chat: React.FC = () => {
   };
 
   return (
-    <div className="chat-container" style={{ height: `${chatHeight}%` }}>
+    <div className="chat-container" style={{ height: `${chatHeight}vh` }}>
       <div className="chat-header">
         <div className="chat-resize-controls">
           <button 

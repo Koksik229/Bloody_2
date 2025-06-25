@@ -38,9 +38,10 @@ const API = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 
 interface Props {
   onClose: () => void;
+  onSkills?: () => void;
 }
 
-const InventoryScreen: React.FC<Props> = ({ onClose }) => {
+const InventoryScreen: React.FC<Props> = ({ onClose, onSkills }) => {
   const {show}=useNotification();
   const { user, token } = useAuth();
   const [categories, setCategories] = useState<Category[]>([]);
@@ -105,7 +106,7 @@ const InventoryScreen: React.FC<Props> = ({ onClose }) => {
   return (
     <div className="inventory-screen">
       {/* фиксированное верхнее меню */}
-      <TopMenu />
+      <TopMenu onSkills={onSkills ?? onClose} />
       <div className="equip-side">
         <div className="wallet-panel">
           <span className="coin gold"   onMouseEnter={e=>setTt({visible:true,text:'Золото',x:e.clientX+12,y:e.clientY+12})}

@@ -1,0 +1,127 @@
+
+<!-- saved from url=(0041)https://dm-game.com/xmir/blank.htm?time=7 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<link href="./xfn.css" rel="stylesheet" type="text/css" id="css">
+<link rel="stylesheet" type="text/css" href="./simplebar.css">
+<script type="text/javascript" src="./simplebar.js.Без названия"></script>
+<script type="text/javascript">
+var t_timeT=0;
+var t_time;
+ isDOM=document.getElementById?true:false;
+ isStrict=document.compatMode=='CSS1Compat';
+ isNN=isNC=navigator.appName=="Netscape";
+ isNN4=isNC4=isNN && !isDOM;
+ isMozilla=isNN6=isNN && isDOM;
+
+function TopGo()
+{
+	try{
+		window.parent.fr_main.document.querySelector('.simplebar-content-wrapper').scroll(0,1000000);
+	}catch (e) {
+		console.log('www');
+		window.parent.fr_main.body.scrollTop = window.parent.fr_main.body.scrollHeight;
+		// bar.scrollTop = bar.scrollHeight;
+	}
+}
+
+
+function ClipBoard(text)
+{
+	holdtext.innerText = text;
+	var Copied = holdtext.createTextRange();
+	Copied.execCommand("RemoveFormat");
+	Copied.execCommand("Copy");
+}
+
+function OpenMenu(login,idmsg,event) {
+	var el, x, y, login, login2;
+	el =document.getElementById('oCreateMenu');
+	if (login=='') {return false;}
+	var o = event.srcElement;
+	let bar = document.querySelector('.simplebar-content-wrapper');
+	if(bar != null) {
+		x = event.clientX + document.documentElement.scrollLeft + bar.scrollLeft - 3;
+		y = event.clientY + document.documentElement.scrollTop + bar.scrollTop;
+	} else {
+		x = event.clientX + document.body.scrollLeft + bar.scrollLeft - 3;
+		y = event.clientY + document.body.scrollTop + bar.scrollTop;
+	}
+	//if (document.body.clientHeight<120){ y+=68 } else { y-=2 }
+
+
+	//if (x<55) {x=60;}
+//	alert(event.clientY);
+	if (y<99 && document.body.clientHeight<120)  {y=5;	};
+	if (y>99 && document.body.clientHeight-event.clientY <94 ) {y-=95 }
+//	if (event.clientY <30 ) {alert('yes2'); y=event.clientY; }
+
+//   if (event.clientY>document.body.clientHeight ) {alert('Yes'); y-=95 } //else { y-=2 }
+
+   //if (document.body.clientHeight-event.clientY <95 ) { y-=95 } //else { y-=2 }
+//	if (document.body.clientHeight<120)  {y=5;	};
+	event.returnValue=false;
+	t_timeT=1;
+	clearTimeout(t_time);
+	t_time= setTimeout("cMenu()",5000);
+
+	el.innerHTML = '<A class=menuItem HREF="javascript:parent.fr_send.toMsg(\''+login+'\');cMenu()">Кому</A>'+
+	'<A class=menuItem HREF="javascript:parent.fr_send.prvMsg(\''+login+'\');cMenu()" style="color:#02adef">Приват</A>'+
+	'<A class=menuItem HREF="/index.php?file=infouser&login='+login+'" target=_blank onclick="cMenu();return true;">Инфо</A>'+
+	'<A class=menuItem HREF="javascript:parent.fr_send.prvMsgClause('+idmsg+');cMenu()">Жалоба</A><A class=menuItem HREF="javascript:ClipBoard(\''+login+'\');cMenu()">Копировать</A>'+
+	(parent.penalty_view?'<A class=menuItem HREF="/index.php?file=infouserAdm&login='+login+'&id=2" target=_blank onclick="cMenu();return true;">Наказать</A>':'');
+
+	el.style.left = x + "px";
+	el.style.top  = y + "px";
+	el.style.visibility = "visible";
+	el.style.zIndex = "10";
+	return false;
+}
+
+function cMenu() {
+
+	el =document.getElementById('oCreateMenu');
+	el.style.visibility = "hidden";
+	el.style.top="0px";
+	t_timeT=0;
+	clearTimeout(t_time);
+}
+
+function closeMenu(event) {
+  if (window.event && window.event.toElement) {
+    var cls = window.event.toElement.className;
+    if (cls=='menuItem' || cls=='menu') return;
+  }
+ return false;
+}
+</script></head>
+
+
+<body data-simplebarw="" id="body" onload="TopGo()" style="position: static; overflow-x: hidden;margin:unset" data-simplebar="init"><div class="simplebar-wrapper" style="margin: 0px; height: 100%;"><div class="simplebar-height-auto-observer-wrapper"><div class="simplebar-height-auto-observer"></div></div><div class="simplebar-mask"><div class="simplebar-offset" style="right: 0px; bottom: 0px;"><div class="simplebar-content-wrapper" style="height: 100%; overflow: hidden;"><div class="simplebar-content" style="padding: 0px;">
+<textarea id="holdtext" style="DISPLAY: none"></textarea>
+<div class="menu" id="oCreateMenu"></div>
+<div data-pin_fixed="1" id="msgs" class="text" style="top: 0px; padding: 0px 0px 5px 20px; display: block;"></div>
+<div id="cmsgs" class="text" style="display: none; top: 0px;padding: 0px 0px 5px 20px;"></div>
+<div id="kmsgs" class="text" style="display: none; top: 0px;padding: 0px 0px 5px 20px;"></div>
+<div id="amsgs" class="text" style="display: none; top: 0px;padding: 0px 0px 5px 20px;"></div>
+<style type="text/css">
+	#scroll-bot {
+		position: fixed;
+		bottom: 10px;
+		right: 15px;
+		text-align: center;
+		cursor: pointer;
+		color: white;
+		background: #383838;
+		border-radius: 5px;
+		padding: 7px;
+		font-size: 15px;
+		display: none;
+	}
+</style>
+<div id="scroll-bot">⇩</div>
+<script type="text/javascript" src="./scroll0503.js.Без названия"></script></div></div></div></div><div class="simplebar-placeholder" style="width: auto; height: 5px;"></div></div><div class="simplebar-track simplebar-horizontal" style="visibility: hidden;"><div class="simplebar-scrollbar" style="width: 0px; display: none;"></div></div><div class="simplebar-track simplebar-vertical" style="visibility: hidden;"><div class="simplebar-scrollbar" style="height: 0px; display: none;"></div></div>
+
+
+</body></html>

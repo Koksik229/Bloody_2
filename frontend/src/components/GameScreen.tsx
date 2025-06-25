@@ -5,9 +5,11 @@ import TopMenu from './TopMenu';
 import InventoryScreen from './InventoryScreen';
 import '../styles/GameScreen.css';
 import LocationView from './LocationView';
+import SkillsScreen from './SkillsScreen';
 
 export default function GameScreen() {
   const [showInventory, setShowInventory] = React.useState(false);
+  const [showSkills, setShowSkills] = React.useState(false);
   const { user } = useAuth();
 
   // Рассчитываем позицию HUD в зависимости от типа локации
@@ -37,14 +39,20 @@ export default function GameScreen() {
   }
 
   if (showInventory) {
-    return <InventoryScreen onClose={() => setShowInventory(false)} />;
+    return <InventoryScreen onClose={() => setShowInventory(false)} onSkills={() => { setShowInventory(false); setShowSkills(true); }} />;
   }
+
+  if (showSkills) {
+    return <SkillsScreen onClose={() => setShowSkills(false)} onInventory={() => { setShowSkills(false); setShowInventory(true); }} />;
+  }
+
 
   return (
     <div className="game-screen">
       {/* Главное меню сверху — иконки: инвентарь, навыки, почта, друзья, настройки */}
-      <TopMenu onInventory={() => setShowInventory(true)} />
+      <TopMenu onInventory={() => setShowInventory(true)} onSkills={() => setShowSkills(true)} />
 
+      <div className="game-body">
       {/* Основная информация персонажа: ник, здоровье, мана */}
       <PlayerHUD style={hudStyle} />
 	  
@@ -85,6 +93,13 @@ export default function GameScreen() {
                 }
           }
         />
+      )}
+
+      </div>
+
+      {/* Skills overlay */}
+      {showSkills && (
+        <SkillsScreen onClose={() => setShowSkills(false)} />
       )}
 
       {/* Чат */}

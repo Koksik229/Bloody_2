@@ -9,6 +9,8 @@ logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/skills", tags=["skills"])
 
+# Accept both /skills and /skills/
+@router.get("")
 @router.get("/")
 async def get_skills(
     db: Session = Depends(get_db),
@@ -40,6 +42,8 @@ async def get_skills(
         logger.error(f"Error getting skills for user {getattr(current_user, 'nickname', '?')}: {str(e)}")
         raise HTTPException(status_code=500, detail="Error retrieving skills")
 
+# Accept both /skills and /skills/
+@router.put("")
 @router.put("/")
 async def update_skills(
     skills_data: dict,

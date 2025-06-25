@@ -1,0 +1,817 @@
+// JavaScript Document
+ 
+function flashShow() {
+ 
+	if (!ie) {
+		flw_ =jQuery('#swfid');// document.getElementById("");
+		if (flw_ != null) {
+			flw_.hide();
+			//flw_.style.visibility = "hidden";
+			//flw_.style.display = "none";
+		}
+	}
+}
+function showNameBlock(typeuserClass, uid, username, level, pol, inv, prv, dialer, clan, clanurl, clantitle, alj) {
+	var prvtxt = '';
+	var imgClantxt = '';
+	var imgPol = '';
+	var imgInvalid = '';
+	var dialertxt = '';
+	var aljtext = '';
+	if (prv == 1) {
+		prvtxt = '<img src="' + layout_url_all + '/img/xfn/prv.gif"  onClick="S_pr(\'' + username + '\');"  style="cursor:pointer;" >';
+	}
+	if (uid != 3) {
+		if (pol == 0) {
+			imgPol = '<a href="index.php?file=infouser&cuid=' + uid + '" target="_blank"><img src="' + layout_url_all
+					+ '/img/man.gif" alt="" border="0" ></a>';
+		}
+		if (pol == 1) {
+			imgPol = '<a href="index.php?file=infouser&cuid=' + uid + '" target="_blank"><img src="' + layout_url_all
+					+ '/img/woman.gif" alt="" border="0" ></a>';
+		}
+		if (inv == 1) {
+			imgInvalid = '<img style="cursor:pointer"  onClick="opw(\'invalidinfo.php?uid=' + uid + '\',300,200,1); return false;" src="'
+					+ layout_url_all + '/img/xfn/invalid2.gif" alt="" border="0">';
+		}
+	}
+	if (clan) {
+		imgClantxt = '<a href="http://' + clanurl + '" target="_blank" ><img src="' + img_server + '/pics/clanpic/' + clan + '" alt="'
+				+ clantitle + '" title="' + clantitle + '" border="0"></a>';
+	}
+	if (dialer == 1) {
+		dialertxt = '<a href="/guide/gold.php" target="_blank"><img src="' + img_server + '/pics/clanpic/guild/el-hdealer-sm.gif" alt="Официальный дилер" title="Официальный дилер" border="0"></a>';
+	}
+	if (alj > 0) {
+		aljtext = '<img src="' + img_server + '/pics/alc/ali_' + alj + '.gif" alt="" border="0">';
+	}
+	// <img src="'.$_CONF['img_server'].'/pics/clanpic/guild/clan.gif'.'" alt="" border="0">
+	document.write('<table border=0 cellspacing=0 cellpadding=0 class=TB-HeroName><tr><td class=TD-HeroName-CTL><img src="'
+			+ layout_url_all
+			+ '/img/el-blank10px.gif" border=0 width=10px></td><td class=TD-HeroName-T></td><td class=TD-HeroName-CTR><img src="'
+			+ layout_url_all
+			+ '/img/el-blank10px.gif" border=0 width=10px></td></tr><tr><td class=TD-HeroName-L></td><td class=TD-HeroName>'
+			+ '<table border=0 cellspacing=0 cellpadding=0><tr><td>' + prvtxt + '</td><td class=TD-HeroClan ><nobr>' + dialertxt + aljtext
+			+ imgClantxt + '</nobr></td><td class=TD-HeroName-TXT><span class="S-Live-' + typeuserClass + '">' + username + ' [' + level
+			+ ']</span></td><td class=TD-HeroClan><nobr>' + imgPol + imgInvalid
+			+ '</nobr></td></tr></table></td><td class=TD-HeroName-R></td></tr><tr><td class=TD-HeroName-CBL><img src="' + layout_url_all
+			+ '/img/el-blank10px.gif" border=0 width=10px></td><td class=TD-HeroName-B></td><td class=TD-HeroName-CBR><img src="'
+			+ layout_url_all + '/img/el-blank10px.gif" border=0 width=10px></td></tr></table>');
+}
+var SlotImg = new Array(26);
+var SlotHelp = new Array(26);
+SlotImg['weapon'] = 'ge-weapon.gif';
+SlotHelp['weapon'] = '';
+SlotImg['hand'] = 'ge-naruch.gif';
+SlotHelp['hand'] = '';
+SlotImg['crossbow'] = 'ge-crossbow.gif';
+SlotHelp['crossbow'] = '';
+SlotImg['darts'] = 'ge-dart.gif';
+SlotHelp['darts'] = '';
+SlotImg['shlem'] = 'ge-helm.gif';
+SlotHelp['shlem'] = '';
+SlotImg['armours'] = 'ge-armor.gif';
+SlotHelp['armours'] = '';
+SlotImg['boots'] = 'ge-boots.gif';
+SlotHelp['boots'] = '';
+SlotImg['ring'] = 'ge-ring.gif';
+SlotHelp['ring'] = '';
+SlotImg['ring1'] = 'ge-ring.gif';
+SlotHelp['ring1'] = '';
+SlotImg['ring2'] = 'ge-ring.gif';
+SlotHelp['ring2'] = '';
+SlotImg['ring3'] = 'ge-ring.gif';
+SlotHelp['ring3'] = '';
+SlotImg['ring4'] = 'ge-ring.gif';
+SlotHelp['ring4'] = '';
+SlotImg['belt'] = 'ge-belt.gif';
+SlotHelp['belt'] = '';
+SlotImg['necklace'] = 'ge-necklace.gif';
+SlotHelp['necklace'] = '';
+SlotImg['gloves'] = 'ge-gloves.gif';
+SlotHelp['gloves'] = '';
+SlotImg['weapon2'] = 'ge-weapon.gif';
+SlotHelp['weapon2'] = '';
+SlotImg['raincoat'] = 'ge-cloak.gif';
+SlotHelp['raincoat'] = '';
+for(sli=1;sli<=26;sli++){
+	SlotImg['magic'+sli] = 'ge-spell.gif'; SlotHelp['magic'+sli] = '';
+}
+
+
+function PrinTimg(slot, imgset, ArrCloth) {
+	var alfaTxt = '';
+	var goAlfa = 0;
+	if ((imgset == '' || imgset == undefined)) {
+		if (SlotImg[slot] != null) {
+			ImgTxt = layout_url_all + '/subject/defaults/' + SlotImg[slot];
+		}
+	} else if (imgset == 'arrow_r.gif' || imgset == 'arrow_l.gif') {
+		ImgTxt = layout_url + '/img/rassa/mframe/' + imgset;
+	} else {
+		ImgTxt = layout_url_all + '/subject/' + imgset;
+	}
+	if (slot === 'armours') {
+		if (ArrCloth['aarmours2']) {
+			var goAlfa = 1;
+		}
+	}
+	if (ArrCloth['a' + slot] || goAlfa == 1) {
+		if (ie) {
+			alfaTxt = 'style="filter:Alpha(Opacity=\'80\',FinishOpacity=\'60\',Style=\'2\'); background-color:#FF0000"';
+		} else {
+			alfaTxt = 'style=" background-color:#FF0000"';
+		}
+	} else {
+		alfaTxt = 'class=img';
+	}
+	if (ArrCloth[slot + '_wid']) {
+		wid = ArrCloth[slot + '_wid'];
+	} else {
+		wid = '';
+	}
+	var key = '';
+	TxtShowhelp = '';
+	typeMag = '';
+	idMag = '';
+	if (ArrCloth['id' + slot] || ArrCloth['bg_' + slot] == 'rm') {
+		var idShow = slot;
+		if (ArrCloth['mg' + slot]) {
+			typeMag = ArrCloth['mg' + slot];
+		}
+		idMag = ArrCloth['id' + slot];
+	} else {
+		var idShow = '';
+	}
+	TxtShowhelp = '  onMouseOut="tip_hd();" onMouseMove="tip_mv(event);" onMouseOver="tip_sh(event,\'' + slot + '\',\'' + ArrCloth['uid']
+			+ '\');" ';
+	var onclick = ' onClick="Totakeoff(event,\'' + slot + '\',\'' + wid + '\',\'' + typeMag + '\',\'' + idMag + '\');" ';
+if (imgset == 'arrow_r.gif' || imgset == 'arrow_l.gif') {
+		onclick = null;
+	}
+	document.write('<img src="' + ImgTxt + '" alt="" border=0 id="' + slot + '" ' + onclick + ' ' + TxtShowhelp + alfaTxt + '>');
+}
+var ArrCstr = '';
+function ClothRetClass(ArrCloth, slot) {
+	var Checkslot = 'bg_' + slot;
+	if (ArrCloth[Checkslot]) {
+		if (ArrCloth[Checkslot] == 'r') {
+			return ' id=td"' + slot + '" class=weapon_red';
+		}
+		if (ArrCloth[Checkslot] == 'y') {
+			return 'id=td"' + slot + '" class=weapon_yelow';
+		}
+		if (ArrCloth[Checkslot] == 'o') {
+			return ' id=td"' + slot + '" class=weapon_orange';
+		}
+		if (ArrCloth[Checkslot] == 'rm') {
+			return ' id=td"' + slot + '" class=weapon_red_max';
+		}
+	} else {
+		return '';
+	}
+}
+function ClothRetCenter(type) {
+	if (type == '1') {
+		return '<table border=0 cellspacing=0 cellpadding=0 style="visibility:hidden;width: 100%; text-align: center; " id=DEF height=119px><tr><td></td><td><input name="shit[]" type=checkbox value=head class=checkboxfire onClick="SelectM(this);"></td><td></td></tr><tr><td><input name="shit[]" type=checkbox value=righthend class=checkboxfire onClick="SelectM(this);"></td><td><input name="shit[]" type=checkbox value=body class=checkboxfire onClick="SelectM(this);"></td><td><input name="shit[]" type=checkbox value=lefthend class=checkboxfire onClick="SelectM(this);"></td></tr><tr><td></td><td><input name="shit[]" type=checkbox value=lags onClick="SelectM(this);"></td><td></td></tr></table>';
+	}
+	if (type == '2') {
+		return '<table border=0 cellspacing=0 cellpadding=0 style="visibility:hidden;width: 100%; text-align: center; height: 179px; " id=ATK><tr valign=middle><td></td><td><input id="fire[head]" type=radio name=fire value=head onClick="SelectRB();"></td><td></td></tr><tr><td><input id="fire[righthend]" type=radio name=fire value=righthend onClick="SelectRB();"></td><td><input id="fire[body]" type=radio name=fire value=body onClick="SelectRB();"></td><td><input id="fire[lefthend]" type=radio name=fire value=lefthend onClick="SelectRB();"></td></tr><tr><td></td><td><input id="fire[lags]" type=radio name=fire value=lags onClick="SelectRB();"></td><td></td></tr></table>';
+	}
+	if (type == '3')
+		return '<table border=0 cellspacing=0 cellpadding=0 style="visibility:hidden; text-align: center; height: 179px; " id=ATK width=50><tr valign=middle><td></td><td><nobr> <input type=checkbox class=checkboxfire name="fire[]" value=head onClick="SelectA(this);"> <input type=checkbox class=checkboxfire name="fire[]" value=head onClick="SelectA(this);"> <input type=checkbox class=checkboxfire name="fire[]" value=head style="visibility:hidden;display:none" onClick="SelectA(this);" id="fire3_1"> <input type=checkbox class=checkboxfire name="fire[]" value=head style="visibility:hidden;display:none" onClick="SelectA(this);" id="fire4_1"> </nobr></td><td></td></tr><tr><td><nobr> <input type=checkbox class=checkboxfire name="fire[]" value=righthend onClick="SelectA(this);"><br><input type=checkbox class=checkboxfire name="fire[]" value=righthend onClick="SelectA(this);"><br><input type=checkbox class=checkboxfire name="fire[]" value=righthend style="visibility:hidden;display:none" onClick="SelectA(this);" id="fire3_2"><br><input type=checkbox class=checkboxfire name="fire[]" value=righthend style="visibility:hidden;display:none" onClick="SelectA(this);" id="fire4_2"> </nobr></td><td><input type=checkbox class=checkboxfire name="fire[]" value=body onClick="SelectA(this);"><br><input type=checkbox class=checkboxfire name="fire[]" value=body onClick="SelectA(this);"><br><input type=checkbox class=checkboxfire name="fire[]" value=body style="visibility:hidden;display:none" onClick="SelectA(this);" id="fire3_3"><br><input type=checkbox class=checkboxfire name="fire[]" value=body style="visibility:hidden;display:none" onClick="SelectA(this);" id="fire4_3"></td><td><nobr> <input type=checkbox class=checkboxfire name="fire[]" value=lefthend onClick="SelectA(this);"><br><input type=checkbox class=checkboxfire name="fire[]" value=lefthend onClick="SelectA(this);"><br><input type=checkbox class=checkboxfire name="fire[]" value=lefthend style="visibility:hidden;display:none" onClick="SelectA(this);" id="fire3_4"><br><input type=checkbox class=checkboxfire name="fire[]" value=lefthend style="visibility:hidden;display:none" onClick="SelectA(this);" id="fire4_4"> </nobr></td></tr><tr><td></td><td><nobr> <input type=checkbox class=checkboxfire name="fire[]" value=lags onClick="SelectA(this);"> <input type=checkbox class=checkboxfire name="fire[]" value=lags onClick="SelectA(this);"> <input type=checkbox class=checkboxfire name="fire[]" value=lags style="visibility:hidden;display:none" onClick="SelectA(this);" id="fire3_5"> <input type=checkbox class=checkboxfire name="fire[]" value=lags style="visibility:hidden;display:none" onClick="SelectA(this);" id="fire4_5"> </nobr></td><td></td></tr></table>';
+	return '';
+}
+function ClothShFlash(url, loader) {
+	document.write('<div id="swfid" STYLE="position:absolute;z-index:2;">');
+	document.write('</div>');
+}
+function dump(arr, level) {
+	var dumped_text = "";
+	if (!level)
+		level = 0;
+	// The padding given at the beginning of the line.
+	var level_padding = "";
+	for ( var j = 0; j < level + 1; j++)
+		level_padding += "    ";
+	if (typeof (arr) == 'object') { // Array/Hashes/Objects
+		for ( var item in arr) {
+			var value = arr[item];
+			if (typeof (value) == 'object') { // If it is an array,
+				dumped_text += level_padding + "'" + item + "' ...\n";
+				dumped_text += dump(value, level + 1);
+			} else {
+				dumped_text += level_padding + "'" + item + "' => \"" + value + "\"\n";
+			}
+		}
+	} else { // Stings/Chars/Numbers etc.
+		dumped_text = "===>" + arr + "<===(" + typeof (arr) + ")";
+	}
+	return dumped_text;
+}
+function ClothSh(ArrCstr) {
+	// var picTxt='';
+	ArrCloth = eval('(' + ArrCstr + ')');
+	var picTxt = '';
+	let picTitle='';
+	if (ArrCloth['pic']) {
+		picTxt ='background: url(\''+layout_url_all + '/Hero_obraz/' + ArrCloth['pic']+'\') no-repeat; background-size: cover;';
+	}
+	if (ArrCloth['u']) {
+		picTitle = ' title="' + ArrCloth['u'] + '"';
+	}
+	if (ArrCloth['swf']) {
+		ClothShFlash(ArrCloth['swf'], ArrCloth['swfl']);
+	}
+	document.write('<style type="text/css">.weapon_yelow{background-color:#FFFF00;}.weapon_orange{background-color:#FF8000;}'
+			+ '.weapon_red{background-color:#FF0000;}.weapon_red_max{background-color:blue;}'
+			+ '.img{CURSOR:pointer;}</style><table border=0 cellspacing=0 cellpadding=0><tr><td>'
+			+ '<table border=0 cellspacing=0 cellpadding=0><tr><td ' + ClothRetClass(ArrCloth, 'crossbow') + '>');
+	PrinTimg('crossbow', ArrCloth['crossbow'], ArrCloth);
+	document.write('</td><td ' + ClothRetClass(ArrCloth, 'darts') + '>');
+	PrinTimg('darts', ArrCloth['darts'], ArrCloth);
+	document.write('</td><td ' + ClothRetClass(ArrCloth, 'shlem') + '>');
+	PrinTimg('shlem', ArrCloth['shlem'], ArrCloth);
+	document.write('</td><td>');
+	document.write('<table border=0 cellspacing=0 cellpadding=0 id="cloth_mag1"><tr><td>');
+	PrinTimg('magic1', ArrCloth['magic1'], ArrCloth);
+	document.write('</td><td>');
+	PrinTimg('magic2', ArrCloth['magic2'], ArrCloth);
+	document.write('</td><td>');
+	PrinTimg('magic3', ArrCloth['magic3'], ArrCloth);
+	document.write('</td></tr><tr><td>');
+	PrinTimg('magic4', ArrCloth['magic4'], ArrCloth);
+	document.write('</td><td>');
+	PrinTimg('magic5', ArrCloth['magic5'], ArrCloth);
+	document.write('</td><td>');
+	PrinTimg('magic6', ArrCloth['magic6'], ArrCloth);
+	document.write('</td></tr><tr><td>');
+	PrinTimg('magic7', ArrCloth['magic7'], ArrCloth);
+	document.write('</td><td>');
+	PrinTimg('magic8', ArrCloth['magic8'], ArrCloth);
+	document.write('</td>');
+	// Кнопка переключения на другую закладку
+	var NextBtn='';
+
+	if (ArrCloth['sli']==1 || ArrCloth['sli']==2){
+		NextBtn=' onclick="showClothMagNext('+ArrCloth['sli']+')" ';
+	}
+
+
+	document.write('<td' +NextBtn  + '>');
+	PrinTimg('magic9', ArrCloth['magic9'], ArrCloth);
+	document.write('</td></tr></table>');
+	if (ArrCloth['sli']==1 || ArrCloth['sli']==2) {
+		document.write('<table border=0 cellspacing=0 cellpadding=0 id="cloth_mag2" style="display: none;"><tr><td>');
+	PrinTimg('magic10', ArrCloth['magic10'], ArrCloth);
+	document.write('</td><td>');
+	PrinTimg('magic11', ArrCloth['magic11'], ArrCloth);
+	document.write('</td><td>');
+	PrinTimg('magic12', ArrCloth['magic12'], ArrCloth);
+	document.write('</td></tr><tr><td>');
+	PrinTimg('magic13', ArrCloth['magic13'], ArrCloth);
+	document.write('</td><td>');
+	PrinTimg('magic14', ArrCloth['magic14'], ArrCloth);
+	document.write('</td><td>');
+	PrinTimg('magic15', ArrCloth['magic15'], ArrCloth);
+	document.write('</td></tr><tr><td>');
+	PrinTimg('magic16', ArrCloth['magic16'], ArrCloth);
+	document.write('</td><td>');
+	PrinTimg('magic17', ArrCloth['magic17'], ArrCloth);
+		document.write('</td><td' + NextBtn + '>');//showClothMag1()
+	PrinTimg('magic18', ArrCloth['magic18'], ArrCloth);
+	document.write('</td></tr>');
+		document.write('</table>');
+	}
+	if ( ArrCloth['sli']==2) {
+		document.write('<table border=0 cellspacing=0 cellpadding=0 id="cloth_mag3" style="display: none;"><tr><td>');
+		PrinTimg('magic19', ArrCloth['magic19'], ArrCloth);
+		document.write('</td><td>');
+		PrinTimg('magic20', ArrCloth['magic20'], ArrCloth);
+		document.write('</td><td>');
+		PrinTimg('magic21', ArrCloth['magic21'], ArrCloth);
+		document.write('</td></tr><tr><td>');
+		PrinTimg('magic22', ArrCloth['magic22'], ArrCloth);
+		document.write('</td><td>');
+		PrinTimg('magic23', ArrCloth['magic23'], ArrCloth);
+		document.write('</td><td>');
+		PrinTimg('magic24', ArrCloth['magic24'], ArrCloth);
+		document.write('</td></tr><tr><td>');
+		PrinTimg('magic25', ArrCloth['magic25'], ArrCloth);
+		document.write('</td><td>');
+		PrinTimg('magic26', ArrCloth['magic26'], ArrCloth);
+		document.write('</td><td  onclick="showClothMag(1,'+ArrCloth['sli']+')">');
+		PrinTimg('magic27', ArrCloth['magic27'], ArrCloth);
+		document.write('</td></tr>');
+		document.write('</table>');
+	}
+
+	document.write('</td></tr></table></td></tr><tr><td><table border=0 cellspacing=0 cellpadding=0><tr><td rowspan=2>');
+	document.write('<table border=0 cellspacing=0 cellpadding=0><tr><td ' + ClothRetClass(ArrCloth, 'hand') + ' >');
+	PrinTimg('hand', ArrCloth['hand'], ArrCloth);
+	document.write('</td></tr><tr><td ' + ClothRetClass(ArrCloth, 'weapon') + '>');
+	PrinTimg('weapon', ArrCloth['weapon'], ArrCloth);
+	document.write('</td></tr><tr><td ' + ClothRetClass(ArrCloth, 'armours') + '>');
+	PrinTimg('armours', ArrCloth['armours'], ArrCloth);
+	document.write('</td></tr><tr><td ' + ClothRetClass(ArrCloth, 'boots') + '>');
+	PrinTimg('boots', ArrCloth['boots'], ArrCloth);
+	document.write('</td></tr></table></td>');
+	document.write('<td '+picTitle+' style="height: 179px;width: 100px;text-align: center; '+ picTxt +'">' + ClothRetCenter(ArrCloth['cntr']) + '</td>');
+	document.write('<td rowspan=2><table border=0 cellspacing=0 cellpadding=0><tr><td ' + ClothRetClass(ArrCloth, 'necklace') + '>');
+	PrinTimg('necklace', ArrCloth['necklace'], ArrCloth);
+	document.write('</td></tr><tr><td ' + ClothRetClass(ArrCloth, 'gloves') + '>');
+	PrinTimg('gloves', ArrCloth['gloves'], ArrCloth);
+	document.write('</td></tr><tr><td ' + ClothRetClass(ArrCloth, 'weapon2') + '>');
+	PrinTimg('weapon2', ArrCloth['weapon2'], ArrCloth);
+	document.write('</td></tr><tr><td ' + ClothRetClass(ArrCloth, 'raincoat') + '>');
+	PrinTimg('raincoat', ArrCloth['raincoat'], ArrCloth);
+	document.write('</td></tr></table></td></tr><tr><td><table border=0 cellspacing=0 cellpadding=0><tr><td ' + ClothRetClass(ArrCloth,
+			'ring') + '>');
+	PrinTimg('ring', ArrCloth['ring'], ArrCloth);
+	document.write('</td><td rowspan="2" ' + ClothRetClass(ArrCloth, 'belt') + '>');
+	PrinTimg('belt', ArrCloth['belt'], ArrCloth);
+	document.write('</td><td ' + ClothRetClass(ArrCloth, 'ring3') + '>');
+	PrinTimg('ring3', ArrCloth['ring3'], ArrCloth);
+	document.write('</td></tr><tr><td ' + ClothRetClass(ArrCloth, 'ring2') + '>');
+	PrinTimg('ring2', ArrCloth['ring2'], ArrCloth);
+	document.write('</td><td ' + ClothRetClass(ArrCloth, 'ring4') + '>');
+	PrinTimg('ring4', ArrCloth['ring4'], ArrCloth);
+	document.write('</td></tr></table></td></tr></table></td></tr>');
+}
+
+var SliNum=1;
+function showClothMag(num,sli) {
+	if (sli==1){
+		jQuery('#cloth_mag1').hide();
+		jQuery('#cloth_mag2').hide();
+	}
+	if (sli==2){
+		jQuery('#cloth_mag1').hide();
+		jQuery('#cloth_mag2').hide();
+		jQuery('#cloth_mag3').hide();
+	}
+
+	jQuery('#cloth_mag'+num).show();
+}
+function showClothMagNext(sli) {
+	SliNum=SliNum+1;
+	if (sli==1){
+
+		if (SliNum==3){
+			SliNum=1;
+		}
+	}
+	if (sli==2){
+		if (SliNum==4){
+			SliNum=1;
+		}
+	}
+	showClothMag(SliNum,sli);
+}
+
+function ClothShH(strong, flexibility, intuition, power, reason, uid) {
+	document.write('<tr><td class=TD-USERSKILLS><table border=0 cellspacing=0 cellpadding=0 align=center class=TB-USERSKILLS><tr><td><b>'
+			+ '<div id="div_strong">С:' + strong + '</div></b></td><td><b><div id="div_flexibility">В:' + flexibility
+			+ '</div></b></td><td><b><div id="div_intuition">И:' + intuition + '</div></b></td><td><b><div id="div_power">М:' + power
+			+ '</div></b></td><td><b><div id="div_reason">Р:' + reason + '</div></b></td></tr></table>');
+	document.write('</tr></table>');
+	document.write('<div id="tipLayer" style="display:none;position:absolute;width:230px;height:0px;margin:0px;padding:0px;">'
+					+ '<table width=213 border=0 cellspacing=0 cellpadding=0 align=center><tr><td height=7><img src="'
+					+ layout_url_all
+					+ '/img/rassa/mframe/item_desc/bg-itdes-top.gif" alt="" width=213 height=7 border=0></td></tr><tr><td class=TD-id-header>'
+					+ '<div id="tipLayerTitle">Подождите...</div></td></tr	<tr><td height=21><img src="'
+					+ layout_url_all
+					+ '/img/rassa/mframe/item_desc/bg-itdes-middle.gif" alt="" width=213 height=21 border=0></td></tr>'
+					+ '<tr><td class=TD-id-middle><div id="tipLayerContent">Загрузка данных...</div></td></tr><tr><td height=7><img src="'
+					+ layout_url_all
+					+ '/img/rassa/mframe/item_desc/bg-itdes-bottom.gif" alt="" width=213 height=7 border=0></td></tr></table></div>');
+}
+function ClothShowMonstr(imgs, type) {
+	document.write('<table width=212 height=285 border=0 cellspacing=0 cellpadding=0><tr><td class=TD-MF-ContentBox-TL><img src="'
+			+ layout_url_all
+			+ '/img/el-blank5px.gif" border=0></td><td class=TD-MF-ContentBox-TC></td><td class=TD-MF-ContentBox-TR><img src="'
+			+ layout_url_all + '/img/el-blank5px.gif" border=0></td></tr><tr><td class=TD-MF-ContentBox-ML></td><td background="'
+			+ layout_url_all + '/bots/' + imgs
+			+ '" class=TD-MF-ContentBoxMidle><table width=194 height=267 border=0 cellspacing=0 cellpadding=0><tr><td><img src="'
+			+ layout_url_all + '/img/el-blank1px.gif" border=0></td><td><img src="' + layout_url_all
+			+ '/img/el-blank1px.gif" border=0></td><td><img src="' + layout_url_all
+			+ '/img/el-blank1px.gif" border=0></td></tr><tr><td width=62><img src="' + layout_url_all
+			+ '/img/el-blank1px.gif" border=0></td><td align=center>' + ClothRetCenter(type) + '</td><td width=62><img src="'
+			+ layout_url_all + '/img/el-blank1px.gif" border=0></td></tr><tr><td><img src="' + layout_url_all
+			+ '/img/el-blank1px.gif" border=0></td><td><img src="' + layout_url_all + '/img/el-blank1px.gif" border=0></td><td><img src="'
+			+ layout_url_all + '/img/el-blank1px.gif" border=0></td></tr></table></td><td class=TD-MF-ContentBox-MR></td></tr>	'
+			+ '<tr><td class=TD-MF-ContentBox-BL><img src="' + layout_url_all
+			+ '/img/el-blank5px.gif" border=0></td><td class=TD-MF-ContentBox-BC></td><td class=TD-MF-ContentBox-BR><img src="'
+			+ layout_url_all + '/img/el-blank5px.gif" border=0></td></tr></table>');
+}
+var timerID = 0;
+var showdelay = new Array();
+var showok = new Array();
+
+
+
+
+function Totakeoff(event, slot, wId, typeMag, idMag) {
+	var r, re, slotMagicV, strmag;
+ 
+	var slotObject =jQuery('#'+slot);
+	var  slotBattleObject = jQuery('#weapon_arrow');
+	var  slotBattleObject2 =jQuery('#weapon_magic_');
+
+	if (slotObject != null && slotObject.length > 0) {
+		var s = slotObject.attr('src');
+		r = s.search('mframe');
+		r2 = s.search('defaults');
+	}
+	if (r2 > 0) {
+		return '';
+	}
+	if (slot && r < 0 && r2 < 0 && document.WeaponFormSlot) { // alert(document.getElementById(slot));
+		if (slotObject.length > 0) {
+			slotObject.css('background', '');
+		}
+		document.WeaponFormSlot.slot.value = slot;
+		document.WeaponFormSlot.submit();
+		return ''
+	}
+
+
+	if (slot.search("magic") == 0 && r < 0) {
+		magicFlag = 1;
+		m2 =  jQuery('#login_magic_');
+		if (m2!=null && m2.length > 0) {
+			m2.val('');
+		}
+	} else {
+		magicFlag = 0;
+	}
+	if (slotBattleObject!=null && slotBattleObject.length > 0 && slot == 'crossbow' && r < 0) {
+		slotBattleObject.val('0');
+		LastMessageSpan = jQuery('#LastMessage');
+		if (LastMessageSpan!=null && LastMessageSpan.length > 0) {
+			LastMessageSpan.html('');
+		}
+	}
+	if (slotBattleObject!=null && slotBattleObject.length > 0 && slot == 'darts' && r < 0) {
+		slotBattleObject.val('1');
+		LastMessageSpan = jQuery('#LastMessage');
+		if (LastMessageSpan!=null && LastMessageSpan.length > 0) {
+			LastMessageSpan.html('<font color="green">Выстрелить</font>');
+		}
+	}
+
+	if (slotBattleObject2!=null && slotBattleObject2.length > 0 && magicFlag && r < 0) {
+
+		slotBattleObject2.val(slot);
+		LastMessageSpan2 = jQuery('#LastMessage2');
+		if (LastMessageSpan2!=null && LastMessageSpan2.length > 0) {
+			LastMessageSpan2.html('');
+		}
+console.log(typeMag);
+		if (typeMag == 'ml') {
+			ShowMagicLoginAlert(idMag, slot, 0);
+		}
+		if (typeMag == 'bml') {
+			moments_ = jQuery('#moment_');
+			if (moments_!=null && moments_.length > 0) {
+				moments_.val(1);
+			}
+			ShowMagicLoginAlert(idMag, slot, 1);
+			if (LastMessageSpan2!=null && LastMessageSpan2.length > 0) {
+				LastMessageSpan2.html('<font color="#0000ff"> Свиток готов к использованию </font>');
+			}
+		}
+		if (typeMag == '') {
+			ShowMagicLoginAlert(idMag, slot, 3);
+		}
+		if (typeMag == 'bm') {
+			slotMagicV = jQuery('#slotMagic2_');
+			slotMagicV2 =jQuery('#weapon_magic_');
+			if (slotMagicV!=null) {
+				slotMagicV.val(slot);
+			}
+			if (slotMagicV2!=null) {
+				slotMagicV2.val(idMag);
+			}
+			if (LastMessageSpan2!=null && LastMessageSpan2.length > 0) {
+				LastMessageSpan2.html('<font color="#0000ff"> Свиток готов к использованию </font>');
+			}
+		}
+	}
+	if ((!document.WeaponFormSlot) && wId) {
+		window.open("index.php?file=library&weaponID2=" + wId, "_blank", "scrollbars=yes,width=800,height=600, location=yes, toolbar=yes,directories=yes,status=yes,menubar=yes,resizable=yes");
+	}
+	return;
+}
+
+
+
+
+
+function DefaultImages(slot, img) {
+	if (slot) {
+		slotObject = document.getElementById(slot);
+		if ((slotObject != null) && img != null) {
+			slotObject.src = img;
+			var r2 = img.search("defaults");
+			if (r2 > 0) {
+				SlotHelp[slot] = ' ';
+				slotObject.style['background'] = '';// ='';
+			}
+		}
+	}
+	return;
+}
+function SetHelp(slot, vars) {
+	SlotHelp[slot] = vars;
+}
+// %%%%%%%%%%%%%%%%%%%%%%% Ajax %%%%%%%%%%%%%%%%%%%%%%%//
+var eventClientX = 0;
+var eventClientY = 0;
+var idClothMsg = 0;
+var weaponId = 0;
+var weaponIduid = 0;
+var isShowCloth = new Array();
+var ie = navigator.appName == "Microsoft Internet Explorer";
+function CreateHelps(VO) {
+	var TextH = '';
+	if (VO.bw) {
+		if (VO.w) {
+			TextH = TextH + 'Долговечность ' + VO.w + '/' + VO.bw;
+		} else {
+			TextH = TextH + 'Долговечность 0/' + VO.bw;
+		}
+	}
+	if (VO.shp) {
+		TextH = TextH + '<li><font color="blue">умение стрелка : ' + VO.shp + '%</font></li>';
+	}
+	if (VO.f5) {
+		TextH = TextH + '<li>Жизнь:' + VO.f5 + '</li>';
+	}
+	if (VO.f7) {
+		TextH = TextH + '<li>Мана:' + VO.f7 + '</li>';
+	}
+	if (VO.f51) {
+		TextH = TextH + '<li>Минимальный урон:' + VO.f51 + '</li>';
+	}
+	if (VO.f50) {
+		TextH = TextH + '<li>Максимальный урон:' + VO.f50 + '</li>';
+	}
+	if (VO.f18) {
+		TextH = TextH + '<li>Броня головы:' + VO.f18 + '</li>';
+	}
+	if (VO.f19) {
+		TextH = TextH + '<li>Броня корпуса:' + VO.f19 + '</li>';
+	}
+	if (VO.f24) {
+		TextH = TextH + '<li>Броня рук:' + VO.f24 + '</li>';
+	}
+	if (VO.f21) {
+		TextH = TextH + '<li>Броня ног:' + VO.f21 + '</li>';
+	}
+	if (VO.f52) {
+		TextH = TextH + '<li>Дополнительная защита min:' + VO.f52 + '</li>';
+	}
+	if (VO.f53) {
+		TextH = TextH + '<li>Дополнительная защита max:' + VO.f53 + '</li>';
+	}
+	if (VO.fi) {
+		TextH = TextH + '<li>Износ в бою:' + VO.fi + '%</li>';
+	}
+	if (VO.dscr) {
+		TextH = TextH + '<i>' + VO.dscr + '</i>';
+	}
+	if (VO.tr) {
+		TextH = TextH + '<li>Увечье на ' + VO.trH + ' часов ' + VO.trM + ' мин.</li>';
+	}
+	return TextH;
+}
+function SetRedSlot(slot) {
+	slotObject = jQuery('#'+slot);
+	if (slotObject) {
+		slotObject.css("background-color","#ff0000");
+	}
+}
+var helpCasheClothX = new Array();
+function _showClothEl() {
+	isShowCloth[weaponId] = true;
+	clothLayer = jQuery("#tipLayer");
+
+	try {
+		if (weaponIduid > 0) 
+		{
+			if (SlotHelp[weaponId] == '') {
+				var keys = 'h_' + weaponId + weaponIduid;
+			
+			if (typeof (window[keys]) == "undefined") {
+					return "";
+				}
+				if (keys) {
+					var Vk = eval(keys);
+					if (Vk) {
+						VO = eval("(" + Vk + ")");
+					}
+				} else {
+					return '';
+				}
+			} else // Уст другую подсказку
+			{
+				var keys = SlotHelp[weaponId];
+
+			if (keys == ' ') {
+					return '';
+				}
+				VO = eval("(" + keys + ")");
+			}
+			if (VO) {
+				if (VO.n) {
+					jQuery("#tipLayerTitle").html(VO.n);
+				}
+				jQuery("#tipLayerContent").html(CreateHelps(VO));
+				
+				if (VO.wid)
+				{ if (helpCasheClothX[VO.wid])
+				  	{
+						jQuery("#tipLayerContent").html(jQuery("#tipLayerContent").html() +helpCasheClothX[VO.wid]);
+					}else
+					{
+					 	GetDescribeAdjax(VO.wid);
+						jQuery("#tipLayerContent").html(jQuery("#tipLayerContent").html() +'<div id=\'hl_'+VO.wid+'\'>Загрузка характеристики...</div>');
+					}
+				}
+			}
+		}
+
+
+	   if (clothLayer){
+			console.log(helpCasheClothX[VO.wid]);
+		   clothLayer.css('left', eventClientX + 15);
+		   clothLayer.css('top', eventClientY);
+		   clothLayer.css('z-index', 99);
+		   clothLayer.show();
+		   console.log('_showClothEl.show');
+		   //clothLayer.style.visibility = "visible";
+		   // 		clothLayer.style.display = "block";
+	   }
+
+
+	} catch (e) {
+		if (e instanceof Error) {
+			//alert(e.name + ': ' + e.message);
+		}
+	}
+}
+function hideCloth() {
+	isShowCloth[weaponId] = false;
+	clothLayer = jQuery("#tipLayer").hide();
+
+
+}
+function tip_sh(event, idmsg, uid) {
+	weaponId = idmsg;
+	weaponIduid = uid;
+	if (weaponId) {
+		idClothMsg = 'tipLayer';
+		eventClientX = ie ? window.event.clientX : event.clientX;
+		eventClientY = ie ? window.event.clientY : event.clientY;
+		var _time = 500;
+		timerID = setTimeout("_showClothEl();", _time);
+	}
+}
+function tip_mv(event) {
+	console.log(isShowCloth[weaponId]);
+	eventClientX = ie ? window.event.clientX : event.clientX;
+	eventClientY = ie ? window.event.clientY : event.clientY;
+	if (isShowCloth[weaponId] != undefined && isShowCloth[weaponId] == 1) {
+		clothLayer = jQuery("#tipLayer");
+		clothLayer.css('left', eventClientX + 15);
+		clothLayer.css('top', eventClientY);
+	}
+}
+function tip_hd() {
+	hideCloth();
+	clearTimeout(timerID);
+}
+// %%%%%%%%%%%%%%%%%%%%%%% End Ajax %%%%%%%%%%%%%%%%%%%%%%%//
+function ShowMagicLoginAlert(wID, slot, types) {
+	var l=jQuery('#usemagic');
+	var m=jQuery('#frm_usemagic');
+
+
+	if (l!=null && l.length >0) {
+		if (m!=null && m.length >0) {
+
+			m.find('[name="MagicweaponID"]').val('');
+			m.find('[name="slotMagic"]').val('');
+			m.find('[name="login"]').val('');
+
+			 jQuery('#login_magic_').val('');
+
+			if (types == 3) {
+				jQuery('#magic_login').hide();
+				jQuery('#magic_battle').show();
+
+			}
+			if (types == 0) {
+				m.find('[name="MagicweaponID"]').val(wID);
+				m.find('[name="slotMagic"]').val(slot);
+
+			}
+			if (types == 1) {
+				m.find('[name="MagicweaponID"]').val(wID);
+				m.find('[name="slotMagic"]').val(slot);
+
+			}
+			jQuery('#usemagic').show();
+
+		}
+	}
+}
+function opw(url, w, h, sb) {
+	if (ie) {
+		atr = '';
+		if (w) {
+			atr = atr + 'dialogWidth:' + w + 'px;';
+			atr = atr + 'dialogHeight:' + h + 'px;';
+		} else {
+			atr = atr + 'dialogWidth:700px;';
+			atr = atr + 'dialogHeight:500px;';
+		}
+		atr = atr + 'toolbar:no;';
+		if (sb) {
+			atr = atr + 'scroll:no;';
+		} else {
+			atr = atr + 'scroll:yes;';
+		}
+		// atr = atr + 'location:no;';
+		atr = atr + 'status:no;';
+		atr = atr + 'menubar:no;';
+		atr = atr + 'resizable:no;';
+		new_window = showModalDialog(url, '', atr);
+		// alert(new_window);
+		// new_window.focus();
+	} else {
+		atr = '';
+		atr = atr + 'toolbar=no,';
+		if (sb) {
+			atr = atr + 'scrollbars=no,';
+		} else {
+			atr = atr + 'scrollbars=yes,';
+		}
+		atr = atr + 'location=no,';
+		atr = atr + 'statusbar=no,';
+		atr = atr + 'menubar=no,';
+		atr = atr + 'resizable=no,';
+		if (w) {
+			atr = atr + 'width=' + w + ',';
+			atr = atr + 'height=' + h;
+		} else {
+			atr = atr + 'width=700,';
+			atr = atr + 'height=500';
+		}
+		new_window = window.open(url, 'popup', atr);
+		// new_window.focus();
+	}
+}
+var startAjax=0;
+var WidAdjax=0;
+function GetDescribeAdjax(widTable) {
+	if (startAjax) {
+			return;
+		}
+	startAjax=1;
+	if (widTable==0){
+		return;
+	}
+	WidAdjax=widTable;
+	var url = '/index.php';
+	//var pars = 'file=object_ajax&action=object_magicF&widTable='+widTable;
+	//var myAjax = new Ajax.Request(url, {method: 'get', parameters: pars, onComplete: _showDetailMagic});
+
+	jQuery.ajax('/index.php',{
+		//accepts : {Accept: 'application/json'},
+		type : 'GET',
+		data : {'file' : 'object_ajax','action':'object_magicF','widTable':widTable },
+		success : function(data){
+			_showDetailMagic(data);
+			startAjax=0;},
+	});
+
+}
+
+function _showDetailMagic(htmlInfo) {
+	if (WidAdjax>0) {
+		var tmpHelps=jQuery('#hl_'+WidAdjax);
+		if (tmpHelps)
+		{
+			tmpHelps.innerHTML =htmlInfo;
+			helpCasheClothX[WidAdjax]=htmlInfo;
+		}
+	}
+
+}
+
+function AddAjaxItems()
+{
+	
+}

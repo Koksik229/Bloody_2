@@ -1,0 +1,154 @@
+// JavaScript Document
+function attackuser(uid){
+	var m2=parent.main.document.getElementById('FormBattle_');
+	if (m2==null && refr==0){
+	    setTimeout("parent.main.location='/index.php?file=tower&toAtk="+uid+"'; ",300);
+	    setTimeout("refr=0;",3000);
+	    refr = 1;
+	}
+}
+function GoUrlChat(url) {
+  if (SubUrl==0) { SubUrl=1;  document.location=url+'&rnd='+Math.random();
+   } else
+		 {alert('Не так быстро...');
+		 }
+    return false;
+}
+var cntList=0;
+
+function u(i,n,d,l,t,lv,g,_in,_ds,atk,trans,ali) {
+
+var Alz='';
+cntList++;
+
+if (cntList>1000) return '';
+try 
+{
+
+if (n!='') {
+		plus=0; sep="";A="";prv='&nbsp;&nbsp;&nbsp;&nbsp;';inf='';
+		if (trans=="1") { var show=0; } else { var show=1;}
+		if (_ds!="0") {ds='<img src="/layout/all/subject/silence.gif" alt="" border="0">';} else {ds='';}
+		if (_in!="0") {inv='<img src="/layout/all/img/xfn/invalid2.gif" alt="" border="0"  onClick="extendedPopup(\'../../invalidinfo.php?uid='+i+'\',300,200,1); return false;">';} else {inv='';}
+		if (g=="0") {G="/layout/all/img/man.png"} else {G="/layout/all/img/woman.png";}
+		if (g=="3") {G="/layout/all/img/mobile.png";}
+		if (l!=" ")
+		{  
+			if (ali!='0' && ali!='' && ali!=undefined)
+			{Alz='<img src="/pics/alc/ali_'+ali+'.gif" alt="" width="10" height="19" border="0">';
+			plus=plus-0;
+			}
+			L=Alz+'<img src="/pics/clanpic/'+l+'" alt="" width="19" height="19" border="0">';
+		} else {L='';plus=plus+10;};
+		if (l=="") {L='';plus=plus+0;};
+		if (d=="1" && show) {D='<img src="/pics/clanpic/guild/visa.png" alt="visa"  height="18" border="0">'} else {D='';plus=plus+28;};
+		if (atk=="1") {D='<img src="/pics/clanpic/atk.gif" alt="" width="19" height="19" border="0">'}    
+		if (atk=="2") {D='<img src="/pics/clanpic/def.gif" alt="" width="19" height="19" border="0">'}
+		if (room.indexOf("intower")!=-1){// Значек нападения в башне. Нужно сменить картинку!
+			Tower='<img src="/pics/clanpic/tw.gif" alt="" width="19" height="19" border="0" onclick="attackuser('+i+')">';
+		} else {
+			Tower='';
+			plus=plus; //40
+		}
+		if (show){
+			prv='<img src="/layout/all/img/prv.png" onClick="parent.fr_send.prvMsg(\''+n+'\')" onkeydown="parent.fr_send.SetCntrl();"><A HREF="javascript:'+sep+'parent.fr_send.toMsg(\''+n+'\')" class="'+t+'">';
+			inf='<img src="'+G+'" alt="Информация о &#147;'+n+'&#148;" onClick="window.open(\'/index.php?file=infouser&cuid='+i+'\');" class="ixfn"  valign=top>';
+		}
+		var MM='';
+		if (t=='demoMonstr')
+		{
+			//plus=plus+15;
+//			i=3;
+			//lv='?';
+			//n='Монстр';
+			inf='';	
+			ds='';
+			D='';
+			L='';
+			//prv='';
+			if (typeusersM!='demoMonstr')
+			{
+					MM='<a href="/index.php?file=ataks&uid='+i+'" target="main"><img src="/layout/all/img/b_drop.png" border=0" ></a>';	
+			}
+		}
+		
+		if (t!='demoMonstr' && typeusersM=='demoMonstr')
+		{
+			if (i!=3)
+			{
+					MM='<a href="/index.php?file=ataks&uid='+i+'" target="main"><img src="/layout/all/img/b_drop.png" border=0" ></a>';	
+					plus=plus-20;
+			}
+		}
+
+		if (i==3 || t=='demoMonstr'  ) 
+		{		
+			mut_users = mut_users+'<div style="margin-left:'+plus+'"><nobr>'+MM+Tower+D+prv+L+'<span class="'+t+'">'+n+'['+lv+']</span></a>&nbsp;'+inf+inv+ds+'</nobr></div>';
+		} else if(u.arguments.length=12&&u.arguments[11]=='offline') {
+			off_users = off_users+'<div style="margin-left:'+plus+'"><nobr>'+Tower+D+prv+L+'<span class="'+t+'">'+n+'['+lv+']</span></a>&nbsp;'+inf+inv+ds+'</nobr></div>';
+		} else {
+			document.write('<div style="margin-left:'+plus+'"><nobr>'+MM+Tower+D+prv+L+''+n+'['+lv+']</a>&nbsp;'+inf+inv+ds+'</nobr></div>');
+		} 
+	}
+}catch(e)
+	{
+		}
+}
+function delUL(online,id) {
+    var delulndiv=parent.fr_list.document.getElementById(id);
+    if (delulndiv) {
+    	online.removeChild(delulndiv);
+    }
+}
+function writeMutUsers () {
+	if (mut_users.length>0) {
+		var mu=document.getElementById('mut_users');
+		mu.innerHTML = mut_users;
+		mu.style.display = 'inline';
+	}
+}
+
+
+function SetCntrlCancel2() {
+/*	try 
+	{
+		 if (parent)
+		 {
+			 if (parent.fr_send)
+			 {alert('Yes');
+				//parent.fr_send.CtrlPress=0;
+			 }
+	
+		}
+	}catch(e)
+	{
+		}*/
+}
+
+function writeOfflineUsers () {
+	if (off_users.length>0) {
+		ou=document.getElementById('off_users');
+		ou.innerHTML = off_users;
+		ou.style.display = 'inline';
+		top.fr_send.off_users = off_users;
+		off_users = '';
+	}
+}
+function writeCashedOfflineUsers () {
+	if (top.fr_send.off_users!==null) 
+	{
+	 if (top.fr_send.off_users.length>0)
+	 {
+		ou=document.getElementById('off_users');
+		ou.innerHTML = top.fr_send.off_users;
+		ou.style.display = 'inline';
+	 }
+	}
+}
+function delCashedOfflineUsers () {
+	if (top.fr_send.off_users!==null) {
+		if (top.fr_send.off_users.length>0)
+		{top.fr_send.off_users = null;
+		}
+	}
+}

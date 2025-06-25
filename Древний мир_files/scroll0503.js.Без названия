@@ -1,0 +1,36 @@
+var body = document.getElementById('body'),
+scroll = new SimpleBar(body),
+bar = document.querySelector('.simplebar-content-wrapper'),
+total_scroll = bar.scrollHeight,
+current_scroll = bar.scrollTop,
+view_height = body.scrollHeight,
+scroll_btn = document.querySelector('#scroll-bot'),
+msg = document.querySelector('#msgs');
+document.querySelector('.simplebar-wrapper').style.height = '100%';
+scroll.getScrollElement().addEventListener('scroll', function(e){
+total_scroll = bar.scrollHeight;
+current_scroll = bar.scrollTop;
+view_height = body.scrollHeight;
+ //console.log("total_scroll (Общая высота): "+total_scroll);
+ //console.log("body.scrollHeight (Видимая область): "+body.scrollHeight);
+ //console.log("current_scroll (Текущая позиция): "+current_scroll);
+ // console.log("cli_height (---): "+cli_height);
+ //console.log("body.scrollHeight - current_scroll : "+(body.scrollHeight - current_scroll));
+ //console.log("total_scroll - view_height : "+(total_scroll - view_height));
+ //console.log('====================================');
+if (current_scroll+40 < total_scroll - view_height) {
+	console.log('block');
+	msg.dataset.pin_fixed = 0;
+	scroll_btn.style.display = 'block';
+} else {
+	console.log('none');
+	msg.dataset.pin_fixed = 1;
+	scroll_btn.style.display = 'none';
+}
+   // console.log('fix='+	msg.dataset.pin_fixed);
+});
+scroll_btn.onclick  = function () {
+msg.dataset.pin_fixed = 1;
+scroll_btn.style.display = 'none';
+bar.scrollTop = bar.scrollHeight;
+};

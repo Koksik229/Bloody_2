@@ -11,8 +11,8 @@ const icons = [
   { name: "Выход", src: "/icons/logout.png" }
 ];
 
-interface Props { onInventory?: () => void }
-const TopMenu: React.FC<Props> = ({ onInventory }) => {
+interface Props { onInventory?: () => void; onSkills?: () => void; }
+const TopMenu: React.FC<Props> = ({ onInventory, onSkills }) => {
   const { logout } = useAuth();
   const [hovered, setHovered] = useState<string | null>(null);
 
@@ -33,6 +33,8 @@ const TopMenu: React.FC<Props> = ({ onInventory }) => {
                 logout();
               } else if (icon.name === 'Инвентарь' && onInventory) {
                 onInventory();
+              } else if (icon.name === 'Навыки' && onSkills) {
+                onSkills();
               } else {
                 console.log("Открыть: " + icon.name);
               }

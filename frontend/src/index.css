@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* legacy global styles can stay, import them below if necessary */
+
+:root {
+  --chat-height: 30vh;
+}
+
+.game-body {
+  height: calc(100vh - var(--chat-height));
+  overflow-y: auto;
+  position: relative;
+}
+

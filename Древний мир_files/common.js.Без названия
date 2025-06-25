@@ -1,0 +1,332 @@
+  isDOM=document.getElementById ? true : false
+  isOpera=isOpera5=window.opera && isDOM
+  isOpera6=isOpera && window.print
+  isOpera7=isOpera && document.readyState
+  isMSIE=isIE=document.all && document.all.item && !isOpera
+  isStrict=document.compatMode=='CSS1Compat'
+  isNN=isNC=navigator.appName=="Netscape"
+  isNN4=isNC4=isNN && !isDOM
+  isMozilla=isNN6=isNN && isDOM
+  
+var mousex = 0
+var mousey = 0
+if(isNN4) document.captureEvents(Event.MOUSEMOVE)
+if(isMSIE || isOpera7){
+  document.onmousemove=function(){
+    mousex=event.clientX+document.body.scrollLeft
+    mousey=event.clientY+document.body.scrollTop
+    return true
+  }
+}else if(isOpera){
+  document.onmousemove=function(){
+    mousex=event.clientX
+    mousey=event.clientY
+    return true
+  }
+}else if(isNN4 || isMozilla){
+  document.onmousemove=function(e){
+    mousex = e.pageX
+    mousey = e.pageY
+    return true
+  }  
+}
+
+var StroreWeaponID='';
+var SbSave='';
+var CurOpenDiv = '';
+function keep(weaponIDz, event, fileSet, layname, magicfx, number)
+{
+	layout_sellm=  document.getElementById(layname);
+	var hint='';
+	var okMag=0;
+//alert (weaponIDz+','+','+event+','+fileSet+','+layname+','+magicfx+','+number+','+p1+','+p2+','+p3+','+p4 +','+SbSave);
+		if (SbSave)
+		{	
+			layout_Hide=  document.getElementById(SbSave);
+			if (layout_Hide!=null)
+			{
+				layout_Hide.style.display='none';
+			}
+		}
+		SbSave=magicfx;
+
+	if (magicfx=='magic_login_price' && layname=='usemagic')
+	{	
+		layout_magic =  document.getElementById('magic_login_price');
+		okMag=1;
+		if (layout_magic!=null)	
+		{ 	
+			layout_magic.style.display='block';
+		}	
+	}
+
+
+
+	if ( magicfx=='mag_chUni'  || magicfx=='stat_chUni' || magicfx=='skill_chUni'  || magicfx=='ch_property' )//&&  layname=='zelye'
+	{	
+		layout_magic = document.getElementById(magicfx);
+		layout_magic0 = document.getElementById('mag_chUni');
+   	   	layout_magic1 = document.getElementById('stat_chUni');
+      	layout_magic2 = document.getElementById('skill_chUni' );
+      	layout_magic3 = document.getElementById('ch_property' );
+		if (layout_magic0 != null) { 	layout_magic0.style.display='none';	}
+		if (layout_magic1 != null) { 	layout_magic1.style.display='none';	}
+		if (layout_magic2 != null) { 	layout_magic2.style.display='none';	}
+		if (layout_magic3 != null) { 	layout_magic3.style.display='none';	}
+		if (layout_magic != null) { 	layout_magic.style.display='block';	}
+	}
+	
+	if (magicfx=='magic_login_price' && layname=='usemagic')
+	{		
+		okMag=1;	
+		layout_magic = document.getElementById('magic_login_price');
+		if (layout_magic!=null)	{ layout_magic.style.display='block'; }
+	}
+	
+	if (magicfx=='magic_login' && layname=='usemagic')
+	{		
+		okMag=1;
+		layout_magic=  document.getElementById('magic_login');
+		if (layout_magic!=null)
+		{ 	
+			layout_magic.style.display='block';SbSave=magicfx;
+		}
+	}
+	
+	if (magicfx=='magic_portal' && layname=='usemagic')
+	{		
+		okMag=1;
+		layout_magic=  document.getElementById('magic_portal');
+		if (layout_magic!=null)
+		{ 	
+			layout_magic.style.display='block';
+		}
+	}
+	if (magicfx!='' && layname=='usemagic')
+	{		
+		okMag=1;
+		layout_magic=  document.getElementById(magicfx);
+		if (layout_magic!=null)
+		{ 	
+			layout_magic.style.display='block';
+		}
+	}
+
+	if (layname=='usemagic') 
+	{
+			layout_magic=  document.getElementById('magic_battle');
+			if (layout_magic!=null)
+			{ 
+				if(magicfx=='') layout_magic.style.display='block';
+					else layout_magic.style.display='none';
+			}
+	}
+
+ //--------- Magif fx end 
+var nameForm='frm_'+layname;
+FormSell = document.getElementById(nameForm);
+ clearFormValues(FormSell)
+layout_magic=  document.getElementById(layname);
+
+	if (layout_magic!=null)
+	{ 
+		layout_magic.style.display='block';
+	}
+
+weaponForm =  document.getElementById("weaopnID");
+items = document.getElementById("items");
+
+if (StroreWeaponID)	
+{
+ 	FormSell.weaponID.value='';
+	closehint3();
+}		
+
+  // hint='hint'+weaponIDz;
+
+//l=document.getElementById(hint);
+	/*&& l!=null */
+	
+if (layout_sellm!=null && fileSet!=null && FormSell!=null) {
+/*
+alert(layout_sellm);
+alert(fileSet);
+alert(FormSell);
+*/
+if(FormSell.file && FormSell.file.value == "") FormSell.file.value = fileSet.substring(15);
+FormSell.action = fileSet; 
+StroreWeaponID = weaponIDz; 
+if(FormSell.items) FormSell.items.value = "Ok";
+FormSell.weaponID.value = weaponIDz; 
+//l.style.visibility  = "visible";l.style.display='block';
+layout_sellm.style.visibility = "visible";
+layout_sellm.style.display = 'block';
+layout_sellm.style.top = (mousey-50)+'px';
+//layout_sellm.style.left = (mousex-50)+'px';
+layout_sellm.style.z = 99;
+CurOpenDiv=layout_sellm;
+//if(event.x<700) l.style.left=event.x+35; else l.style.left=event.x-225; l.style.z=99;
+return '';
+}
+}
+function subm(event){if((event.keyCode==13)||(event.keyCode==10)) { document.F1.unlock.click();}}
+function closehint_magl(id)
+{		
+		layout_magic=  document.getElementById(id);
+		if (SbSave)
+		{	
+			layout_Hide=  document.getElementById(SbSave);
+			if (layout_Hide!=null)
+			{
+				layout_Hide.style.display='none';
+			}
+		}
+		
+		if (layout_magic!=null)
+		{ 	
+			layout_magic.style.display='none';
+		}
+
+}
+function closehint_mag()
+{		
+		layout_magic = document.getElementById('magic_login_price');
+		if (layout_magic != null)
+		{ 	
+			layout_magic.style.display = 'none';
+		}
+		layout_magic=  document.getElementById('magic_login');
+		if (layout_magic != null)
+		{ 	
+			layout_magic.style.display = 'none';
+		}
+		layout_magic=  document.getElementById('magic_battle');
+		if (layout_magic != null)
+		{ 	
+			layout_magic.style.display = 'none';
+		}
+		layout_magic=  document.getElementById('magic_portal');
+		if (layout_magic != null)
+		{ 	
+			layout_magic.style.display = 'none';
+		}
+}
+
+function closehint3(){
+	var hint='';
+	if(CurOpenDiv)
+	{
+		CurOpenDiv.style.display='none';
+		CurOpenDiv.style.visibility = "hidden";
+		//CurOpenDiv.style.left = -500;
+		CurOpenDiv.style.z = 1;
+		
+		//var formObj = CurOpenDiv.getElementsByTagName('form');
+		//formObj=formObj[0];
+		//clearFormValues(formObj);
+		CurOpenDiv = null;
+		
+	}else if (StroreWeaponID){
+		hint='hint'+StroreWeaponID;
+	}else {
+			weaponForm = document.getElementById("weaopnID");
+			hint='hint'+weaponForm.value;
+	}
+	if (document.getElementById(hint)!=null){
+		document.getElementById(hint).style.visibility="hidden";
+		
+		if (weaponForm!=null)	{	
+			weaponForm.value='';  
+		}
+		StroreWeaponID='';
+	}
+}
+/**
+* функци¤ сбрасывает все значени¤  видимых полей формы.
+*/
+function clearFormValues(formObj)
+{
+	if(formObj)
+	{
+		var rows = formObj.getElementsByTagName('input');
+		if(rows)
+		{
+			for ( var i = 0; i < rows.length; i++ ) 
+			{
+				if(rows[i].type == 'text' && rows[i].name == 'quantity') rows[i].value='1';
+					else if(rows[i].type == 'text') rows[i].value='';
+			}
+		}
+		rows=null;
+		var rows = formObj.getElementsByTagName('select');
+		if(rows)
+		{
+			var opt='';
+			for ( var i = 0; i < rows.length; i++ ) 
+			{
+				opt = rows[i].options;
+				for ( var i2 = 0; i2 < opt.length; i2++ )
+				{
+					opt[i2].selected='';
+				} 
+				opt=null;
+			}
+		}
+		rows=null;
+	}
+}
+
+var loaded = new Array();
+function getNeed(weaponID, etalon, wID)
+{
+	if(!loaded[weaponID])
+	{
+		JsHttpRequest.query(
+				'GET /index.php?file=object_ajax&action=object_properties', // backend
+				{
+					'_token': document.getElementById('_token').value,
+					'weaponID':weaponID, 
+					'et':etalon,
+					'wID':wID
+				},
+				function(result, errors) {
+						if(result)
+						{
+							loaded[weaponID]=weaponID;
+							if(result["need"] == 0)
+							{
+								if(document.getElementById('needr_'+weaponID).innerHTML == "")
+								document.getElementById('need_'+weaponID).innerHTML = '<li>Отсутствует</li>';
+							} else document.getElementById('need_'+weaponID).innerHTML = result["need"];
+							
+							
+							if(result["put"] == '0')
+							{
+								document.getElementById('put_'+weaponID).innerHTML = '<li>Отсутствует</li>';
+							} else document.getElementById('put_'+weaponID).innerHTML = result["put"];
+							document.getElementById('_token').value = result["token"];
+							_showNeed(weaponID); 
+						}
+				},
+				true  // do not disable caching
+			);
+	}
+	else 
+	{ 
+		_showNeed(weaponID);
+	}
+}
+
+function _showNeed(weaponID)
+{
+	showBoxAll('dskr'+weaponID); 
+	showBoxAll('hidebtm'+weaponID); 
+	hideBoxAll('shwbtm'+weaponID);
+}
+
+function _hideNeed(weaponID)
+{
+	hideBoxAll('dskr'+weaponID); 
+	hideBoxAll('hidebtm'+weaponID); 
+	showBoxAll('shwbtm'+weaponID);
+}

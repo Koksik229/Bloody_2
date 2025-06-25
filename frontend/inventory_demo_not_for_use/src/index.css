@@ -1,0 +1,199 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /**
+   * Tailwind CSS theme
+   * tailwind.config.ts expects the following color variables to be expressed as HSL values.
+   * A different format will require also updating the theme in tailwind.config.ts.
+  */
+  :root {
+    /* Main background (beige) */
+    --background: 45 33% 78%;
+    --foreground: 240 3% 96%;
+
+    /* Gaming inventory color scheme */
+    --bw-main-bg: 45 33% 78%;
+    --bw-dark-bg: 240 6% 11%;
+    --bw-card-bg: 240 6% 15%;
+    --bw-text-on-dark: 240 3% 96%;
+    --bw-border: 240 6% 20%;
+    --bw-input: 240 6% 18%;
+    --bw-muted: 240 6% 25%;
+    --bw-hover: 240 6% 30%;
+    --bw-accent-gold: 45 77% 55%;
+    --bw-primary-red: 354 75% 44%;
+
+    /* Map to standard variables */
+    --card: 240 6% 15%;
+    --card-foreground: 240 3% 96%;
+
+    --popover: 240 6% 15%;
+    --popover-foreground: 240 3% 96%;
+
+    --primary: 45 77% 55%;
+    --primary-foreground: 240 6% 11%;
+
+    --secondary: 240 6% 25%;
+    --secondary-foreground: 240 3% 96%;
+
+    --muted: 240 6% 25%;
+    --muted-foreground: 240 20% 65%;
+
+    --accent: 45 77% 55%;
+    --accent-foreground: 240 6% 11%;
+
+    --destructive: 354 75% 44%;
+    --destructive-foreground: 240 3% 96%;
+
+    --border: 240 6% 20%;
+    --input: 240 6% 18%;
+    --ring: 45 77% 55%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 240 6% 15%;
+    --sidebar-foreground: 240 3% 96%;
+    --sidebar-primary: 45 77% 55%;
+    --sidebar-primary-foreground: 240 6% 11%;
+    --sidebar-accent: 240 6% 25%;
+    --sidebar-accent-foreground: 240 3% 96%;
+    --sidebar-border: 240 6% 20%;
+    --sidebar-ring: 45 77% 55%;
+  }
+
+  .dark {
+    /* Dark mode uses the same gaming colors */
+    --background: 240 6% 11%;
+    --foreground: 240 3% 96%;
+
+    --bw-main-bg: 240 6% 11%;
+    --bw-dark-bg: 240 6% 11%;
+    --bw-card-bg: 240 6% 15%;
+    --bw-text-on-dark: 240 3% 96%;
+    --bw-border: 240 6% 20%;
+    --bw-input: 240 6% 18%;
+    --bw-muted: 240 6% 25%;
+    --bw-hover: 240 6% 30%;
+    --bw-accent-gold: 45 77% 55%;
+    --bw-primary-red: 354 75% 44%;
+
+    --card: 240 6% 15%;
+    --card-foreground: 240 3% 96%;
+
+    --popover: 240 6% 15%;
+    --popover-foreground: 240 3% 96%;
+
+    --primary: 45 77% 55%;
+    --primary-foreground: 240 6% 11%;
+
+    --secondary: 240 6% 25%;
+    --secondary-foreground: 240 3% 96%;
+
+    --muted: 240 6% 25%;
+    --muted-foreground: 240 20% 65%;
+
+    --accent: 45 77% 55%;
+    --accent-foreground: 240 6% 11%;
+
+    --destructive: 354 75% 44%;
+    --destructive-foreground: 240 3% 96%;
+
+    --border: 240 6% 20%;
+    --input: 240 6% 18%;
+    --ring: 45 77% 55%;
+
+    --sidebar-background: 240 6% 15%;
+    --sidebar-foreground: 240 3% 96%;
+    --sidebar-primary: 45 77% 55%;
+    --sidebar-primary-foreground: 240 6% 11%;
+    --sidebar-accent: 240 6% 25%;
+    --sidebar-accent-foreground: 240 3% 96%;
+    --sidebar-border: 240 6% 20%;
+    --sidebar-ring: 45 77% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(
+        circle at 20% 80%,
+        rgba(120, 119, 198, 0.1) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 80% 20%,
+        rgba(255, 119, 48, 0.1) 0%,
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 40% 40%,
+        rgba(120, 119, 198, 0.05) 0%,
+        transparent 50%
+      );
+  }
+}
+
+@layer components {
+  /* Gaming inventory specific styles */
+  .bw-button {
+    @apply px-3 py-1.5 rounded-md border border-bw-border bg-bw-muted text-bw-text-on-dark transition-all duration-300;
+  }
+
+  .bw-button:hover {
+    @apply bg-bw-hover transform scale-105;
+  }
+
+  .bw-card {
+    @apply bg-bw-card-bg border border-bw-border rounded-lg transition-all duration-300;
+    box-shadow:
+      0 4px 8px rgba(0, 0, 0, 0.8),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .bw-card:hover {
+    box-shadow:
+      0 6px 12px rgba(0, 0, 0, 0.9),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+
+  .bw-slot {
+    @apply border border-bw-border bg-bw-card-bg transition-all duration-300;
+    box-shadow:
+      0 2px 4px rgba(0, 0, 0, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  }
+
+  /* Scrollbar styling */
+  .bw-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  .bw-scrollbar::-webkit-scrollbar-track {
+    @apply bg-bw-dark-bg;
+  }
+
+  .bw-scrollbar::-webkit-scrollbar-thumb {
+    @apply bg-bw-muted rounded-full;
+  }
+
+  .bw-scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-bw-hover;
+  }
+
+  /* Glow effects */
+  .bw-glow-gold {
+    box-shadow: 0 0 10px rgba(251, 191, 36, 0.3);
+  }
+
+  .bw-glow-gold:hover {
+    box-shadow: 0 0 20px rgba(251, 191, 36, 0.5);
+  }
+}

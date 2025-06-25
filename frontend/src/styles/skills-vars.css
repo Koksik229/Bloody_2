@@ -1,0 +1,45 @@
+/* Variables and component classes for Skills block only */
+:root {
+  /* color variables remain */
+  /* BloodyWorld theme subset */
+  --bw-primary-red: 354 75% 44%;
+  --bw-accent-gold: 45 77% 55%;
+  --bw-dark-bg: 240 6% 11%;
+  --bw-card-bg: 240 6% 15%;
+  --bw-text-on-dark: 240 3% 96%;
+  --bw-border: 240 6% 20%;
+  --bw-input: 240 6% 18%;
+  --bw-muted: 240 6% 25%;
+  --bw-hover: 240 6% 30%;
+}
+
+/* Card with subtle border */
+.bw-card {
+  background:hsl(var(--bw-card-bg));
+  border:1px solid hsl(var(--bw-border));
+  border-radius:0.5rem;
+  position:relative;
+  box-shadow:0 2px 4px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.05);
+}
+
+/* Overrides to keep only skills block */
+.skills-only .min-h-screen{background:transparent!important;min-height:auto;padding:0;margin:0;}
+.skills-only .min-h-screen> .bg-bw-card-bg{display:none!important;}
+
+/* Minimal components */
+.bw-button {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0.375rem 0.75rem;
+  font-size:0.875rem;
+  border-radius:0.375rem;
+  border:1px solid hsl(var(--bw-border));
+  background:hsl(var(--bw-muted));
+  color:hsl(var(--bw-text-on-dark));
+  transition:background 0.2s;
+}
+
+.bw-button:hover {
+  background:hsl(var(--bw-hover));
+}

@@ -92,6 +92,17 @@ username             VARCHAR
 success              BOOLEAN      
 timestamp            DATETIME     
 
+-- professional_skill --
+id                   INTEGER     PK 
+code                 TEXT       NOT NULL  
+name                 TEXT       NOT NULL  
+
+-- professional_skill_progression --
+id                   INTEGER     PK 
+skill_id             INTEGER    NOT NULL  
+level                INTEGER    NOT NULL  
+xp_required          INTEGER    NOT NULL  
+
 -- race_level_stats --
 id                   INTEGER    NOT NULL PK 
 race_id              INTEGER      
@@ -151,6 +162,20 @@ quantity             INTEGER    NOT NULL  default=1
 durability_cur       INTEGER    NOT NULL  default=0
 durability_max       INTEGER    NOT NULL  default=0
 enhance_level        INTEGER    NOT NULL  default=0
+
+-- user_professional_skill --
+id                   INTEGER     PK 
+user_id              INTEGER    NOT NULL  
+skill_id             INTEGER    NOT NULL  
+current_xp           INTEGER      default=0
+level                INTEGER      default=0
+
+-- user_professional_skill_old --
+id                   INTEGER     PK 
+user_id              INTEGER    NOT NULL  
+skill_id             INTEGER    NOT NULL  
+current_xp           INTEGER      default=0
+level                INTEGER      default=0
 
 -- user_wallets --
 user_id              INTEGER    NOT NULL PK 

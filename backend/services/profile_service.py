@@ -44,6 +44,13 @@ def get_user_profile(db: Session, user_id: int) -> Dict[str, Any]:
         "nickname": user.nickname,
         "level": user.level,
         "experience": user.experience,
+        "next_level_experience": (db.query(LevelProgression).filter(LevelProgression.level == user.level + 1).first().experience_required
+                                    if db.query(LevelProgression).filter(LevelProgression.level == user.level + 1).first() else None),
+        "next_level_ap": (db.query(LevelProgression).filter(LevelProgression.level == user.level + 1).first().ap
+                            if db.query(LevelProgression).filter(LevelProgression.level == user.level + 1).first() else 0),
+        "ap_breakpoints": [row.experience_required for row in db.query(LevelProgression)
+                              .filter(LevelProgression.level == user.level)
+                              .order_by(LevelProgression.experience_required).all()],
         "race": {
             "id": race.id if race else None,
             "name": race.name if race else None

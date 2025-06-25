@@ -1,0 +1,224 @@
+function insertitemobj(obj, weaponID)
+{
+	if (div_items_box && obj)
+	{
+		var new_div = document.createElement('div');
+		new_div.id=obj.id;
+		new_div.innerHTML=obj.innerHTML;
+		
+		//obj.innerHTML=''; 
+		//obj=null;
+		console.log(obj);
+		var old_div = document.getElementById(obj.id);
+		if(old_div)
+	 	{
+			var old_wid=document.getElementById('weaponid_'+old_div.id);
+
+			if(old_wid)
+			{
+				var old_num = document.getElementById('js_number_'+old_wid.value).value;
+				old_num = parseInt(old_num);
+				old_wid=null;
+				
+				if(old_num>0)
+				{	
+					div_items_box.replaceChild(new_div, old_div);
+					//Проверяем какой у нас вид, новый иконками или старый, переменная задается в файле /lib/layout/umh/home/inventar.htm 2 строка
+					var prefix = "";
+					var is_icon = document.querySelector('#view_name').dataset.view;
+					if (!is_icon) { 
+						prefix = "Количество: "
+					}
+					var new_wid=document.getElementById('weaponid_'+new_div.id);
+					var new_weapon_num = document.getElementById('js_number_' + new_wid.value);
+					var new_weapon_num_view = document.getElementById('number_view_' + new_wid.value);
+						new_weapon_num_view.innerHTML=prefix + (old_num+1);
+						new_weapon_num.value=old_num+1;
+				}
+			}
+		}
+		else 
+		{
+			div_items_box.appendChild(new_div);
+			obj.innerHTML=''; 
+			obj=null; 
+		}
+	}
+}
+
+function insertitemobj_ico(obj, weaponID)
+{
+	console.log(weaponID);
+	if (div_items_box && obj)
+	{
+		var new_div = document.createElement('div');
+		new_div.id=obj.id;
+		new_div.innerHTML=obj.innerHTML;
+		new_div.classList.add("item-container");
+		new_div.classList.add("item_"+weaponID);
+		//obj.innerHTML=''; 
+		//obj=null;
+		// console.log(obj);
+		// var old_div = document.getElementById(obj.id);
+		var old_div = document.querySelector('.item_'+weaponID);
+		console.log(old_div);
+		
+		if(old_div)
+	 	{
+			var old_wid=document.getElementById('chek_sum_'+weaponID);
+			console.log(old_wid);
+			if(old_wid)
+			{
+				// var old_num = document.getElementById('js_number_'+old_wid.value).value;
+				var old_num = document.getElementById('js_number_'+weaponID).value;
+				old_num = parseInt(old_num);
+				old_wid=null;
+				
+				if(old_num>0)
+				{	
+					div_items_box.replaceChild(new_div, old_div);
+					//Проверяем какой у нас вид, новый иконками или старый, переменная задается в файле /lib/layout/umh/home/inventar.htm 2 строка
+					var prefix = "";
+					var is_icon = document.querySelector('#view_name').dataset.view;
+					if (!is_icon) { 
+						prefix = "Количество: "
+					}
+					var new_wid=document.getElementById('weaponid_'+new_div.id);
+					var new_weapon_num = document.getElementById('js_number_' + new_wid.value);
+					var new_weapon_num_view = document.getElementById('number_view_' + new_wid.value);
+						new_weapon_num_view.innerHTML=prefix + (old_num+1);
+						new_weapon_num.value=old_num+1;
+				}
+			}
+		}
+		else 
+		{
+			div_items_box.appendChild(new_div);
+			obj.innerHTML=''; 
+			obj=null; 
+		}
+	}
+}	
+		
+
+function update_weapon(newID, oldID, addQuantiy)
+{
+		var weapon_num = document.getElementById('js_number_' + oldID);
+		var weapon_chek_sum = document.getElementById('chek_sum_'+oldID);
+		var weapon_div = document.getElementById(weapon_chek_sum.value);
+		var wid=document.getElementById('weaponid_'+weapon_chek_sum.value);
+		var weapon_href = document.getElementById('href_' + oldID);
+		var weapon_num_view = document.getElementById('number_view_' + oldID);
+		var group = document.getElementById('group_' + oldID);
+		console.log(weapon_div);
+		if(newID>0 && weapon_num.value > 0)
+		{
+				if(addQuantiy)
+				{ 
+					 addQuantiy = parseInt(addQuantiy);
+					 weapon_num.value = parseInt(weapon_num.value)+parseInt(addQuantiy);
+					 if (weapon_num.value <= 0) 
+					 {
+						 if (loaded && loaded[oldID]) 
+						 {
+						    loaded[oldID]=null;
+						 }
+						 div_items_box.removeChild(weapon_div);
+						 return true;
+					 }
+//Проверяем какой у нас вид, новый иконками или старый, переменная задается в файле /lib/layout/umh/home/inventar.htm 2 строка
+					var prefix = "";
+					var is_icon = document.querySelector('#view_name').dataset.view;
+					if (!is_icon) { 
+						prefix = "Количество: "
+					}
+					weapon_num_view.innerHTML=prefix + weapon_num.value;
+				}
+			//weapon_href.onclick = "dress_weapon("+newID+")";
+			weapon_href.id = 'href_'+newID;
+			weapon_num.id = 'js_number_'+newID;
+			weapon_chek_sum.id='chek_sum_'+newID;
+			weapon_num_view.id='number_view_'+newID;
+			group.id='group_'+newID;
+			wid.value=newID;
+			
+		}
+		else
+		{
+			if(div_items_box)
+			{
+				div_items_box.removeChild(weapon_div);
+				if (loaded && loaded[oldID]) 
+				 {
+				    loaded[oldID]=null;
+				 }
+			}
+		}
+			
+}
+
+function updateWeaponByChksumm(newID, chksumm, addQuantiy)
+{
+	var oldID = document.getElementById('weaponid_'+chksumm);
+	if (oldID)
+	{
+		update_weapon(newID, oldID.value, addQuantiy);
+	}
+}
+
+function dress_weapon(chek_summ)
+{
+	var weapon_id = document.getElementById('weaponid_'+chek_summ);
+	if(weapon_id)
+	{
+		var ID = parseInt(weapon_id.value);
+		if(ID>0)
+		{
+			var weapon_num = document.getElementById('js_number_'+ID);
+			var weapon_chek_sum = document.getElementById('chek_sum_'+ID);
+			var weapon_group = document.getElementById('group_'+ID);
+			var weapon_div = document.getElementById(chek_summ);
+			if(weapon_num && weapon_div && weapon_group)
+			{
+				block_window();
+				gotoframe.location='index.php?file=inventar_dress&act=dress&weaponid='+ID+'&weaponGroup='+weapon_group.value;
+			}
+		}
+	}
+}
+
+
+var throw_item_id=0;
+function set_throw(weaponID)
+{	
+	if(weaponID)
+	{
+		throw_item_id=weaponID;
+	}
+}
+
+function flush_throw()
+{
+	throw_item_id=0;
+}
+
+function trow_item(res)
+{
+	var weapon_id = document.getElementById('weaponid_'+throw_item_id);
+	if(weapon_id)
+	{			
+		var ID = parseInt(weapon_id.value);
+		if(ID>0)
+		{
+			var weapon_num = document.getElementById('js_number_'+ID);
+			var weapon_chek_sum = document.getElementById('chek_sum_'+ID);
+			var weapon_group = document.getElementById('group_'+ID);
+				var weapon_div = document.getElementById(weapon_chek_sum.value);
+				if(weapon_num && weapon_div)
+				{
+					block_window();
+					gotoframe.location='index.php?file=inventar_dress&act=throw&weaponid='+ID+'&weaponGroup='+weapon_group.value;
+				}
+		}
+	}
+}

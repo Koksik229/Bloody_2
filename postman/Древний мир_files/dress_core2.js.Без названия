@@ -1,0 +1,245 @@
+var mess_span;
+var gotoframe;
+var div_items_box;
+var realLife;
+function init_weapon_functions()
+{
+	mess_span = document.getElementById('messege_span');
+	gotoframe = window.weaponCloth;
+	div_items_box = document.getElementById('div_items_box');
+
+};
+
+var block_timer;
+var locked=0;
+function updateLMHAfterDress(L,M,H, RL, RM) {
+	maxLife = parseInt(L);
+	maxMagic = parseInt(M);
+	realEat = parseInt(H);
+	if (RL && RL>=0)
+	{
+		realLife = RL;
+	}
+
+	if (RM && RM>0)
+	{
+		realMagic = RM;
+	}
+	fLifeStop = 0;
+	fMagicStop = 0;
+    var IdHelth=document.getElementById('IdHelth');
+    if (IdHelth){
+        if (!realLife){
+            realLife=0;
+        }
+        if(realLife < maxLife) {
+            ret = Math.round((realLife*100)/maxLife);
+            ret = ret<1?1:ret;
+            getLifeEl().height=ret+'%';
+            if (window.lifeTimer) {
+                clearTimeout(window.lifeTimer);
+                increaseLife();
+            }
+            initLifeTimer();
+        } else if(realLife >= maxLife) {
+            realLife=maxLife;
+            getLifeEl().height='100%';
+            fLifeStop = 1;
+            document.getElementById('IdHelthP').firstChild.nodeValue = realLife;
+        }
+
+        if(realMagic < maxMagic) {
+            ret = Math.round((realMagic*100)/maxMagic);
+            ret = ret<1?1:ret;
+            getMagicEl().height=ret+'%';
+            initMagicTimer();
+        } else if(realMagic >= maxMagic) {
+            getMagicEl().height='100%';
+            document.getElementById('IdMagicP').firstChild.nodeValue = realMagic;
+            fMagicStop = 1;
+        }
+        if(realEat < maxEat) {
+            ret = Math.round((realEat*100)/maxEat);
+            ret = ret<1?1:ret;
+            document.getElementById('IdEat').height=ret+'%';
+        } else if(realEat >= maxEat) {
+            document.getElementById('IdEat').height='100%'
+            document.getElementById('IdEatP').firstChild.nodeValue=realEat;
+        }
+	}
+
+}
+
+var block_timer;
+var locked=0;
+
+function block_window()
+{
+	var div_ovelay=document.getElementById('ovelay_two');
+	var x,y;
+	var test1 = document.body.scrollHeight;
+	var test2 = document.body.offsetHeight
+	if (test1 > test2) // all but Explorer Mac
+	{
+		x = document.body.scrollWidth;
+		y = document.body.scrollHeight;
+	}
+	else // Explorer Mac;
+		 //would also work in Explorer 6 Strict, Mozilla and Safari
+	{
+		x = document.body.offsetWidth;
+		y = document.body.offsetHeight;
+	}
+	div_ovelay.style.display = "inline";
+	// div_ovelay.style.opacity = 0.2;
+	// div_ovelay.style.filter=' alpha(opacity = 20); ';
+	div_ovelay.style.position = 'absolute';
+	div_ovelay.style.left = 0;
+	div_ovelay.style.top = 0;
+	div_ovelay.style.height = y+'px';
+	div_ovelay.style.width = x+'px'
+	div_ovelay.style.zindex = '5';
+	locked=1;
+	block_timer = setTimeout('unblock_window(1)',  10000);
+}
+
+
+function unblock_window(isTimer)
+{
+	if(isTimer)
+	{
+		dress_result('Не удалось осуществить операцию. Обновите средний фрейм, и попробуйте снова.');
+	}
+	if(block_timer) window.clearTimeout(block_timer);
+
+	var div_ovelay=document.getElementById('ovelay_two');
+	div_ovelay.style.display = "none";
+	div_ovelay.style.height = 0;
+	div_ovelay.style.width = 0;
+	locked=0;
+}
+
+function dress_result(res_msg)
+{
+	if(res_msg && mess_span)
+	{
+		mess_span.innerHTML=res_msg;
+		//setTimeout('dress_result()', 5000);
+	} else if(mess_span) mess_span.innerHTML='';
+}
+
+function update_infocloth(power, flexibility, strong, intuition, reason)
+{
+		var div_power = document.getElementById('div_power');
+			if(div_power && power>0){ div_power.innerHTML="М:"+power;}
+		var div_flexibility = document.getElementById('div_flexibility');
+			if(div_flexibility && flexibility>0){ div_flexibility.innerHTML="В:"+flexibility;}
+		var div_strong = document.getElementById('div_strong');
+			if(div_strong && strong>0){ div_strong.innerHTML="C:"+strong;}
+		var div_intuition = document.getElementById('div_intuition');
+			if(div_intuition && intuition>0){ div_intuition.innerHTML="И:"+intuition;}
+		var div_reason = document.getElementById('div_reason');
+			if(div_reason && reason>0){ div_reason.innerHTML="Р:"+reason;}
+}
+
+
+var OpenDivOk=0;
+//-------------------------------- РЕСУРСЫ
+/*function trow_res(weaponID)
+{
+	clearDivOk();
+	if(OpenDivOk) { closeDiv('throw_res_ok'); OpenDivOk=0;}
+	if(weaponID>0)
+	{
+		var containert = document.getElementById('throw_res_ok');
+		var frm_weaponID = document.getElementById('frm_weaponID_ok');
+		if(containert && frm_weaponID)
+		{
+				frm_weaponID.value=weaponID;
+				containert.style.visibility  = "visible";
+				containert.style.display='block';
+				containert.style.top = (mousey-50)+'px';
+				containert.style.z = 99;
+				OpenDivOk=1;
+		}
+	}
+}
+*/
+function update_res(chek_sum, quantity)
+{
+	submitMag=0;
+	clearDiv();
+	if(chek_sum)
+	{
+		if(!quantity)
+		{
+	 		var weapon_div=document.getElementById(chek_sum);
+			if(weapon_div)
+			{
+				weapon_div.parentNode.removeChild(weapon_div);
+			}
+		}
+		else
+		{
+			quantity=parseInt(quantity);
+			var ress_num=document.getElementById('ress_num_'+chek_sum);
+			if(ress_num)
+				{
+					ress_num.value=quantity;
+					var view_num=document.getElementById('view_num_'+chek_sum);
+
+					if(view_num)
+					{
+					if(ress_num.value>1) view_num.innerHTML="<B>Количество: <font color=red>"+quantity+"</font></B>";
+						else view_num.innerHTML='';
+					}
+				}
+		}
+	}
+}
+var OpenDiv=0;
+function keepDiv(weaponID)
+{
+	clearDiv();
+	if(OpenDiv) { closeDiv('throw_res'); OpenDiv=0;}
+	if(weaponID>0)
+	{
+		var containert = document.getElementById('throw_res');
+		var frm_weaponID = document.getElementById('frm_weaponID');
+		if(containert && frm_weaponID)
+		{
+				frm_weaponID.value=weaponID;
+				containert.style.visibility  = "visible";
+				containert.style.display='block';
+				containert.style.top = (mousey-50)+'px';
+				containert.style.z = 99;
+				OpenDiv=1;
+		}
+	}
+}
+
+function closeDiv(id)
+{
+	var containert = document.getElementById(id);
+	if(containert)
+	{
+			containert.style.visibility  = "hidden";
+			containert.style.display='none';
+	}
+}
+
+function clearDiv()
+{
+	var frm_weaponID = document.getElementById('frm_weaponID');
+	var savekeep = document.getElementById('savekeep');
+	if(frm_weaponID) frm_weaponID.value='';
+	if(savekeep) savekeep.value='';
+}
+
+function clearDivOk()
+{
+	var frm_weaponID = document.getElementById('frm_weaponID_ok');
+	var savekeep = document.getElementById('savekeep_ok');
+	frm_weaponID.value='';
+	savekeep.value='';
+}
