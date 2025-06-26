@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generated Page</title>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+<title>Equipment Panel</title>
+  <link rel="stylesheet" href="global.css">
+  <style id="sections-styles">
+/* CSS for section section:equipment-panel */
+.equipment-panel-container {
+    position: relative;
+    width: 210px;
+    height: 260px;
+    max-width: 100%;
+    background-color: #ffffff;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  .item-slot {
+    position: absolute;
+    border: 0.1px solid #000000;
+    box-sizing: border-box;
+  }
+
+  .character-preview {
+    position: absolute;
+    width: 102px;
+    height: 179px;
+    left: 54px;
+    top: 45px;
+    background-color: #7f6161;
+    border: 0.1px solid #000000;
+  }
+
+  .slot-crossbow { width: 47px; height: 45px; left: 0px; top: 0px; }
+  .slot-dart { width: 37px; height: 45px; left: 47px; top: 0px; }
+  .slot-helm { width: 42px; height: 45px; left: 84px; top: 0px; }
+  .slot-cape { width: 54px; height: 43px; left: 0px; top: 45px; }
+  .slot-shield { width: 54px; height: 69px; left: 0px; top: 88px; }
+  .slot-armor { width: 54px; height: 59px; left: 0px; top: 157px; }
+  .slot-boots { width: 54px; height: 44px; left: 0px; top: 216px; }
+  .slot-necklace { width: 54px; height: 43px; left: 156px; top: 45px; }
+  .slot-gloves { width: 54px; height: 43px; left: 156px; top: 88px; }
+  .slot-weapon { width: 54px; height: 69px; left: 156px; top: 131px; }
+  .slot-cloak { width: 54px; height: 60px; left: 156px; top: 200px; }
+  .slot-belt { width: 44px; height: 36px; left: 83px; top: 224px; }
+
+  .spell-slots-container {
+    position: absolute;
+    left: 126px;
+    top: 0px;
+    width: 84px;
+    height: 45px;
+  }
+  .spell-slots-container .item-slot {
+    width: 28px;
+    height: 15px;
+  }
+  .spell-slot-1 { left: 0px; top: 0px; } /* 3:17 */
+  .spell-slot-2 { left: 0px; top: 15px; } /* 3:16 */
+  .spell-slot-3 { left: 0px; top: 30px; } /* 3:18 */
+  .spell-slot-4 { left: 28px; top: 0px; } /* 3:23 */
+  .spell-slot-5 { left: 28px; top: 15px; } /* 3:22 */
+  .spell-slot-6 { left: 28px; top: 30px; } /* 3:24 */
+  .spell-slot-7 { left: 56px; top: 0px; } /* 3:20 */
+  .spell-slot-8 { left: 56px; top: 15px; } /* 3:19 */
+  .spell-slot-9 { left: 56px; top: 30px; } /* 3:21 */
+
+  .ring-slots-container {
+    position: absolute;
+    left: 54px;
+    top: 224px;
+    width: 102px;
+    height: 36px;
+  }
+  .ring-slots-container .item-slot {
+    width: 29px;
+    height: 18px;
+  }
+  .ring-slot-1 { left: 0px; top: 0px; } /* 3:7 */
+  .ring-slot-2 { left: 0px; top: 18px; } /* 3:10 */
+  .ring-slot-3 { left: 73px; top: 0px; } /* 3:8 */
+  .ring-slot-4 { left: 73px; top: 18px; } /* 3:9 */
+  </style>
+  <script src="global.js" defer></script>
+</head>
+<body>
+<section id="equipment-panel">
+  <div class="equipment-panel-container">
+    <div class="character-preview"></div>
+    <img src="images/2bf331643930ad0a7f14bbffd9e0628ab1e25dc0.png" alt="Crossbow Slot" class="item-slot slot-crossbow">
+    <img src="images/80357e9586353abafc052429b07459f4a5f6da09.png" alt="Dart Slot" class="item-slot slot-dart">
+    <img src="images/0e9277a3723dbe171fb081f1da3f2afe3988d532.png" alt="Helm Slot" class="item-slot slot-helm">
+    <img src="images/a8c37bc4b0aaeed162f907ecf45e2a1340ae2857.png" alt="Cape Slot" class="item-slot slot-cape">
+    <img src="images/5859b7562085a04861ad08888f556171ea3127fd.png" alt="Shield Slot" class="item-slot slot-shield">
+    <img src="images/098e4240fe058907e363522285c1a386d32cb5e5.png" alt="Armor Slot" class="item-slot slot-armor">
+    <img src="images/8db2f2015086199d7b680d0ee4daa70be0d3dbf1.png" alt="Boots Slot" class="item-slot slot-boots">
+    <img src="images/66bc4a5c720bb3368507b79269111b3569b62c68.png" alt="Necklace Slot" class="item-slot slot-necklace">
+    <img src="images/3b86e53d1d8031d6cb11cfd7b17d1f048d29c74f.png" alt="Gloves Slot" class="item-slot slot-gloves">
+    <img src="images/d687c28026189ae35114ce0cca613c71a22cf322.png" alt="Weapon Slot" class="item-slot slot-weapon">
+    <img src="images/6ebda0141b6e9e5f97409fd2de3754c5c597755d.png" alt="Cloak Slot" class="item-slot slot-cloak">
+    <img src="images/ed880a84552dc8d66b657e3f2d5ebfb70f57e222.png" alt="Belt Slot" class="item-slot slot-belt">
+    
+    <!--合併圖片-->
+    <div class="spell-slots-container">
+      <img src="images/9b55ce947982f86f85f617834e5319d73715de74.png" alt="Spell Slot" class="item-slot spell-slot-1">
+      <img src="images/9b55ce947982f86f85f617834e5319d73715de74.png" alt="Spell Slot" class="item-slot spell-slot-2">
+      <img src="images/9b55ce947982f86f85f617834e5319d73715de74.png" alt="Spell Slot" class="item-slot spell-slot-3">
+      <img src="images/9b55ce947982f86f85f617834e5319d73715de74.png" alt="Spell Slot" class="item-slot spell-slot-4">
+      <img src="images/9b55ce947982f86f85f617834e5319d73715de74.png" alt="Spell Slot" class="item-slot spell-slot-5">
+      <img src="images/9b55ce947982f86f85f617834e5319d73715de74.png" alt="Spell Slot" class="item-slot spell-slot-6">
+      <img src="images/9b55ce947982f86f85f617834e5319d73715de74.png" alt="Spell Slot" class="item-slot spell-slot-7">
+      <img src="images/9b55ce947982f86f85f617834e5319d73715de74.png" alt="Spell Slot" class="item-slot spell-slot-8">
+      <img src="images/9b55ce947982f86f85f617834e5319d73715de74.png" alt="Spell Slot" class="item-slot spell-slot-9">
+    </div>
+    
+    <!--合併圖片-->
+    <div class="ring-slots-container">
+      <img src="images/9a6524e7e9280983a86530ae45205dd6a97a5a32.png" alt="Ring Slot" class="item-slot ring-slot-1">
+      <img src="images/9a6524e7e9280983a86530ae45205dd6a97a5a32.png" alt="Ring Slot" class="item-slot ring-slot-2">
+      <img src="images/9a6524e7e9280983a86530ae45205dd6a97a5a32.png" alt="Ring Slot" class="item-slot ring-slot-3">
+      <img src="images/9a6524e7e9280983a86530ae45205dd6a97a5a32.png" alt="Ring Slot" class="item-slot ring-slot-4">
+    </div>
+  </div>
+</section>
+</body>
+</html>

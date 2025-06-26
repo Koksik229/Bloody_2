@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import EquipmentPanel, { EquipSlot } from './EquipmentPanel';
 import TopMenu from './TopMenu';
 import { createPortal } from 'react-dom';
+import V2InventoryPanel from './V2InventoryPanel';
 
 export interface Item {
   id:number;
@@ -104,10 +105,10 @@ const InventoryScreen: React.FC<Props> = ({ onClose, onSkills }) => {
   }
 
   return (
-    <div className="inventory-screen">
+    <div className="inventory-screen flex gap-4 h-full p-8">
       {/* фиксированное верхнее меню */}
       <TopMenu onSkills={onSkills ?? onClose} />
-      <div className="equip-side">
+      <div className="equip-side h-full bg-gradient-to-br from-bw-dark-bg via-bw-card-bg to-bw-dark-bg p-8 flex flex-col rounded-xl">
         <div className="wallet-panel">
           <span className="coin gold"   onMouseEnter={e=>setTt({visible:true,text:'Золото',x:e.clientX+12,y:e.clientY+12})}
             onMouseMove={e=>setTt(prev=>({...prev,x:e.clientX+12,y:e.clientY+12}))}
@@ -126,24 +127,44 @@ const InventoryScreen: React.FC<Props> = ({ onClose, onSkills }) => {
         <EquipmentPanel equipment={equipment} />
         <button className="back-btn" onClick={onClose}>Назад</button>
       </div>
-      <div className="items-side">
-        <div className="cat-tabs">
-          {categories.map((c) => (
-            <button key={c.code} className={c.code === activeCat ? 'active' : ''} onClick={() => {setActiveCat(c.code); setActiveGroup('all');}}>
-              {c.name}
-            </button>
-          ))}
-        </div>
+      <div className="items-side h-full bg-bw-dark-bg p-8 overflow-y-auto rounded-xl flex-1">
+        <V2InventoryPanel />
+        {/*
 
-        {/* sub-tabs */}
-        <div className="sub-tabs">
-          {curr && (
-            <>
-              <button className={activeGroup==='all'? 'active': ''} onClick={()=>setActiveGroup('all')}>Все</button>
-              {curr.groups.map(g=> (
-                <button key={g.code} className={activeGroup===g.code? 'active': ''} onClick={()=>setActiveGroup(g.code)}>{g.name}</button>
+          <div>
+            {categories.map((c) => (
+              <button key={c.code} className={c.code === activeCat ? 'active' : ''} onClick={() => {setActiveCat(c.code); setActiveGroup('all');}}>
+                {c.name}
+          
+        )}
+      </div>
+
+      <div className="groups-area">
+        {(activeGroup==='all' ? curr?.groups : curr?.groups.filter(g=>g.code===activeGroup))?.map((g) => (
+          <div key={g.code} className="group-block">
+            <h4>{g.name}</h4>
+            <div className="group-items grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+              {g.items.length === 0 && <span className="no-items">Пусто</span>}
+              {g.items.map((it) => (
+                <div key={it.id} className="item-card bg-gradient-to-r from-bw-card-bg to-bw-dark-bg border border-bw-border rounded-lg p-4 flex items-center justify-between hover:shadow-lg hover:-translate-y-0.5 transition-transform">
+                  {it.icon && (
+                    <img src={it.icon.startsWith('/')? it.icon: `/icons/items/${it.icon}`} className="item-icon" alt={it.name} />
+                  )}
+                  <div className="item-main">
+                    <span className="item-name">{it.name}</span>
+                    {it.min_damage && <span className="item-dmg">Урон {it.min_damage}-{it.max_damage}</span>}
+                    {(it.str_bonus ?? 0) > 0 && <span>Сила +{it.str_bonus}</span>}
+                    {(it.agi_bonus ?? 0) > 0 && <span>Ловкость +{it.agi_bonus}</span>}
+                    {(it.int_bonus ?? 0) > 0 && <span>Интуиция +{it.int_bonus}</span>}
+                    {(it.durability_max ?? 0) > 0 && <span>Прочность {it.durability_cur}/{it.durability_max}</span>}
+                  </div>
+                  <div className="item-stats">
+                    {it.min_level && <span className="item-level">Lvl {it.min_level}</span>}
+                    <button className="equip-btn" onClick={()=>equipItem(it)}>Надеть</button>
+                  </div>
+                </div>
               ))}
-            </>
+             )}
           )}
         </div>
 
@@ -151,10 +172,10 @@ const InventoryScreen: React.FC<Props> = ({ onClose, onSkills }) => {
           {(activeGroup==='all' ? curr?.groups : curr?.groups.filter(g=>g.code===activeGroup))?.map((g) => (
             <div key={g.code} className="group-block">
               <h4>{g.name}</h4>
-              <div className="group-items">
+              <div className="group-items grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {g.items.length === 0 && <span className="no-items">Пусто</span>}
                 {g.items.map((it) => (
-                  <div key={it.id} className="item-card">
+                  <div key={it.id} className="item-card bg-gradient-to-r from-bw-card-bg to-bw-dark-bg border border-bw-border rounded-lg p-4 flex items-center justify-between hover:shadow-lg hover:-translate-y-0.5 transition-transform">
                     {it.icon && (
                       <img src={it.icon.startsWith('/')? it.icon: `/icons/items/${it.icon}`} className="item-icon" alt={it.name} />
                     )}
@@ -176,7 +197,8 @@ const InventoryScreen: React.FC<Props> = ({ onClose, onSkills }) => {
             </div>
           ))}
         </div>
-      </div>
+      */}
+    </div>
     </div>
   );
 };

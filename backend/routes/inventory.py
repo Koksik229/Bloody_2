@@ -24,7 +24,7 @@ def get_inventory_categories(
         text("""
         SELECT ic.id as cat_id, ic.code as cat_code, ic.name_ru as cat_name,
                ig.id as grp_id, ig.code as grp_code, ig.name_ru as grp_name,
-               ui.id as user_item_id, it.name as item_name, it.icon, ui.durability_cur, ui.durability_max, ui.enhance_level,
+               ui.id as user_item_id, it.id as def_item_id, it.name as item_name, it.icon, ui.durability_cur, ui.durability_max, ui.enhance_level,
                it.min_level, it.base_stats_json
         FROM item_categories ic
         JOIN item_groups ig ON ig.category_id = ic.id
@@ -40,6 +40,7 @@ def get_inventory_categories(
     cat_map = {}
     grp_map = {}
     item_map = {}
+    def_map: dict[int, list[ItemBase]] = {}
 
     for r in rows:
         cat_id = r["cat_id"]
@@ -65,18 +66,19 @@ def get_inventory_categories(
             )
             grp_map[grp_id].items.append(item)
             item_map[item.id] = item
+            if r["def_item_id"] is not None:
+                def_map.setdefault(r["def_item_id"], []).append(item)
     # effects query
-    if item_map:
-        ids = tuple(item_map.keys())
+    # attach effects using definition item ids
+    if def_map:
+        ids = tuple(def_map.keys())
         id_list = ','.join(str(i) for i in ids)
         q = db.execute(text(f"SELECT item_id, stat, amount FROM item_effects WHERE amount<>0 AND item_id IN ({id_list})")).mappings().all()
         for row in q:
-            itm = item_map.get(row["item_id"])
-            if itm is None:
-                continue
-            if itm.effects is None:
-                itm.effects = {}
-            itm.effects[row["stat"]] = row["amount"]
+            for itm in def_map.get(row["item_id"], []):
+                if itm.effects is None:
+                    itm.effects = {}
+                itm.effects[row["stat"]] = row["amount"]
 
     return categories
 
