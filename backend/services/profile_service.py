@@ -4,6 +4,7 @@ from models.user import User
 from models.race import RaceLevelStat
 from models.location import Location, LocationLink
 from models.skills import Skill
+from models.base_stats import UserVital
 from models.race import Race
 from models.level_progression import LevelProgression
 from typing import Dict, Any, Optional
@@ -23,6 +24,9 @@ def get_user_profile(db: Session, user_id: int) -> Dict[str, Any]:
     skill = user.skills[0] if user.skills else None
     if not skill:
         return None
+
+    # Получаем витальные показатели
+    vital = db.query(UserVital).filter(UserVital.user_id == user.id).first()
 
     # Получаем доступные локации
     available_locations = []
@@ -76,7 +80,11 @@ def get_user_profile(db: Session, user_id: int) -> Dict[str, Any]:
             "attributes": skill.available_attribute_points,
             "attributes_special": skill.available_attribute_points_special
         },
-        "available_locations": available_locations
+        "available_locations": available_locations,
+        "hp": vital.current_hp if vital else None,
+        "mp": vital.current_mp if vital else None,
+        "max_hp": vital.max_hp if vital else None,
+        "max_mp": vital.max_mp if vital else None
     }
 
 get_player_profile = get_user_profile  # alias

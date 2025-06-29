@@ -9,8 +9,8 @@
 }
 
 .game-body {
-  height: calc(100vh - var(--chat-height));
+  min-height: calc(100vh - 70px);
+  padding-bottom: var(--chat-height);
   overflow-y: auto;
   position: relative;
 }
-

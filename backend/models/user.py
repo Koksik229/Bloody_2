@@ -28,3 +28,5 @@ class User(Base):
     sent_messages = relationship("ChatMessage", foreign_keys="[ChatMessage.sender_id]", back_populates="sender")
     received_messages = relationship("ChatMessage", foreign_keys="[ChatMessage.receiver_id]", back_populates="receiver")
     skills = relationship("Skill", back_populates="user")
+    base_stats = relationship("UserBaseStats", back_populates="user", uselist=False)
+    vital = relationship("UserVital", back_populates="user", uselist=False)

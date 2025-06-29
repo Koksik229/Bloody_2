@@ -93,13 +93,13 @@ const LocationView: React.FC = () => {
       const isArrow = label === '←' || label === '→';
 
       const commonProps = {
-        key: move.id,
         onClick: () => { handleTooltip(false, ''); handleMove(move.id); },
       } as React.ButtonHTMLAttributes<HTMLButtonElement>;
 
       if (isArrow) {
         return (
           <button
+            key={move.id}
             {...commonProps}
             onMouseEnter={e => handleTooltip(true, move.name, e)}
             onMouseMove={e => handleTooltip(true, move.name, e)}
@@ -110,12 +110,12 @@ const LocationView: React.FC = () => {
         );
       }
 
-      return <button {...commonProps}>{label}</button>;
+      return <button key={move.id} {...commonProps}>{label}</button>;
     });
   };
 
   return (
-    <div className={`location-view ${user.location?.type_id === 1 ? 'type1' : ''}`}>
+    <div className={`location-view ${user.location?.type_id === 1 ? 'type1' : ''} ${user.location?.type_id === 2 ? 'type2' : ''}`}>
       {/* Кнопки над фоном для type_id = 1 */}
       {user.location?.type_id === 1 && (
         <div className="move-buttons move-buttons-top">

@@ -148,6 +148,19 @@ weapon_type_id       INTEGER    NOT NULL PK
 name                              
 seq                               
 
+-- user_base_stats --
+user_id              INTEGER     PK 
+max_hp               INTEGER    NOT NULL  
+max_mp               INTEGER    NOT NULL  
+strength             INTEGER    NOT NULL  
+agility              INTEGER    NOT NULL  
+power                INTEGER    NOT NULL  
+parry                INTEGER    NOT NULL  
+weapon_skill         INTEGER    NOT NULL  
+shield_block         INTEGER    NOT NULL  
+intuition            INTEGER    NOT NULL  
+updated_at           DATETIME     default=CURRENT_TIMESTAMP
+
 -- user_equipment --
 user_id              INTEGER    NOT NULL PK 
 slot_id              INTEGER    NOT NULL PK 
@@ -176,6 +189,14 @@ user_id              INTEGER    NOT NULL
 skill_id             INTEGER    NOT NULL  
 current_xp           INTEGER      default=0
 level                INTEGER      default=0
+
+-- user_vital --
+user_id              INTEGER     PK 
+current_hp           INTEGER    NOT NULL  
+current_mp           INTEGER    NOT NULL  
+max_hp               INTEGER    NOT NULL  
+max_mp               INTEGER    NOT NULL  
+regen_ts             DATETIME     default=CURRENT_TIMESTAMP
 
 -- user_wallets --
 user_id              INTEGER    NOT NULL PK 

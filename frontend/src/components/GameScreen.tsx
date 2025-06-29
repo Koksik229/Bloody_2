@@ -27,8 +27,7 @@ export default function GameScreen() {
       // Фон центрирован, левый край: 50% - 43vw/2
       return {
         left: `calc(50% - 43vw/2 - 85px)`,
-        top: '40%',
-        transform: 'translateY(-50%)',
+        top: '34vh',
       };
     }
     return undefined;
@@ -86,9 +85,9 @@ export default function GameScreen() {
                   position: 'absolute',
                   height: '40vh',
                   width: '43vw',
-                  top: '40%',
+                  top: '14vh',
                   left: '50%',
-                  transform: 'translate(-50%, -50%)',
+                  transform: 'translateX(-50%)',
                   zIndex: 0,
                 }
           }

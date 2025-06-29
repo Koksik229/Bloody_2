@@ -1,0 +1,61 @@
+/* Extracted from temporary equip prototype */
+.equipment-panel-container {
+  position: relative;
+  width: 210px;
+  height: 260px;
+  max-width: 100%;
+  transform: scale(1.5);
+  transform-origin: top center;
+  /* background-color removed – will be transparent */
+}
+
+.item-slot {
+  position: absolute;
+  box-sizing: border-box;
+  background-color: rgba(255,255,255,0.15); /* temporary visibility */
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 2px;
+}
+
+.character-preview {
+  position: absolute;
+  width: 102px;
+  height: 179px;
+  left: 54px;
+  top: 45px;
+  background-color: rgba(0,0,0,0.2);
+}
+
+.slot-crossbow { width: 47px; height: 45px; left: 0px; top: 0px; }
+.slot-dart { width: 37px; height: 45px; left: 47px; top: 0px; }
+.slot-helm { width: 42px; height: 45px; left: 84px; top: 0px; }
+.slot-cape { width: 54px; height: 43px; left: 0px; top: 45px; }
+.slot-shield { width: 54px; height: 69px; left: 0px; top: 88px; }
+.slot-armor { width: 54px; height: 59px; left: 0px; top: 157px; }
+.slot-boots { width: 54px; height: 44px; left: 0px; top: 216px; }
+.slot-necklace { width: 54px; height: 43px; left: 156px; top: 45px; }
+.slot-gloves { width: 54px; height: 43px; left: 156px; top: 88px; }
+.slot-weapon { width: 54px; height: 69px; left: 156px; top: 131px; }
+.slot-cloak { width: 54px; height: 60px; left: 156px; top: 200px; }
+.slot-belt { width: 44px; height: 36px; left: 83px; top: 224px; z-index: 2; }
+
+/* Spell slots container (3x3) */
+.spell-slots-container { position: absolute; left: 126px; top: 0px; width: 84px; height: 45px; }
+.spell-slots-container .item-slot { width: 28px; height: 15px; }
+.spell-slot-1 { left: 0px; top: 0px; }
+.spell-slot-2 { left: 0px; top: 15px; }
+.spell-slot-3 { left: 0px; top: 30px; }
+.spell-slot-4 { left: 28px; top: 0px; }
+.spell-slot-5 { left: 28px; top: 15px; }
+.spell-slot-6 { left: 28px; top: 30px; }
+.spell-slot-7 { left: 56px; top: 0px; }
+.spell-slot-8 { left: 56px; top: 15px; }
+.spell-slot-9 { left: 56px; top: 30px; }
+
+/* Ring slots container (2x2) */
+.ring-slots-container { position: absolute; left: 54px; top: 224px; width: 102px; height: 36px; }
+.ring-slots-container .item-slot { width: 29px; height: 18px; }
+.ring-slot-1 { left: 0px; top: 0px; }
+.ring-slot-2 { left: 0px; top: 18px; }
+.ring-slot-3 { left: 73px; top: 0px; }
+.ring-slot-4 { left: 73px; top: 18px; }

@@ -291,7 +291,9 @@ const Chat: React.FC = () => {
       <div className="chat-main">
         <div className="messages-container">
           {messages.length > 0 ? (
-            messages.map(renderMessage)
+            messages.map(msg => (
+              <React.Fragment key={msg.id}>{renderMessage(msg)}</React.Fragment>
+            ))
           ) : (
             <div className="no-messages">Нет сообщений</div>
           )}

@@ -7,3 +7,4 @@ from .level_progression import LevelProgression
 from .currency import Currency
 from .professional import ProfessionalSkill, ProfessionalSkillProgression, UserProfessionalSkill
 from .wallet import UserWallet, WalletTransaction
+from .base_stats import UserBaseStats, UserVital

@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { createPortal } from 'react-dom';
 import { useNotification } from '../context/NotificationContext';
 import '../styles/InventoryScreen.css';
 import { useAuth } from '../context/AuthContext';
-import EquipmentPanel, { EquipSlot } from './EquipmentPanel';
+import { EquipSlot } from './EquipmentPanel';
 import TopMenu from './TopMenu';
-import { createPortal } from 'react-dom';
+import PlayerHUD from './PlayerHUD';
+import EquipmentLayout from './EquipmentLayout';
 import V2InventoryPanel from './V2InventoryPanel';
 
 export interface Item {
@@ -47,6 +49,22 @@ const InventoryScreen: React.FC<Props> = ({ onClose, onSkills }) => {
   const { user, token } = useAuth();
   const [categories, setCategories] = useState<Category[]>([]);
   const [equipment, setEquipment] = useState<EquipSlot[]>([]);
+  const [invTick, setInvTick] = useState(0);
+
+  const refreshEquipment = () => {
+    fetch(`${API}/inventory/equipment`, {
+      headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+    })
+      .then(res => res.json())
+      .then(setEquipment);
+  };
+  const refreshCategories = () => {
+    fetch(`${API}/inventory/categories`, {
+      headers: token ? { 'Authorization': `Bearer ${token}` } : {}
+    })
+      .then(res => res.json())
+      .then(setCategories);
+  };
   const [wallet, setWallet] = useState<Record<string, number>>({});
   const [tt, setTt] = useState<{visible:boolean;text:string;x:number;y:number}>({visible:false,text:'',x:0,y:0});
   const [activeCat, setActiveCat] = useState<string>('weapon');
@@ -91,44 +109,81 @@ const InventoryScreen: React.FC<Props> = ({ onClose, onSkills }) => {
       const res=await fetch(`${API}/inventory/equipment/equip`,{
         method:'POST',
         headers:{'Content-Type':'application/json', ...(token? { 'Authorization':`Bearer ${token}`}:{})},
-        body:JSON.stringify({user_id:user!.id, slot_code: 'weapon', user_item_id: item.id}),
+        body:JSON.stringify({user_id:user!.id, slot_code:'auto', user_item_id: item.id}),
         credentials:'include'
       });
+      console.debug('equip request',{itemId:item.id});
+      console.log('equip response status', res.status);
       if(res.ok){
-        show('Предмет надет','success');
-        // refresh equip
+        // убрать предмет локально из списка инвентаря
+        setCategories(prev=>prev.map(cat=>({
+          ...cat,
+          groups: cat.groups.map(g=>({...g, items: g.items.filter(it=>it.id!==item.id)}))
+        })));
+        setInvTick(t=>t+1);
+        refreshEquipment();
+        refreshCategories();
       }else{
-        const data=await res.json();
-        show(data.detail || 'Ошибка','error');
+        let errText='Ошибка';
+        try{const data=await res.json(); errText=data.detail||JSON.stringify(data);}catch{errText=`HTTP ${res.status}`;}
+        console.error('equip error', errText);
+        show(errText,'error');
       }
     }catch(e){console.error(e); show('Ошибка соединения','error');}
   }
 
+  async function handleUnequip(slotCode:string){
+    try{
+      const token=localStorage.getItem('access_token');
+      const res=await fetch(`${API}/inventory/equipment/unequip`,{
+        method:'POST',
+        headers:{'Content-Type':'application/json', ...(token? { 'Authorization':`Bearer ${token}`}:{})},
+        body:JSON.stringify({slot_code:slotCode}),
+        credentials:'include'
+      });
+      if(res.ok){
+        const data=await res.json();
+        if(data.status==='ok'){
+          refreshEquipment();
+          refreshCategories();
+          setInvTick(t=>t+1);
+        }
+      }else{
+        console.error('unequip error', res.status);
+      }
+    }catch(err){console.error(err);}
+  }
+
   return (
-    <div className="inventory-screen flex gap-4 h-full p-8">
+    <div className="inventory-screen flex gap-[5px] h-full p-8">
       {/* фиксированное верхнее меню */}
       <TopMenu onSkills={onSkills ?? onClose} />
-      <div className="equip-side h-full bg-gradient-to-br from-bw-dark-bg via-bw-card-bg to-bw-dark-bg p-8 flex flex-col rounded-xl">
-        <div className="wallet-panel">
-          <span className="coin gold"   onMouseEnter={e=>setTt({visible:true,text:'Золото',x:e.clientX+12,y:e.clientY+12})}
+      <PlayerHUD floating={false} />
+     
+      <div className="avatar-bg relative h-full overflow-y-auto bg-gradient-to-br from-bw-dark-bg via-bw-card-bg to-bw-dark-bg p-8 flex flex-col items-center rounded-xl pt-6">
+        {/* wallet & currency */}
+        <div className="wallet-panel w-[calc(100%+2rem)] -mx-4 mb-4 bg-gradient-to-r from-bw-card-bg to-bw-muted border border-bw-border rounded-lg px-8 py-2 shadow-lg flex items-center gap-8">
+          <button onClick={onClose} className="h-8 px-3 bg-bw-accent-gold rounded flex items-center justify-center text-xs text-bw-dark-bg font-semibold">Вернуться</button>
+          <div className="coins flex items-center gap-3 ml-auto pr-2"><span className="coin gold" style={{marginRight:'4px'}}   onMouseEnter={e=>setTt({visible:true,text:'Золото',x:e.clientX+12,y:e.clientY+12})}
             onMouseMove={e=>setTt(prev=>({...prev,x:e.clientX+12,y:e.clientY+12}))}
             onMouseLeave={()=>setTt(prev=>({...prev,visible:false}))}
           >{wallet.GOLD ?? 0}</span>
-          <span className="coin silver" onMouseEnter={e=>setTt({visible:true,text:'Серебро',x:e.clientX+12,y:e.clientY+12})}
+          <span className="coin silver" style={{marginRight:'4px'}} onMouseEnter={e=>setTt({visible:true,text:'Серебро',x:e.clientX+12,y:e.clientY+12})}
             onMouseMove={e=>setTt(prev=>({...prev,x:e.clientX+12,y:e.clientY+12}))}
             onMouseLeave={()=>setTt(prev=>({...prev,visible:false}))}
           >{wallet.SILVER ?? 0}</span>
-          <span className="coin copper" onMouseEnter={e=>setTt({visible:true,text:'Медь',x:e.clientX+12,y:e.clientY+12})}
+          <span className="coin copper" style={{marginRight:'0px'}} onMouseEnter={e=>setTt({visible:true,text:'Медь',x:e.clientX+12,y:e.clientY+12})}
             onMouseMove={e=>setTt(prev=>({...prev,x:e.clientX+12,y:e.clientY+12}))}
             onMouseLeave={()=>setTt(prev=>({...prev,visible:false}))}
-          >{wallet.COPPER ?? 0}</span>
+          >{wallet.COPPER ?? 0}</span></div>
         </div>
-        {tt.visible && createPortal(<div className="equip-tooltip" style={{top:tt.y,left:tt.x}}>{tt.text}</div>, document.body)}
-        <EquipmentPanel equipment={equipment} />
-        <button className="back-btn" onClick={onClose}>Назад</button>
+        <EquipmentLayout equipment={equipment} onUnequip={handleUnequip}/>
+        {tt.visible && createPortal(<div className="equip-tooltip" style={{ top: tt.y, left: tt.x, transform: 'translate(-50%, -50%) scale(1.1, 1.15)' }}>{tt.text}</div>, document.body)}
+        
+        
       </div>
       <div className="items-side h-full bg-bw-dark-bg p-8 overflow-y-auto rounded-xl flex-1">
-        <V2InventoryPanel />
+        <V2InventoryPanel refreshKey={invTick} onEquip={equipItem} />
         {/*
 
           <div>

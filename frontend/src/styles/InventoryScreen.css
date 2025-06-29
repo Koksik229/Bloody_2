@@ -1,9 +1,10 @@
-.inventory-screen{display:grid;grid-template-columns:300px 1fr;color:#333;max-width:1290px;margin:70px auto 0;background:transparent}.equip-side{padding:20px;border-right:1px solid #444;background:transparent;position:sticky;top:70px;align-self:start}.wallet-panel{margin-bottom:10px;font-weight:bold;color:#000}
+.inventory-screen{display:grid;grid-template-columns:300px 1fr;color:#333;max-width:1290px;margin:5rem auto 0;padding-top:0;background:#d6c29a;}.equip-side{padding:20px;border-right:1px solid #444;background:transparent;position:sticky;top:80px;align-self:start}.wallet-panel{margin-bottom:10px;font-weight:bold;color:#000}
 .coin{margin-right:12px;position:relative;padding-left:22px;display:inline-block}
 .coin:before{content:"";width:16px;height:16px;position:absolute;left:0;top:2px;background-size:contain;background-repeat:no-repeat}
 .coin.gold:before{background-image:url('/images/монеты/coin-gold.png')}
 .coin.silver:before{background-image:url('/images/монеты/coin-silver.png')}
 .coin.copper:before{background-image:url('/images/монеты/coin-copper.png')}.equipment-panel{position:relative;width:300px;height:486px;margin:auto;background:none;top:100px;transform:scale(0.765);transform-origin:top left;left:-150px}
+.equipment-panel .avatar-bg{background:#d6c29a !important;} 
 .equipment-panel .avatar{position:absolute;top:0;left:102px;width:191.6px;height:334.6px;object-fit:cover;border:1px solid #555}
 .equip-slot{position:absolute;display:flex;border:none;background:#666;box-sizing:border-box}
 .equip-slot .empty-img{width:100%;height:100%;object-fit:cover;display:block}
@@ -58,7 +59,9 @@
 
 .items-side{height:calc(100vh - 70px);overflow-y:auto;padding:20px;max-width:950px;margin-left:20px;border:1px solid #555;border-left:none;border-radius:6px;background:rgba(214,194,154,0.9)}
 
-body{padding-bottom:400px;margin:0}
+body{margin:0;background:#d6c29a;}
+
+.avatar-bg,.items-side{max-height:600px;height:600px;overflow-y:auto;}
 
 /* new right column stack */
 .slot-amulet{top:0;left:295px}

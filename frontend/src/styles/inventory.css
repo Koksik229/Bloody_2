@@ -1,0 +1,30 @@
+/* Inventory panel semantic utility classes */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Container for category buttons */
+.inv-cat-list {
+  @apply flex flex-wrap gap-1;
+}
+
+/* Container for subcategory buttons */
+.inv-sub-list {
+  @apply flex flex-wrap gap-1;
+}
+
+/* Button styles */
+.inv-btn {
+  @apply px-3 py-1 text-xs rounded-full;
+}
+.inv-btn-active {
+  @apply bg-bw-accent-gold text-bw-dark-bg;
+}
+.inv-btn-inactive {
+  @apply bg-bw-card-bg border border-bw-border hover:bg-bw-hover text-primary-foreground;
+}
+
+.inv-sub-list {
+  @apply flex flex-wrap gap-1;
+}

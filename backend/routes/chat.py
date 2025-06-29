@@ -59,7 +59,8 @@ class ConnectionManager:
         self.logger.info(f"Broadcasting message to {len(self.active_connections)} connections")
         disconnected = set()
         
-        for user_id, connection in self.active_connections.items():
+        # iterate over a snapshot so that modifications (e.g., disconnects) do not affect the loop
+        for user_id, connection in list(self.active_connections.items()):
             try:
                 self.logger.info(f"Sending message to user {user_id}")
                 await connection.send_text(message)

@@ -23,6 +23,7 @@ class ItemBase(BaseModel):
     base_stats: dict[str, int] | None = None
     # aggregated effects from item_effects
     effects: dict[str, int] | None = None
+    description: str | None = None
 
     class Config:
         orm_mode = True
@@ -40,6 +41,10 @@ class ItemGroup(BaseModel):
 
     class Config:
         orm_mode = True
+
+class UnequipRequest(BaseModel):
+    slot_code: str
+
 
 class EquipRequest(BaseModel):
     user_id: int

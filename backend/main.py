@@ -24,6 +24,7 @@ from models.race import Race
 from models.skills import Skill
 from routes import auth, profile, chat, users, location, inventory, shop, skills, professional_skills
 import routes.wallet as wallet
+import routes.vital as vital
 
 load_dotenv()
 
@@ -84,5 +85,6 @@ for r, kw in [
     (skills.router, {"tags":["skills"]}),
     (professional_skills.router, {"tags":["professional_skills"]}),
     (wallet.router, {"tags":["wallet"]}),
+    (vital.router, {"tags":["vital"]}),
 ]:
     app.include_router(r, prefix="/api/v1" + kw.pop("prefix", ""), **kw)

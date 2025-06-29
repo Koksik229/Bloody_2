@@ -7,6 +7,7 @@ body, html, #root {
 }
 
 .game-screen {
+  background-color: #d6c29a;
   overflow-y: auto;
   position: relative;
   width: 100%;
@@ -30,13 +31,15 @@ body, html, #root {
 }
 
 .game-icons::after {
-  content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+  content: '';
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 900px;
   height: 1px;
-  background: #000;
+  background: #aaa;
+  
 }
 
 .top-links {

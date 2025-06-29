@@ -4,9 +4,10 @@ import '../styles/PlayerHUD.css';
 
 interface PlayerHUDProps {
   style?: React.CSSProperties;
+  floating?: boolean;
 }
 
-export default function PlayerHUD({ style }: PlayerHUDProps) {
+export default function PlayerHUD({ style, floating = true }: PlayerHUDProps) {
   const { user } = useAuth();
 
   useEffect(() => {
@@ -19,18 +20,20 @@ export default function PlayerHUD({ style }: PlayerHUDProps) {
   }
 
   // Вычисляем проценты для баров
-  const hpPercent = Math.min(100, Math.max(0, (user.hp / 100) * 100));
-  const mpPercent = Math.min(100, Math.max(0, (user.mp / 100) * 100));
+  const hpPercent = user.max_hp ? Math.min(100, Math.max(0, (user.hp / user.max_hp) * 100)) : 0;
+  const mpPercent = user.max_mp ? Math.min(100, Math.max(0, (user.mp / user.max_mp) * 100)) : 0;
 
-  // Определяем цвет HP бара в зависимости от количества здоровья
-  const getHpBarColor = () => {
-    if (hpPercent > 60) return '#00cc00'; // Зеленый для высокого HP
-    if (hpPercent > 30) return '#cccc00'; // Желтый для среднего HP
-    return '#cc0000'; // Красный для низкого HP
+  // Цвета баров
+  const hpColor = '#cc0000';
+  const mpColor = '#0066cc';
+
+    const combinedStyle: React.CSSProperties = {
+    ...(floating ? {} : { position: 'static', left: undefined, top: undefined, transform: 'none' }),
+    ...style,
   };
 
   return (
-    <div className="player-hud" style={style}>
+    <div className="player-hud" style={combinedStyle}>
       <div className="nickname-row">
         <span className="nickname">{user.nickname}</span>
         <span className="info-icon" title="Информация персонажа">[i]</span>
@@ -42,7 +45,7 @@ export default function PlayerHUD({ style }: PlayerHUDProps) {
               className="bar-inner"
               style={{ 
                 height: `${hpPercent}%`,
-                backgroundColor: getHpBarColor()
+                backgroundColor: hpColor
               }}
             />
           </div>
@@ -52,7 +55,7 @@ export default function PlayerHUD({ style }: PlayerHUDProps) {
           <div className="bar-outer mp-bar">
             <div
               className="bar-inner"
-              style={{ height: `${mpPercent}%` }}
+              style={{ height: `${mpPercent}%`, backgroundColor: mpColor }}
             />
           </div>
           <div className="bar-value">{user.mp}</div>
