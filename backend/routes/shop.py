@@ -91,6 +91,7 @@ async def buy_item(data: dict, current_user: User = Depends(get_current_user), d
     if not row:
         raise HTTPException(status_code=404, detail="Item not found or not sellable")
     from services.wallet_service import WalletService
+
     ws = WalletService(db)
     if not ws.consume(current_user, row["price_copper"], reason="shop_buy"):
         raise HTTPException(status_code=400, detail="Недостаточно средств")

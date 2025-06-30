@@ -16,6 +16,8 @@ export interface UserData {
   available_locations?: { id: number; name: string; is_locked?: boolean }[];
   hp: number;
   mp: number;
+  max_hp: number;
+  max_mp: number;
   strength: number;
   agility: number;
   power: number;
@@ -63,6 +65,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(data);
         // Обновляем token в состоянии, чтобы другие компоненты сразу получили актуальный JWT
         setToken(currentToken);
+        // сразу сходить на /vital для актуальных hp/mp
+        try {
+          const vital = await fetch(`${API}/vital`, {headers:{'Authorization':`Bearer ${currentToken}`},credentials:'include'}).then(r=>r.json());
+          data.hp = vital.hp; data.mp = vital.mp; data.max_hp = vital.max_hp; data.max_mp = vital.max_mp;
+        } catch {}
       } else {
         console.error('Failed to fetch user:', res.status);
         setUser(null);
@@ -101,6 +108,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setToken(currentToken);
       fetchUser();
     }
+    // глобальный таймер /vital каждые 15 сек
+    let iv: any;
+    if (currentToken){
+      iv = setInterval(()=>{
+        fetch(`${API}/vital`, {headers:{'Authorization':`Bearer ${currentToken}`},credentials:'include'}).then(r=>r.json()).then(v=>{
+          setUser(prev=> prev? {...prev, hp:v.hp, mp:v.mp, max_hp:v.max_hp, max_mp:v.max_mp}:prev);
+        }).catch(()=>{});
+      },15000);
+    }
+    return ()=>{iv && clearInterval(iv);};
   }, []);
 
   return (

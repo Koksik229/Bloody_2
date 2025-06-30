@@ -1,5 +1,6 @@
 from typing import Optional
 from sqlalchemy.orm import Session
+from sqlalchemy import text
 
 from models.currency import Currency
 from models.wallet import UserWallet, WalletTransaction
@@ -61,50 +62,65 @@ class WalletService:
 
     # ---------- conversion helpers ----------
     def get_total_in_copper(self, user: User) -> int:
-        total = 0
-        currencies = self.db.query(Currency).all()
-        for cur in currencies:
-            row = self._get_balance_row(user, cur, create=False)
-            if not row:
-                continue
-            if cur.base_copper:
-                total += row.amount * cur.base_copper
-        return total
+            total = 0
+            currencies = self.db.query(Currency).all()
+            for cur in currencies:
+                row = self._get_balance_row(user, cur, create=False)
+                if not row:
+                    continue
+                if cur.base_copper:
+                    total += row.amount * cur.base_copper
+            return total
 
     def has_enough(self, user: User, price_copper: int) -> bool:
-        return self.get_total_in_copper(user) >= price_copper
+            return self.get_total_in_copper(user) >= price_copper
 
     def consume(self, user: User, price_copper: int, reason: str = "purchase") -> bool:
-        """Try to deduct price across copper->silver->gold hierarchy automatically."""
-        currencies = (
-            self.db.query(Currency)
-            .filter(Currency.base_copper > 0)
-            .order_by(Currency.base_copper.asc())  # copper first, then silver, etc.
-            .all()
-        )
-        remaining = price_copper
-        # Проверяем общий баланс
-        if self.get_total_in_copper(user) < price_copper:
-            return False
+            """Deduct composite price across copper/silver/gold hierarchy. Returns True on success."""
+            self.logger.info(f"[consume] user_id={user.id} price={price_copper}c reason={reason}")
+            if self.get_total_in_copper(user) < price_copper:
+                return False
+            currencies = (
+                self.db.query(Currency)
+                .filter(Currency.base_copper > 0)
+                .order_by(Currency.base_copper.asc())
+                .all()
+            )
+            remaining = price_copper
+            for cur in currencies:
+                row = self._get_balance_row(user, cur, create=False)
+                if not row or row.amount == 0:
+                    continue
+                value = cur.base_copper
+                needed_units = (remaining + value - 1) // value
+                take = min(row.amount, needed_units)
+                self.logger.info(f"Processing {cur.code}: value={value}, have={row.amount}, take={take}, remaining={remaining}")
+                row.amount -= take
+                remaining -= take * value
+                if remaining <= 0:
+                    break
+            if remaining > 0:
+                self.logger.warning(f"[consume] FAILURE insufficient funds. remaining={remaining}")
+                return False
+            self.db.add(WalletTransaction(user_id=user.id, currency_id=0, delta=-price_copper, reason=reason))
+            self.logger.info(f"[consume] SUCCESS total deducted {price_copper}c")
+            return True
 
-        # Проходим по валютам от мелкой к крупной
-        for cur in currencies:
-            row = self._get_balance_row(user, cur, create=False)
-            if not row or row.amount == 0:
-                continue
-            value = cur.base_copper
-            # Сколько монет этой валюты нужно, округляя вверх
-            needed_units = (remaining + value - 1) // value
-            take = min(row.amount, needed_units)
-            self.logger.info(f"Processing {cur.code}: value={value}, have={row.amount}, take={take}, remaining={remaining}")
-            row.amount -= take
-            remaining -= take * value
-            if remaining <= 0:
-                break
 
-        if remaining > 0:
-            self.logger.warning(f"Consume failed: remaining={remaining}")
-            return False
+# ---------- equipment helpers ----------
 
-        self.db.add(WalletTransaction(user_id=user.id, currency_id=0, delta=-price_copper, reason=reason))
-        return True
+def sum_equipment_effects(db: Session, user_id: int) -> dict[str, int]:
+    """Return aggregated stat bonuses from all equipped items for a user."""
+    rows = db.execute(text(
+        """
+        SELECT ie.stat, SUM(ie.amount) AS total
+        FROM user_equipment ue
+        JOIN user_items ui ON ui.id = ue.user_item_id
+        JOIN item_effects ie ON ie.item_id = ui.item_id
+        WHERE ue.user_id = :uid AND ue.user_item_id IS NOT NULL
+        GROUP BY ie.stat
+        """
+    ), {"uid": user_id}).mappings().all()
+    return {r["stat"]: r["total"] for r in rows}
+
+

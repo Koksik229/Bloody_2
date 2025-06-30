@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import '../styles/PlayerHUD.css';
 
@@ -8,11 +8,54 @@ interface PlayerHUDProps {
 }
 
 export default function PlayerHUD({ style, floating = true }: PlayerHUDProps) {
-  const { user } = useAuth();
+  const { user, token, setUser } = useAuth();
+  const [dispHp, setDispHp] = useState<number>(user?.hp ?? 0);
+  const [dispMp, setDispMp] = useState<number>(user?.mp ?? 0);
+  const latestStats = useRef({maxHp: user?.max_hp ?? 0, maxMp: user?.max_mp ?? 0});
 
   useEffect(() => {
-    console.log("PlayerHUD отрисовался");
-    console.log("User:", user);
+    if (!user) return;
+    setDispHp(user.hp);
+    setDispMp(user.mp);
+    // локальный таймер анимации 1 сек
+    const tick = setInterval(() => {
+      setDispHp(prev => {
+        const {maxHp} = latestStats.current;
+        if (!maxHp) return prev;
+        const inc = maxHp / 300;
+        return prev < maxHp ? Math.min(maxHp, prev + inc) : prev;
+      });
+      setDispMp(prev => {
+        const {maxMp} = latestStats.current;
+        if (!maxMp) return prev;
+        const inc = maxMp / 600;
+        return prev < maxMp ? Math.min(maxMp, prev + inc) : prev;
+      });
+    }, 1000);
+
+    // первичная синхронизация сразу
+    if (token) {
+      fetch(`${import.meta.env.VITE_API_URL}/vital`, {
+        headers: { 'Authorization': `Bearer ${token}` },
+        credentials: 'include'
+      }).then(r=>r.json()).then(data=>{
+        setDispHp(data.hp);
+        setDispMp(data.mp);
+        // обновляем глобальный user, чтобы другие компоненты тоже увидели коррекцию
+        setUser(prev=> prev ? {...prev, hp:data.hp, mp:data.mp} : prev);
+      }).catch(()=>{});
+    }
+
+        return () => { clearInterval(tick); };
+  }, [token]);
+
+  // Обновляем ref и дисплеи на новое значение
+  useEffect(()=>{
+    if (user){
+      latestStats.current = {maxHp: user.max_hp, maxMp: user.max_mp};
+      setDispHp(user.hp);
+      setDispMp(user.mp);
+    }
   }, [user]);
 
   if (!user) {
@@ -20,8 +63,8 @@ export default function PlayerHUD({ style, floating = true }: PlayerHUDProps) {
   }
 
   // Вычисляем проценты для баров
-  const hpPercent = user.max_hp ? Math.min(100, Math.max(0, (user.hp / user.max_hp) * 100)) : 0;
-  const mpPercent = user.max_mp ? Math.min(100, Math.max(0, (user.mp / user.max_mp) * 100)) : 0;
+  const hpPercent = user && user.max_hp ? Math.min(100, (dispHp / user.max_hp) * 100) : 0;
+  const mpPercent = user && user.max_mp ? Math.min(100, (dispMp / user.max_mp) * 100) : 0;
 
   // Цвета баров
   const hpColor = '#cc0000';
@@ -49,7 +92,7 @@ export default function PlayerHUD({ style, floating = true }: PlayerHUDProps) {
               }}
             />
           </div>
-          <div className="bar-value">{user.hp}</div>
+          <div className="bar-value">{Math.floor(dispHp)}</div>
         </div>
         <div className="bar-container">
           <div className="bar-outer mp-bar">
@@ -58,7 +101,7 @@ export default function PlayerHUD({ style, floating = true }: PlayerHUDProps) {
               style={{ height: `${mpPercent}%`, backgroundColor: mpColor }}
             />
           </div>
-          <div className="bar-value">{user.mp}</div>
+          <div className="bar-value">{Math.floor(dispMp)}</div>
         </div>
       </div>
     </div>

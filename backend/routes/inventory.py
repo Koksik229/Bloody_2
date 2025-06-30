@@ -2,6 +2,7 @@ import logging
 from fastapi import APIRouter, Depends, HTTPException, Body
 from sqlalchemy.orm import Session
 from auth import get_current_user
+from services.stats import recalc_base_stats
 from sqlalchemy import text
 from sqlalchemy.exc import IntegrityError
 from db import get_db
@@ -34,6 +35,8 @@ def unequip_item(
     # clear slot
     db.execute(text("UPDATE user_equipment SET user_item_id=NULL WHERE user_id=:uid AND slot_id=:sid"), {"uid":current_user.id,"sid":sid})
     db.commit()
+    # recalc stats after unequip
+    recalc_base_stats(db, current_user.id)
     logger.info("Unequipped ui=%s from slot %s (user %s)", user_item_id, req.slot_code, current_user.id)
     return {"status": "ok", "user_item_id": user_item_id, "slot_code": req.slot_code}
 
@@ -177,6 +180,69 @@ def equip_item(
     db: Session = Depends(get_db),
     current_user = Depends(get_current_user)
 ):
+    # ----------------- auto slot detection -----------------
+    if req.slot_code in (None, '', 'auto'):
+        logger.info("Auto slot detection for ui=%s", req.user_item_id)
+        row = db.execute(text("""
+            SELECT ig.code as group_code, it.item_type_id, it.two_handed
+            FROM user_items ui
+            JOIN items it ON it.id = ui.item_id
+            JOIN item_groups ig ON ig.id = it.group_id
+            WHERE ui.id = :ui
+        """), {"ui": req.user_item_id}).mappings().first()
+        if not row:
+            raise HTTPException(status_code=400, detail="Cannot determine slot for item")
+        group_code = row['group_code']
+        # simple mapping: same code unless special cases
+        # weapon goes straight to main hand
+        if row['item_type_id'] == 1:
+            req.slot_code = 'weapon_main'
+        else:
+            slot_map = {
+            'helmet': 'helmet',
+            'shirt': 'shirt',
+            'armor': 'armor',
+            'belt': 'belt',
+            'bracelet': 'hands',
+            'cloak': 'cloak',
+            'boots': 'boots',
+            'gloves': 'gloves',
+            'ring': 'ring1',
+            'ring_unique': 'ring1',
+            'shield': 'weapon_off'  # handled later anyway
+        }
+            req.slot_code = slot_map.get(group_code, group_code)
+        logger.info("Auto-mapped group %s -> slot_code %s", group_code, req.slot_code)
+
+    # ----------------- generic equip for non-weapon slots -----------------
+    NON_WEAPON_SLOTS = {'head','chest','legs','hands','feet','cloak','ring1','ring2','amulet'}  # expected codes
+    if req.slot_code not in ['weapon_main','weapon_off']:
+        logger.info("Generic equip: user=%s slot=%s ui=%s", current_user.id, req.slot_code, req.user_item_id)
+        srow = db.execute(text("SELECT id FROM equipment_slots WHERE code=:c"), {"c": req.slot_code}).mappings().first()
+        if not srow:
+            raise HTTPException(status_code=400, detail="Unknown slot_code")
+        slot_id = srow['id']
+        try:
+            # always clear current slot
+            db.execute(text("DELETE FROM user_equipment WHERE user_id=:uid AND slot_id=:sid"), {"uid": current_user.id, "sid": slot_id})
+            # if it's an equip (not unequip) – insert new row
+            if req.user_item_id is not None:
+                db.execute(text("""
+                    INSERT INTO user_equipment(user_id, slot_id, user_item_id, equipped_at)
+                    VALUES (:uid, :sid, :ui, CURRENT_TIMESTAMP)
+                    """), {"uid": current_user.id, "sid": slot_id, "ui": req.user_item_id})
+            db.commit()
+            recalc_base_stats(db, current_user.id)
+            vital = db.execute(text("SELECT current_hp,max_hp,current_mp,max_mp,regen_ts FROM user_vital WHERE user_id=:uid"),{"uid":current_user.id}).mappings().first()
+            payload = {"status":"ok","action":"unequipped" if req.user_item_id is None else "equipped","slot":req.slot_code}
+            if vital:
+                payload.update({**dict(vital), "regen_ts": vital['regen_ts'] if 'regen_ts' in vital else None})
+            return payload
+        except IntegrityError as e:
+            logger.exception("Equip failed IntegrityError: statement=%s params=%s", getattr(e, 'statement', None), getattr(e, 'params', None))
+            logger.error("IntegrityError generic equip: %s", getattr(e, 'orig', e))
+            raise HTTPException(status_code=400, detail="Нельзя надеть этот предмет в выбранный слот")
+
     # ----------------- smart weapon equip logic -----------------
     logger.info("Equip request user=%s ui=%s slot_code=%s", current_user.id, req.user_item_id, req.slot_code)
     # Constants
@@ -291,7 +357,13 @@ def equip_item(
         {"uid": current_user.id, "sid": slot_map[target_code], "ui": req.user_item_id},
     )
         db.commit()
+        # recalc stats after equip
+        recalc_base_stats(db, current_user.id)
+        vital = db.execute(text("SELECT current_hp,max_hp,current_mp,max_mp,regen_ts FROM user_vital WHERE user_id=:uid"),{"uid":current_user.id}).mappings().first()
+        payload = {"status":"ok","equipped_in":target_code}
+        if vital:
+            payload.update({**dict(vital), "regen_ts": vital['regen_ts'] if 'regen_ts' in vital else None})
+        return payload
     except IntegrityError as e:
         logger.error("IntegrityError when equipping: %s", e.orig)
         raise HTTPException(status_code=400, detail="Нельзя надеть этот предмет в выбранный слот")
-    return {"status": "ok", "equipped_in": target_code}

@@ -66,6 +66,7 @@ const InventoryScreen: React.FC<Props> = ({ onClose, onSkills }) => {
       .then(setCategories);
   };
   const [wallet, setWallet] = useState<Record<string, number>>({});
+  const { fetchUser } = useAuth();
   const [tt, setTt] = useState<{visible:boolean;text:string;x:number;y:number}>({visible:false,text:'',x:0,y:0});
   const [activeCat, setActiveCat] = useState<string>('weapon');
   const [activeGroup, setActiveGroup] = useState<string>('all');
@@ -121,8 +122,10 @@ const InventoryScreen: React.FC<Props> = ({ onClose, onSkills }) => {
           groups: cat.groups.map(g=>({...g, items: g.items.filter(it=>it.id!==item.id)}))
         })));
         setInvTick(t=>t+1);
+          fetchUser();
         refreshEquipment();
         refreshCategories();
+          fetchUser();
       }else{
         let errText='Ошибка';
         try{const data=await res.json(); errText=data.detail||JSON.stringify(data);}catch{errText=`HTTP ${res.status}`;}
@@ -146,7 +149,9 @@ const InventoryScreen: React.FC<Props> = ({ onClose, onSkills }) => {
         if(data.status==='ok'){
           refreshEquipment();
           refreshCategories();
+          fetchUser();
           setInvTick(t=>t+1);
+          fetchUser();
         }
       }else{
         console.error('unequip error', res.status);

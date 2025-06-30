@@ -11,7 +11,11 @@ except ImportError:  # fallback stub so that backend can start
         return {}
 
 
-REGEN_PER_MIN = 1  # hp/mp per minute
+import math
+
+# HP should fully regen in 5 min (300 сек)
+# MP – в 10 мин. Вычисляем на лету исходя из max_*
+
 
 
 def recalc_base_stats(db: Session, user_id: int) -> UserBaseStats:
@@ -66,6 +70,25 @@ def recalc_base_stats(db: Session, user_id: int) -> UserBaseStats:
         updated_at=datetime.utcnow(),
     )
     db.merge(base)
+    # --- синхронизируем витальные показатели ---
+    vital: UserVital | None = db.query(UserVital).filter_by(user_id=user_id).first()
+    now = datetime.utcnow()
+    if not vital:
+        vital = UserVital(user_id=user_id,
+                         current_hp=hp_base, current_mp=mp_base,
+                         max_hp=hp_base, max_mp=mp_base,
+                         regen_ts=now)
+        db.add(vital)
+    else:
+        # если max уменьшился, нужно обрезать текущие
+        vital.max_hp = hp_base
+        vital.max_mp = mp_base
+        if vital.current_hp > vital.max_hp:
+            vital.current_hp = vital.max_hp
+        if vital.current_mp > vital.max_mp:
+            vital.current_mp = vital.max_mp
+        # если max вырос, текущие оставляем как есть (реген пойдет сам)
+    vital.updated_at = now if hasattr(vital, 'updated_at') else vital.regen_ts  # best-effort
     db.commit()
     return base
 
@@ -75,16 +98,19 @@ def regen_vital_if_needed(vital: UserVital, now: datetime | None = None) -> bool
     if not now:
         now = datetime.utcnow()
     delta_sec = (now - vital.regen_ts).total_seconds()
-    minutes = int(delta_sec // 60)
-    if minutes <= 0:
+    if delta_sec <= 0:
         return False
+
+    # прирост за секунду: max/300 (hp) и max/600 (mp)
+    hp_gain = vital.max_hp * (delta_sec / 300)
+    mp_gain = vital.max_mp * (delta_sec / 600)
 
     changed = False
     if vital.current_hp < vital.max_hp:
-        vital.current_hp = min(vital.max_hp, vital.current_hp + minutes * REGEN_PER_MIN)
+        vital.current_hp = min(vital.max_hp, int(vital.current_hp + hp_gain))
         changed = True
     if vital.current_mp < vital.max_mp:
-        vital.current_mp = min(vital.max_mp, vital.current_mp + minutes * REGEN_PER_MIN)
+        vital.current_mp = min(vital.max_mp, int(vital.current_mp + mp_gain))
         changed = True
     if changed:
         vital.regen_ts = now

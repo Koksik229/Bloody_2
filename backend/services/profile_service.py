@@ -27,6 +27,9 @@ def get_user_profile(db: Session, user_id: int) -> Dict[str, Any]:
 
     # Получаем витальные показатели
     vital = db.query(UserVital).filter(UserVital.user_id == user.id).first()
+    from services.stats import regen_vital_if_needed
+    if vital and regen_vital_if_needed(vital):
+        db.commit()
 
     # Получаем доступные локации
     available_locations = []
