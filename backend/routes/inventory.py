@@ -13,6 +13,19 @@ logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/inventory", tags=["inventory"])  # noqa
 
 
+@router.post("/items/{user_item_id}/discard")
+def discard_item(user_item_id:int, db:Session=Depends(get_db), current_user=Depends(get_current_user)):
+    # ensure item belongs to user and not equipped
+    row = db.execute(text("SELECT id FROM user_items WHERE id=:iid AND user_id=:uid AND is_deleted=0"),{"iid":user_item_id,"uid":current_user.id}).first()
+    if not row:
+        raise HTTPException(status_code=404, detail="Item not found")
+    eq = db.execute(text("SELECT 1 FROM user_equipment WHERE user_item_id=:iid"),{"iid":user_item_id}).first()
+    if eq:
+        raise HTTPException(status_code=400, detail="Unequip item first")
+    db.execute(text("UPDATE user_items SET is_deleted=1 WHERE id=:iid"),{"iid":user_item_id})
+    db.commit()
+    return {"status":"ok"}
+
 @router.post("/equipment/unequip")
 def unequip_item(
     req: UnequipRequest,
@@ -59,7 +72,7 @@ def get_inventory_categories(
         FROM item_categories ic
         LEFT JOIN item_groups ig ON ig.category_id = ic.id
         LEFT JOIN items it ON it.group_id = ig.id
-        LEFT JOIN user_items ui ON ui.item_id = it.id AND ui.user_id = :uid
+        LEFT JOIN user_items ui ON ui.item_id = it.id AND ui.user_id = :uid AND ui.is_deleted = 0
         LEFT JOIN user_equipment ue2 ON ue2.user_item_id = ui.id AND ue2.user_id = :uid  -- check if equipped
         WHERE ue2.user_item_id IS NULL
         ORDER BY ic.id, ig.id
@@ -234,9 +247,12 @@ def equip_item(
             db.commit()
             recalc_base_stats(db, current_user.id)
             vital = db.execute(text("SELECT current_hp,max_hp,current_mp,max_mp,regen_ts FROM user_vital WHERE user_id=:uid"),{"uid":current_user.id}).mappings().first()
+            stats = db.execute(text("SELECT strength,agility,power,intuition FROM user_base_stats WHERE user_id=:uid"),{"uid":current_user.id}).mappings().first()
             payload = {"status":"ok","action":"unequipped" if req.user_item_id is None else "equipped","slot":req.slot_code}
             if vital:
                 payload.update({**dict(vital), "regen_ts": vital['regen_ts'] if 'regen_ts' in vital else None})
+            if stats:
+                payload.update({**dict(stats), "reason": 0})
             return payload
         except IntegrityError as e:
             logger.exception("Equip failed IntegrityError: statement=%s params=%s", getattr(e, 'statement', None), getattr(e, 'params', None))
@@ -360,9 +376,12 @@ def equip_item(
         # recalc stats after equip
         recalc_base_stats(db, current_user.id)
         vital = db.execute(text("SELECT current_hp,max_hp,current_mp,max_mp,regen_ts FROM user_vital WHERE user_id=:uid"),{"uid":current_user.id}).mappings().first()
+        stats = db.execute(text("SELECT strength,agility,power,intuition FROM user_base_stats WHERE user_id=:uid"),{"uid":current_user.id}).mappings().first()
         payload = {"status":"ok","equipped_in":target_code}
         if vital:
             payload.update({**dict(vital), "regen_ts": vital['regen_ts'] if 'regen_ts' in vital else None})
+        if stats:
+            payload.update({**dict(stats), "reason": 0})
         return payload
     except IntegrityError as e:
         logger.error("IntegrityError when equipping: %s", e.orig)

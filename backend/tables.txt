@@ -175,6 +175,7 @@ quantity             INTEGER    NOT NULL  default=1
 durability_cur       INTEGER    NOT NULL  default=0
 durability_max       INTEGER    NOT NULL  default=0
 enhance_level        INTEGER    NOT NULL  default=0
+is_deleted           INTEGER    NOT NULL  default=0
 
 -- user_professional_skill --
 id                   INTEGER     PK 

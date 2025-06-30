@@ -5,7 +5,8 @@ import '../styles/InventoryScreen.css';
 import { useAuth } from '../context/AuthContext';
 import { EquipSlot } from './EquipmentPanel';
 import TopMenu from './TopMenu';
-import PlayerHUD from './PlayerHUD';
+import PlayerHUD from '../components/PlayerHUD';
+import AttributePanel from './AttributePanel';
 import EquipmentLayout from './EquipmentLayout';
 import V2InventoryPanel from './V2InventoryPanel';
 
@@ -46,10 +47,28 @@ interface Props {
 
 const InventoryScreen: React.FC<Props> = ({ onClose, onSkills }) => {
   const {show}=useNotification();
-  const { user, token } = useAuth();
+  const { user, token, fetchUser, setUser } = useAuth();
   const [categories, setCategories] = useState<Category[]>([]);
   const [equipment, setEquipment] = useState<EquipSlot[]>([]);
   const [invTick, setInvTick] = useState(0);
+
+  // refresh attributes on mount
+  useEffect(()=>{
+    if(!token) return;
+    console.log('Requesting /inventory/summary');
+    fetch(`${API}/inventory/summary`, {headers: {'Authorization':`Bearer ${token}`}, credentials:'include'})
+      .then(async r=> {
+        console.log('summary status', r.status);
+        const data = await r.json().catch(()=>null);
+        console.log('summary data', data);
+        return data;
+      })
+      .then(data=>{
+        if(data && data.strength!==undefined){
+          setUser(prev=> prev? {...prev, ...data}:prev);
+        }
+      }).catch(err=>console.error('summary fetch error', err));
+  },[token, invTick]);
 
   const refreshEquipment = () => {
     fetch(`${API}/inventory/equipment`, {
@@ -66,8 +85,7 @@ const InventoryScreen: React.FC<Props> = ({ onClose, onSkills }) => {
       .then(setCategories);
   };
   const [wallet, setWallet] = useState<Record<string, number>>({});
-  const { fetchUser } = useAuth();
-  const [tt, setTt] = useState<{visible:boolean;text:string;x:number;y:number}>({visible:false,text:'',x:0,y:0});
+    const [tt, setTt] = useState<{visible:boolean;text:string;x:number;y:number}>({visible:false,text:'',x:0,y:0});
   const [activeCat, setActiveCat] = useState<string>('weapon');
   const [activeGroup, setActiveGroup] = useState<string>('all');
 
@@ -116,16 +134,22 @@ const InventoryScreen: React.FC<Props> = ({ onClose, onSkills }) => {
       console.debug('equip request',{itemId:item.id});
       console.log('equip response status', res.status);
       if(res.ok){
-        // убрать предмет локально из списка инвентаря
-        setCategories(prev=>prev.map(cat=>({
-          ...cat,
-          groups: cat.groups.map(g=>({...g, items: g.items.filter(it=>it.id!==item.id)}))
-        })));
-        setInvTick(t=>t+1);
+        const payload = await res.json();
+          console.log('equip payload', payload);
+        if(payload && payload.status==='ok'){
+          if(payload.strength!==undefined){
+            setUser(prev=> prev? {...prev, ...payload}:prev);
+          }
+          // локально убираем предмет из списка инвентаря
+          setCategories(prev=>prev.map(cat=>({
+            ...cat,
+            groups: cat.groups.map(g=>({...g, items: g.items.filter(it=>it.id!==item.id)}))
+          })));
+          setInvTick(t=>t+1);
+          refreshEquipment();
+          refreshCategories();
           fetchUser();
-        refreshEquipment();
-        refreshCategories();
-          fetchUser();
+        }
       }else{
         let errText='Ошибка';
         try{const data=await res.json(); errText=data.detail||JSON.stringify(data);}catch{errText=`HTTP ${res.status}`;}
@@ -146,12 +170,13 @@ const InventoryScreen: React.FC<Props> = ({ onClose, onSkills }) => {
       });
       if(res.ok){
         const data=await res.json();
-        if(data.status==='ok'){
+        if(data && data.status==='ok'){
+          if(data.strength!==undefined){
+            setUser(prev=> prev? {...prev, ...data}:prev);
+          }
           refreshEquipment();
           refreshCategories();
-          fetchUser();
           setInvTick(t=>t+1);
-          fetchUser();
         }
       }else{
         console.error('unequip error', res.status);
@@ -183,12 +208,14 @@ const InventoryScreen: React.FC<Props> = ({ onClose, onSkills }) => {
           >{wallet.COPPER ?? 0}</span></div>
         </div>
         <EquipmentLayout equipment={equipment} onUnequip={handleUnequip}/>
+        <AttributePanel />
         {tt.visible && createPortal(<div className="equip-tooltip" style={{ top: tt.y, left: tt.x, transform: 'translate(-50%, -50%) scale(1.1, 1.15)' }}>{tt.text}</div>, document.body)}
         
         
       </div>
       <div className="items-side h-full bg-bw-dark-bg p-8 overflow-y-auto rounded-xl flex-1">
         <V2InventoryPanel refreshKey={invTick} onEquip={equipItem} />
+      </div>
         {/*
 
           <div>
@@ -258,7 +285,6 @@ const InventoryScreen: React.FC<Props> = ({ onClose, onSkills }) => {
           ))}
         </div>
       */}
-    </div>
     </div>
   );
 };

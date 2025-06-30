@@ -2,6 +2,7 @@ import React from "react";
 import { useAuth } from "../context/AuthContext";
 import "../styles/LocationView.css";
 import ShopCatalog from './ShopCatalog';
+import MonsterGallery from './MonsterGallery';
 
 const LocationView: React.FC = () => {
   const { user, fetchUser } = useAuth();
@@ -124,7 +125,19 @@ const LocationView: React.FC = () => {
       )}
 
       <h2>{user.location?.name}</h2>
+      {user.location?.name === 'Бестиарий' && (() => {
+        const portal = (user.available_locations || []).find(l => l.name === 'Портал Битв');
+        return portal ? (
+          <button
+            className="mt-2 mb-4 px-4 py-2 bg-bw-muted hover:bg-bw-hover rounded text-sm mr-auto"
+            onClick={() => handleMove(portal.id)}
+          >
+            Вернуться
+          </button>
+        ) : null;
+      })()}
       <p>{user.location?.description}</p>
+      {user.location?.name === 'Бестиарий' && <MonsterGallery />}
 
       {/* Кнопки под фоном для type_id = 2 */}
       {user.location?.type_id === 2 && (

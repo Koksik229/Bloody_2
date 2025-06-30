@@ -22,8 +22,9 @@ from models.chat import ChatMessage
 from models.location import Location, LocationLink, LocationType
 from models.race import Race
 from models.skills import Skill
-from routes import auth, profile, chat, users, location, inventory, shop, skills, professional_skills
+from routes import auth, profile, chat, users, location, inventory, shop, skills, professional_skills, inventory_attrs
 import routes.wallet as wallet
+from routes import bestiary
 import routes.vital as vital
 
 load_dotenv()
@@ -81,10 +82,12 @@ for r, kw in [
     (users.router, {"prefix":"/users", "tags":["users"]}),
     (location.router, {}),
     (inventory.router, {"tags":["inventory"]}),
+    (inventory_attrs.router,{"tags":["inventory"]}),
     (shop.router, {"tags":["shop"]}),
     (skills.router, {"tags":["skills"]}),
     (professional_skills.router, {"tags":["professional_skills"]}),
     (wallet.router, {"tags":["wallet"]}),
     (vital.router, {"tags":["vital"]}),
+    (bestiary.router, {"tags":["bestiary"]}),
 ]:
     app.include_router(r, prefix="/api/v1" + kw.pop("prefix", ""), **kw)

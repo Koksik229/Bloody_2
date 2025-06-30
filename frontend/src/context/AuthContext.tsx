@@ -14,6 +14,7 @@ export interface UserData {
     type_id?: number;
   };
   available_locations?: { id: number; name: string; is_locked?: boolean }[];
+  available_attribute_points_special: number;
   hp: number;
   mp: number;
   max_hp: number;
@@ -22,6 +23,7 @@ export interface UserData {
   agility: number;
   power: number;
   intuition: number;
+  reason?: number;
   weapon_skill: number;
   parry: number;
   shield_block: number;
@@ -62,6 +64,11 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (res.ok) {
         const data = await res.json();
         console.log('User data received:', data);
+        // если backend вернул attributes вложенным – расплющиваем
+        if (data.attributes){
+          const {strength, agility, power, intuition} = data.attributes;
+          Object.assign(data, {strength, agility, power, intuition});
+        }
         setUser(data);
         // Обновляем token в состоянии, чтобы другие компоненты сразу получили актуальный JWT
         setToken(currentToken);

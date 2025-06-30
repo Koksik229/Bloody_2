@@ -139,6 +139,30 @@ interface Props { onEquip: (item: InventoryItem) => void; refreshKey?: number }
 export default function V2InventoryPanel({ onEquip, refreshKey }: Props) {
   const { token } = useAuth();
 
+  async function handleDiscard(id: number) {
+    console.log('handleDiscard called', id);
+    try {
+      const opts: RequestInit = {
+        method: 'POST',
+        credentials: 'include',
+      };
+      if (token) {
+        opts.headers = { Authorization: `Bearer ${token}` } as any;
+      }
+      const res = await fetch(`${API}/inventory/items/${id}/discard`, opts);
+      if (!res.ok) {
+        console.error('discard failed http', res.status);
+        return;
+      }
+      const data = await res.json();
+      if (data.status === 'ok') {
+        setItems(prev => prev.filter(it => String(it.id) !== String(id)));
+      }
+    } catch (e) {
+      console.error('discard error', e);
+    }
+  }
+
   const [categories, setCategories] = useState<string[]>(["Все"]);
   const [subMap, setSubMap] = useState<Record<string, string[]>>({});
   const [items, setItems] = useState<InventoryItem[]>([]);
@@ -188,9 +212,7 @@ export default function V2InventoryPanel({ onEquip, refreshKey }: Props) {
     return catOk && subOk && qOk;
   });
 
-  function handleDiscard(id: string) {
-    setItems((prev) => prev.filter((i) => i.id !== id));
-  }
+
 
   const NAME_MAP: Record<string,string> = {
     'подарки/Разное': 'Разное',
@@ -333,11 +355,13 @@ export default function V2InventoryPanel({ onEquip, refreshKey }: Props) {
                       <AlertDialogCancel className="bg-bw-muted text-bw-text-on-dark hover:bg-bw-hover">
                         Отмена
                       </AlertDialogCancel>
-                      <AlertDialogAction
-                        onClick={() => handleDiscard(item.id)}
-                        className="bg-bw-primary-red hover:bg-bw-primary-red/80"
-                      >
-                        Выбросить
+                      <AlertDialogAction asChild>
+                        <Button
+                          onClick={() => handleDiscard(item.id.toString())}
+                          className="bg-bw-primary-red hover:bg-bw-primary-red/80"
+                        >
+                          Выбросить
+                        </Button>
                       </AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
